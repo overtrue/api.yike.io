@@ -16,10 +16,35 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('username')->uniqnue();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('avatar')->nullable();
+            $table->string('realname')->nullable();
+
+            // 拓展资料
+            $table->string('bio')->nullable();
+            $table->json('extends')->nullable();
+            $table->json('settings')->nullable();
+
+            // 状态
+            $table->integer('level')->default(0);
+            $table->boolean('is_admin')->default(false);
+
+            // 数据缓存
+            $table->json('cache')->nullable();
+
+            // 账户
+            $table->string('github_id')->nullable()->index();
+            $table->string('linkedin_id')->nullable()->index();
+            $table->string('twitter_id')->nullable()->index();
+            $table->string('weibo_url')->nullable()->index();
+            $table->timestamp('last_active_at')->nullable();
+            $table->timestamp('banned_at')->nullable();
+            $table->timestamp('activated_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
