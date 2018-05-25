@@ -36,6 +36,8 @@ class Thread extends Model
     ];
 
     protected $casts = [
+        'id' => 'int',
+        'user_id' => 'int',
         'is_excellent' => 'bool',
         'cache' => 'json',
     ];
@@ -55,6 +57,16 @@ class Thread extends Model
         static::creating(function($thread){
             $thread->user_id = \auth()->id();
         });
+
+        static::saved(function($thread){
+            $thread->content()->updateOrCreate(['body' => \request('body')]);
+            $thread->loadMissing('content');
+        });
+    }
+
+    public function comments()
+    {
+        return $this->morphToMany(Comment::class, 'commentable');
     }
 
     public function user()
@@ -64,7 +76,7 @@ class Thread extends Model
 
     public function content()
     {
-        return $this->hasOne(Content::class);
+        return $this->morphOne(Content::class, 'contentable');
     }
 
     public function tags()

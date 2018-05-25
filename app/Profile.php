@@ -39,6 +39,11 @@ class Profile extends Model
         'access_token_expired_at',
     ];
 
+    protected $casts = [
+        'id' => 'int',
+        'user_id' => 'int',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

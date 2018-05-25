@@ -27,6 +27,11 @@ class Content extends Model
         'contentable_type', 'contentable_id', 'body', 'markdown',
     ];
 
+    protected $casts = [
+        'id' => 'int',
+        'contentable_id' => 'int',
+    ];
+
     public function contentable()
     {
         return $this->morphTo();

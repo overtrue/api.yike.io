@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Resources\CommentResource;
+use App\Thread;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,6 +40,7 @@ class CommentController extends Controller
         $this->authorize('create', Comment::class);
 
         $this->validate($request, [
+            'commentable_id' => 'required|poly_exists:commentable_type',
         ]);
 
         return new CommentResource(Comment::create($request->all()));

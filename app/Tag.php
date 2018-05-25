@@ -23,4 +23,8 @@ class Tag extends Model
     protected $fillable = [
         'name', 'slug', 'icon', 'color',
     ];
+
+    protected $casts = [
+        'id' => 'int',
+    ];
 }

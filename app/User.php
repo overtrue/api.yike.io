@@ -69,6 +69,7 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
+        'id' => 'int',
         'is_admin' => 'bool',
         'extends' => 'json',
         'cache' => 'json',

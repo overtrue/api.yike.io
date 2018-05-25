@@ -23,6 +23,10 @@ class Comment extends Model
 {
     use SoftDeletes, Filterable, CanBeVoted;
 
+    const COMMENTABLES = [
+        Thread::class,
+    ];
+
     protected $fillable = [
         'commentable_id', 'commentable_type', 'user_id', 'banned_at', 'cache',
     ];
@@ -32,6 +36,8 @@ class Comment extends Model
     ];
 
     protected $casts = [
+        'id' => 'int',
+        'user_id' => 'int',
         'cache' => 'object',
     ];
 
@@ -41,6 +47,11 @@ class Comment extends Model
 
         static::creating(function($thread){
             $thread->user_id = \auth()->id();
+        });
+
+        static::saved(function($comment){
+            $comment->content()->updateOrCreate(['body' => \request('body')]);
+            $comment->loadMissing('content');
         });
     }
 
@@ -56,6 +67,6 @@ class Comment extends Model
 
     public function content()
     {
-        return $this->hasOne(Content::class);
+        return $this->morphOne(Content::class, 'contentable');
     }
 }

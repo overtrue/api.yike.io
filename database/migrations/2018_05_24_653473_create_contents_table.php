@@ -16,7 +16,7 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->morphs('contentable'); // contentable_id, contentable_type
             $table->mediumText('body');
-            $table->mediumText('markdown');
+            $table->mediumText('markdown')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

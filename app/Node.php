@@ -30,6 +30,8 @@ class Node extends Model
     ];
 
     protected $casts = [
+        'id' => 'int',
+        'node_id' => 'int',
         'settings' => 'json',
         'cache' => 'json',
     ];

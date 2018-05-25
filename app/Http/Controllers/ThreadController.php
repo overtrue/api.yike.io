@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -32,8 +39,9 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Thread::class);
-
         $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
         ]);
 
         return new ThreadResource(Thread::create($request->all()));
@@ -52,6 +60,8 @@ class ThreadController extends Controller
     {
         $this->authorize('view', $thread);
 
+        $thread->loadMissing('content');
+
         return new ThreadResource($thread);
     }
 
@@ -67,13 +77,13 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        $this->authorize('update', Thread::class);
+        $this->authorize('update', $thread);
 
         $this->validate($request, [
             // validation rules...
         ]);
 
-        $supplier->update($request->all());
+        $thread->update($request->all());
 
         return new ThreadResource(Thread::create($request->all()));
     }
