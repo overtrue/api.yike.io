@@ -6,6 +6,7 @@ use App\Traits\OnlyActivatedUserCanCreate;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Mews\Purifier\Facades\Purifier;
 
 /**
  * Class Content.
@@ -32,6 +33,21 @@ class Content extends Model
         'id' => 'int',
         'contentable_id' => 'int',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function($content){
+            if ($content->isDirty('markdown') && !empty($content->markdown)) {
+                $html = app(\ParsedownExtra::class)->text(\emoji($content->markdown));
+
+                $content->body = \str_replace('<code>', '<code class="language-php">', $html);
+            }
+
+            $content->body = Purifier::clean($content->body);
+        });
+    }
 
     public function contentable()
     {
