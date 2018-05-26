@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\OnlyActivatedUserCanCreate;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Content extends Model
 {
-    use SoftDeletes, Filterable;
+    use SoftDeletes, Filterable, OnlyActivatedUserCanCreate;
 
     protected $fillable = [
         'contentable_type', 'contentable_id', 'body', 'markdown',

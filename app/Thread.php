@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\OnlyActivatedUserCanCreate;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,7 +29,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  */
 class Thread extends Model
 {
-    use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked;
+    use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at',

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\OnlyActivatedUserCanCreate;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,7 +22,7 @@ use Overtrue\LaravelFollow\Traits\CanBeVoted;
  */
 class Comment extends Model
 {
-    use SoftDeletes, Filterable, CanBeVoted;
+    use SoftDeletes, Filterable, CanBeVoted, OnlyActivatedUserCanCreate;
 
     const COMMENTABLES = [
         Thread::class,

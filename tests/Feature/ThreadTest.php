@@ -16,12 +16,24 @@ class ThreadTest extends TestCase
             ->assertStatus(401);
     }
 
+    public function testOnlyUserActivatedCanCreateThread()
+    {
+        $user = \factory(User::class)->create();
+        $this->actingAs($user, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
+            ->assertStatus(403);
+
+        // activated
+        $userActivated = \factory(User::class)->states('activated')->create();
+        $this->actingAs($userActivated, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
+            ->assertStatus(201);
+    }
+
     /**
      * Only logged user can post threads.
      */
     public function testLoggedUserCanCreateThread()
     {
-        $user = \factory(User::class)->create();
+        $user = \factory(User::class)->states('activated')->create();
 
         $this->actingAs($user, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201)
@@ -39,8 +51,8 @@ class ThreadTest extends TestCase
 
     public function testUserCannotUpdateOtherUsersThread()
     {
-        $user1 = \factory(User::class)->create();
-        $user2 = \factory(User::class)->create();
+        $user1 = \factory(User::class)->states('activated')->create();
+        $user2 = \factory(User::class)->states('activated')->create();
 
         $this->actingAs($user1, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201);
@@ -51,7 +63,7 @@ class ThreadTest extends TestCase
 
     public function testViewThread()
     {
-        $user = \factory(User::class)->create();
+        $user = \factory(User::class)->states('activated')->create();
 
         $this->actingAs($user, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201)
@@ -67,8 +79,8 @@ class ThreadTest extends TestCase
 
     public function testUserCanOnlyDeleteHisThread()
     {
-        $user1 = \factory(User::class)->create();
-        $user2 = \factory(User::class)->create();
+        $user1 = \factory(User::class)->states('activated')->create();
+        $user2 = \factory(User::class)->states('activated')->create();
 
         $this->actingAs($user1, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201);
