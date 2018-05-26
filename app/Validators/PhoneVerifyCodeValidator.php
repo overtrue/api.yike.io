@@ -8,7 +8,7 @@
 
 namespace App\Validators;
 
-use Facades\App\Services\VerificationCode;
+use App\Services\VerificationCode;
 
 /**
  * Class PhoneVerifyCodeValidator.
@@ -23,9 +23,9 @@ class PhoneVerifyCodeValidator
             $phone = $parameters[0];
         }
 
-        \Log::debug('verify', [$parameters, $phone]);
+        \Log::debug('phone verify: ', [$parameters, $phone]);
 
-        if (VerificationCode::validate($phone, $value)) {
+        if (resolve(VerificationCode::class)->validate($phone, $value)) {
             request()->merge(['phone_verified' => true]);
 
             return true;
