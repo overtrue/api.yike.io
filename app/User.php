@@ -39,6 +39,8 @@ use Overtrue\LaravelFollow\Traits\CanSubscribe;
  * @property \Illuminate\Database\Eloquent\Relations\HasMany $profiles
  * @property \Illuminate\Database\Eloquent\Relations\HasMany $threads
  * @property \Illuminate\Database\Eloquent\Relations\HasMany $comments
+ * @property \Illuminate\Notifications\DatabaseNotificationCollection $unreadNotifications
+ * @property \Illuminate\Notifications\DatabaseNotificationCollection $notifications
  */
 class User extends Authenticatable
 {
