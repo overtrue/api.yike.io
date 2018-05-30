@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Overtrue\LaravelFollow\Traits\CanFavorite;
@@ -41,7 +42,7 @@ use Overtrue\LaravelFollow\Traits\CanSubscribe;
  */
 class User extends Authenticatable
 {
-    use Notifiable, CanFavorite, CanLike, CanFollow, CanSubscribe;
+    use HasApiTokens, Notifiable, CanFavorite, CanLike, CanFollow, CanSubscribe;
 
     /**
      * The attributes that are mass assignable.
@@ -80,6 +81,15 @@ class User extends Authenticatable
         'has_banned', 'has_activated',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->name = $user->username;
+        });
+    }
+
     public function profiles()
     {
         return $this->hasMany(Profile::class);
@@ -103,5 +113,10 @@ class User extends Authenticatable
     public function getHasActivatedAttribute()
     {
         return (bool) $this->activated_at;
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }
