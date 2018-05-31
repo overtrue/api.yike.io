@@ -117,6 +117,11 @@ class User extends Authenticatable
         return (bool) $this->activated_at;
     }
 
+    public function getAvatarAttribute()
+    {
+        return $this->avatar ?? asset('images/default-avatar.png');
+    }
+
     public function username()
     {
         return 'username';
