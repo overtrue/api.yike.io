@@ -122,8 +122,13 @@ class User extends Authenticatable
         return $this->avatar ?? asset('images/default-avatar.png');
     }
 
-    public function username()
-    {
-        return 'username';
+    /**
+     * Find the user identified by the given $identifier.
+     *
+     * @param $identifier email|phone
+     * @return mixed
+     */
+    public function findForPassport($identifier) {
+        return User::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
     }
 }
