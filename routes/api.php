@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Headers:*');
+header('Access-Control-Allow-Methods:*');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,8 @@ Route::resources([
     'notifications' => 'NotificationController',
 ]);
 
+Route::get('user', 'UserController@me');
+Route::patch('user/{user}', 'UserController@update');
+
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');
-
-Route::middleware('auth:api')->get('user', function (Request $request) {
-    return $request->user();
-});

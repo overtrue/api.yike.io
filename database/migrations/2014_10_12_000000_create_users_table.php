@@ -18,11 +18,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->uniqnue();
             $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique();
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('realname')->nullable();
 
             // 拓展资料
+            $table->enum('gender', ['male', 'female'])->default('male');
             $table->string('bio')->nullable();
             $table->json('extends')->nullable();
             $table->json('settings')->nullable();
@@ -35,10 +37,6 @@ class CreateUsersTable extends Migration
             $table->json('cache')->nullable();
 
             // 账户
-            $table->string('github_id')->nullable()->index();
-            $table->string('linkedin_id')->nullable()->index();
-            $table->string('twitter_id')->nullable()->index();
-            $table->string('weibo_url')->nullable()->index();
             $table->timestamp('last_active_at')->nullable();
             $table->timestamp('banned_at')->nullable();
             $table->timestamp('activated_at')->nullable();

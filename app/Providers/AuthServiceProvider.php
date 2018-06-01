@@ -12,9 +12,11 @@ use App\Policies\NodePolicy;
 use App\Policies\ProfilePolicy;
 use App\Policies\TagPolicy;
 use App\Policies\ThreadPolicy;
+use App\Policies\UserPolicy;
 use App\Profile;
 use App\Tag;
 use App\Thread;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -32,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         Profile::class => ProfilePolicy::class,
         Tag::class => TagPolicy::class,
         Thread::class => ThreadPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
