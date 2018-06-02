@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -88,6 +89,12 @@ class User extends Authenticatable
 
         static::creating(function ($user) {
             $user->name = $user->username;
+        });
+
+        static::saving(function($user){
+            if (Hash::needsRehash($user->password)) {
+                $user->password = \bcrypt($user->password);
+            }
         });
     }
 
