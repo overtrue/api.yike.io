@@ -10,6 +10,7 @@ use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanLike;
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 
 /**
  * Class User.
@@ -45,7 +46,7 @@ use Overtrue\LaravelFollow\Traits\CanSubscribe;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, CanFavorite, CanLike, CanFollow, CanSubscribe;
+    use HasApiTokens, Notifiable, CanFavorite, CanLike, CanFollow, CanSubscribe, CanBeFollowed;
 
     /**
      * The attributes that are mass assignable.
@@ -80,7 +81,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'has_banned', 'has_activated',
+        'has_banned', 'has_activated', 'has_followed'
     ];
 
     public static function boot()
@@ -126,6 +127,11 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         return $this->avatar ?? asset('images/default-avatar.png');
+    }
+
+    public function getHasFollowedAttribute()
+    {
+        return $this->isFollowedBy(auth()->user());
     }
 
     /**

@@ -31,6 +31,8 @@ Route::resources([
 Route::get('user', 'UserController@me');
 Route::get('user/{user}', 'UserController@index');
 Route::patch('user/{user}', 'UserController@update');
+Route::post('user/{user}/follow', 'UserController@follow');
+Route::post('user/{user}/unfollow', 'UserController@unfollow');
 
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');

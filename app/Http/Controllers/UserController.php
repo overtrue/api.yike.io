@@ -22,6 +22,20 @@ class UserController extends Controller
         return new UserResource($request->user());
     }
 
+    public function follow(User $user)
+    {
+        auth()->user()->follow($user);
+
+        return response()->json([]);
+    }
+
+    public function unfollow(User $user)
+    {
+        auth()->user()->unfollow($user);
+
+        return response()->json([]);
+    }
+
     /**
      * Display the specified resource.
      *
