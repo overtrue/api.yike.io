@@ -81,7 +81,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'has_banned', 'has_activated', 'has_followed'
+        'has_banned', 'has_activated', 'has_followed', 'followers_count', 'followings_count'
     ];
 
     public static function boot()
@@ -132,6 +132,16 @@ class User extends Authenticatable
     public function getHasFollowedAttribute()
     {
         return $this->isFollowedBy(auth()->user());
+    }
+
+    public function getFollowersCountAttribute()
+    {
+        return $this->followers()->count();
+    }
+
+    public function getFollowingsCountAttribute()
+    {
+        return $this->followings()->count();
     }
 
     /**

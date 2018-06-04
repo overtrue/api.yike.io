@@ -36,6 +36,20 @@ class UserController extends Controller
         return response()->json([]);
     }
 
+    public function followers(User $user)
+    {
+        $users = $user->followers()->get();
+
+        return UserResource::collection($users);
+    }
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->get();
+
+        return UserResource::collection($users);
+    }
+
     /**
      * Display the specified resource.
      *

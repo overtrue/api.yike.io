@@ -30,6 +30,8 @@ Route::resources([
 
 Route::get('user', 'UserController@me');
 Route::get('user/{user}', 'UserController@index');
+Route::get('user/{user}/followers', 'UserController@followers');
+Route::get('user/{user}/followings', 'UserController@followings');
 Route::patch('user/{user}', 'UserController@update');
 Route::post('user/{user}/follow', 'UserController@follow');
 Route::post('user/{user}/unfollow', 'UserController@unfollow');
