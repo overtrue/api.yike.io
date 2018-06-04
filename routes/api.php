@@ -29,6 +29,7 @@ Route::resources([
 ]);
 
 Route::get('user', 'UserController@me');
+Route::get('user/{user}', 'UserController@index');
 Route::patch('user/{user}', 'UserController@update');
 
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')

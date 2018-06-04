@@ -9,7 +9,12 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except(['index']);
+    }
+
+    public function index(User $user)
+    {
+        return new UserResource($user);
     }
 
     public function me(Request $request)
