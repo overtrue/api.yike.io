@@ -40,11 +40,14 @@ class Content extends Model
 
         static::saving(function($content){
             if ($content->isDirty('markdown') && !empty($content->markdown)) {
-                $html = app(\ParsedownExtra::class)->text(\emoji($content->markdown));
-
-                $content->body = \str_replace('<code>', '<code class="language-php">', $html);
+                $content->body = app(\ParsedownExtra::class)->text(\emoji($content->markdown));
             }
 
+            $content->body = \str_replace(
+                ['<pre>', '<code>'],
+                ['<pre class="language-php">', '<code class="language-php">'],
+                $content->body
+            );
             $content->body = Purifier::clean($content->body);
         });
     }

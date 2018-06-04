@@ -32,8 +32,8 @@ class Thread extends Model
     use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate;
 
     protected $fillable = [
-        'user_id', 'title', 'excellent_at',
-        'pinned_at', 'frozen_at', 'banned_at', 'cache',
+        'user_id', 'title', 'excellent_at', 'node_id',
+        'pinned_at', 'frozen_at', 'banned_at', 'published_at', 'cache',
     ];
 
     protected $casts = [
@@ -44,7 +44,7 @@ class Thread extends Model
     ];
 
     protected $dates = [
-        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at',
+        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at',
     ];
 
     protected $appends = [
@@ -59,8 +59,13 @@ class Thread extends Model
             $thread->user_id = \auth()->id();
         });
 
+        static::saving(function($thread){
+            $thread->published_at = \request('is_draft', false) ? null : now();
+        });
+
         static::saved(function($thread){
-            $thread->content()->updateOrCreate(['body' => \request('body')]);
+            $data = array_only(\request('content'), \request('type', 'markdown'));
+            $thread->content()->updateOrCreate($data);
             $thread->loadMissing('content');
         });
     }
