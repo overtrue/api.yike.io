@@ -6,6 +6,7 @@ use App\Validators\IdNumberValidator;
 use App\Validators\PhoneValidator;
 use App\Validators\PhoneVerifyCodeValidator;
 use App\Validators\PolyExistsValidator;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Resource::withoutWrapping();
+        Carbon::setLocale('zh');
 
         $this->registerValidators();
     }

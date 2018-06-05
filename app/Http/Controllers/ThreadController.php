@@ -22,7 +22,7 @@ class ThreadController extends Controller
      */
     public function index(Request $request)
     {
-        $threads = Thread::latest()->filter($request->all())->paginate($request->get('per_page', 20));
+        $threads = Thread::published()->latest()->filter($request->all())->paginate($request->get('per_page', 20));
 
         return ThreadResource::collection($threads);
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\OnlyActivatedUserCanCreate;
+use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,10 +27,11 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  * @property bool $has_excellent
  * @property bool $has_frozen
  * @property object $cache
+ * @method   static \App\Thread published()
  */
 class Thread extends Model
 {
-    use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate;
+    use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate, WithDiffForHumanTimes;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
@@ -47,8 +49,10 @@ class Thread extends Model
         'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at',
     ];
 
+    protected $with = ['user'];
+
     protected $appends = [
-        'has_pinned', 'has_banned', 'has_excellent', 'has_frozen',
+        'has_pinned', 'has_banned', 'has_excellent', 'has_frozen', 'created_at_timeago', 'updated_at_timeago',
     ];
 
     protected static function boot()
@@ -65,7 +69,7 @@ class Thread extends Model
 
         static::saved(function($thread){
             $data = array_only(\request('content'), \request('type', 'markdown'));
-            $thread->content()->updateOrCreate($data);
+            $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
             $thread->loadMissing('content');
         });
     }
@@ -88,6 +92,11 @@ class Thread extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<=', now());
     }
 
     public function getHasPinnedAttribute()
