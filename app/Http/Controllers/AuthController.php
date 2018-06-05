@@ -15,6 +15,8 @@ class AuthController extends Controller
             'password' => bcrypt($request->get('password')),
         ]);
 
+        $user->sendActiveMail();
+
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
 
         return response()->json([

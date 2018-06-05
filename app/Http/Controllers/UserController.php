@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use UrlSigner;
 use App\User;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index']);
+        $this->middleware('auth:api')->except(['index', 'activate']);
     }
 
     public function index(User $user)
@@ -48,6 +49,26 @@ class UserController extends Controller
         $users = $user->followings()->get();
 
         return UserResource::collection($users);
+    }
+
+    public function sendActiveMail(Request $request)
+    {
+        $request->user()->sendActiveMail();
+
+        return response()->json([
+            'message' => '激活邮件已发送，请注意查收！'
+        ]);
+    }
+
+    public function activate(Request $request)
+    {
+        if (UrlSigner::validate($request->fullUrl())) {
+            User::whereEmail($request->email)->first()->activate();
+
+            return \redirect(config('app.site_url').'?active-success=yes');
+        }
+
+        return \redirect(config('app.site_url').'?active-success=no');
     }
 
     /**

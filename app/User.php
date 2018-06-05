@@ -2,7 +2,10 @@
 
 namespace App;
 
+use App\Mail\UserActivation;
+use UrlSigner;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -142,6 +145,21 @@ class User extends Authenticatable
     public function getFollowingsCountAttribute()
     {
         return $this->followings()->count();
+    }
+
+    public function sendActiveMail()
+    {
+        return Mail::to($this->email)->queue(new UserActivation($this));
+    }
+
+    public function getActivationLink()
+    {
+        return UrlSigner::sign(route('user.activate').'?'.http_build_query(['email' => $this->email]), 60);
+    }
+
+    public function activate()
+    {
+        return $this->update(['activated_at' => now()]);
     }
 
     /**
