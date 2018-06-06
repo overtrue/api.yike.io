@@ -24,11 +24,6 @@ class CreateNodesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create('node_thread', function(Blueprint $table){
-            $table->unsignedInteger('node_id');
-            $table->unsignedInteger('thread_id');
-        });
     }
 
     /**
@@ -39,6 +34,5 @@ class CreateNodesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('nodes');
-        Schema::dropIfExists('node_thread');
     }
 }

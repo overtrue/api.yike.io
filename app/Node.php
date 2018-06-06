@@ -36,13 +36,23 @@ class Node extends Model
         'cache' => 'json',
     ];
 
+    public function children()
+    {
+        return $this->hasMany(self::class);
+    }
+
     public function parent()
     {
         return $this->belongsTo(self::class);
     }
 
+    public function scopeRoot($query)
+    {
+        return $query->whereNodeId(0);
+    }
+
     public function threads()
     {
-        return $this->belongsToMany(Thread::class, 'node_threads');
+        return $this->hasMany(Thread::class);
     }
 }

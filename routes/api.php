@@ -38,5 +38,7 @@ Route::patch('user/{user}', 'UserController@update');
 Route::post('user/{user}/follow', 'UserController@follow');
 Route::post('user/{user}/unfollow', 'UserController@unfollow');
 
+Route::get('nodes/{node}/threads', 'NodeController@threads');
+
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');
