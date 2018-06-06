@@ -47,6 +47,8 @@ use Overtrue\LaravelFollow\Traits\CanBeFollowed;
  * @property \Illuminate\Database\Eloquent\Relations\HasMany $comments
  * @property \Illuminate\Notifications\DatabaseNotificationCollection $unreadNotifications
  * @property \Illuminate\Notifications\DatabaseNotificationCollection $notifications
+ * @method static \App\User popular()
+ * @method static \App\User recent()
  */
 class User extends Authenticatable
 {

@@ -21,6 +21,10 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
+        $this->validate($request, [
+            'commentable_id' => 'required|poly_exists:commentable_type',
+        ]);
+
         $comments = Comment::latest()->filter($request->all())->paginate($request->get('per_page', 20));
 
         return CommentResource::collection($comments);
@@ -41,6 +45,9 @@ class CommentController extends Controller
 
         $this->validate($request, [
             'commentable_id' => 'required|poly_exists:commentable_type',
+            'type' => 'in:markdown,html',
+            'content.body' => 'required_if:type,html',
+            'content.markdown' => 'required_if:type,markdown',
         ]);
 
         return new CommentResource(Comment::create($request->all()));
@@ -77,7 +84,9 @@ class CommentController extends Controller
         $this->authorize('update', Comment::class);
 
         $this->validate($request, [
-            // validation rules...
+            'type' => 'in:markdown,html',
+            'content.body' => 'required_if:type,html',
+            'content.markdown' => 'required_if:type,markdown',
         ]);
 
         $supplier->update($request->all());

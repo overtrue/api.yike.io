@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\OnlyActivatedUserCanCreate;
+use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -22,7 +23,7 @@ use Overtrue\LaravelFollow\Traits\CanBeVoted;
  */
 class Comment extends Model
 {
-    use SoftDeletes, Filterable, CanBeVoted, OnlyActivatedUserCanCreate;
+    use SoftDeletes, Filterable, CanBeVoted, OnlyActivatedUserCanCreate, WithDiffForHumanTimes;
 
     const COMMENTABLES = [
         Thread::class,
@@ -36,10 +37,18 @@ class Comment extends Model
         'banned_at',
     ];
 
+    protected $with = [
+        'user', 'content',
+    ];
+
     protected $casts = [
         'id' => 'int',
         'user_id' => 'int',
         'cache' => 'object',
+    ];
+
+    protected $appends = [
+        'created_at_timeago', 'updated_at_timeago',
     ];
 
     protected static function boot()
@@ -51,7 +60,8 @@ class Comment extends Model
         });
 
         static::saved(function($comment){
-            $comment->content()->updateOrCreate(['body' => \request('body')]);
+            $data = array_only(\request('content'), \request('type', 'markdown'));
+            $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
             $comment->loadMissing('content');
         });
     }

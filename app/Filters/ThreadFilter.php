@@ -13,4 +13,24 @@ class ThreadFilter extends ModelFilter
      * @var array
      */
     public $relations = [];
+
+    public function tab($tab)
+    {
+        $this->published()->whereNull('frozen_at')->whereNull('banned_at');
+
+        switch ($tab) {
+            case 'default':
+                $this->latest('pinned_at')->latest('excellent_at');
+                break;
+            case 'featured':
+                $this->latest('excellent_at');
+                break;
+            case 'recent':
+                $this->latest()->latest('updated_at');
+                break;
+            case 'zeroComment':
+                $this->doesntHave('comments')->latest();
+                break;
+        }
+    }
 }
