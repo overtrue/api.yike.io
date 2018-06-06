@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Mail\UserActivation;
+use App\Traits\WithDiffForHumanTimes;
+use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
 use UrlSigner;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +54,7 @@ use Overtrue\LaravelFollow\Traits\CanBeFollowed;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, CanFavorite, CanLike, CanFollow, CanSubscribe, CanBeFollowed;
+    use HasApiTokens, Notifiable, Filterable, CanFavorite, CanLike, CanFollow, CanSubscribe, CanBeFollowed, WithDiffForHumanTimes;
 
     /**
      * The attributes that are mass assignable.
@@ -87,7 +89,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'has_banned', 'has_activated', 'has_followed', 'followers_count', 'followings_count'
+        'has_banned', 'has_activated', 'has_followed', 'followers_count', 'followings_count', 'created_at_timeago', 'updated_at_timeago',
     ];
 
     public static function boot()

@@ -25,13 +25,14 @@ Route::resources([
     'banners' => 'BannerController',
     'tags' => 'TagController',
     'comments' => 'CommentController',
+    'users' => 'UserController',
     'notifications' => 'NotificationController',
 ]);
 
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
 Route::get('user', 'UserController@me');
-Route::get('user/{user}', 'UserController@index');
+Route::get('user/{user}', 'UserController@show');
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');
 Route::patch('user/{user}', 'UserController@update');

@@ -13,9 +13,11 @@ class UserController extends Controller
         $this->middleware('auth:api')->except(['index', 'activate']);
     }
 
-    public function index(User $user)
+    public function index(Request $request)
     {
-        return new UserResource($user);
+        $users = User::filter($request->all())->paginate($request->get('per_page', 20));
+
+        return UserResource::collection($users);
     }
 
     public function me(Request $request)
