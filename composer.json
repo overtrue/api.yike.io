@@ -9,6 +9,7 @@
         "laravel/framework": "5.6.*",
         "laravel/passport": "^6.0",
         "laravel/tinker": "^1.0",
+        "laravolt/avatar": "^2.0",
         "mews/purifier": "^2.1",
         "overtrue/laravel-emoji": "^1.0",
         "overtrue/laravel-filesystem-qiniu": "^1.0",

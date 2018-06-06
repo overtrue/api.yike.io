@@ -3,9 +3,10 @@
 namespace App;
 
 use App\Mail\UserActivation;
+use Illuminate\Support\Facades\Mail;
 use UrlSigner;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -117,6 +118,16 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function scopeRecent($query)
+    {
+        return $query->latest();
+    }
+
+    public function scopePopular($query)
+    {
+        return $query->latest('');
+    }
+
     public function getHasBannedAttribute()
     {
         return (bool) $this->banned_at;
@@ -129,7 +140,20 @@ class User extends Authenticatable
 
     public function getAvatarAttribute()
     {
-        return $this->avatar ?? asset('images/default-avatar.png');
+        if (empty($this->attributes['avatar'])) {
+            $filename = \sprintf('avatars/%s.png', $this->id);
+            $filepath = \storage_path('app/public/'.$filename);
+
+            if (!\is_dir(\dirname($filepath))) {
+                \mkdir(\dirname($filepath), 0755, true);
+            }
+
+            \Avatar::create($this->name)->save(Storage::disk('public')->path($filename));
+
+            $this->update(['avatar' => \asset(\sprintf('storage/%s', $filename))]);
+        }
+
+        return $this->attributes['avatar'];
     }
 
     public function getHasFollowedAttribute()
