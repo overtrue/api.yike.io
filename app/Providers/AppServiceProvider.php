@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Overtrue\EasySms\EasySms;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,5 +48,14 @@ class AppServiceProvider extends ServiceProvider
         foreach ($this->validators as $rule => $validator) {
             Validator::extend($rule, "{$validator}@validate");
         }
+    }
+
+    public function registerSmsService()
+    {
+        $this->app->singleton(EasySms::class, function () {
+            return new EasySms(config('sms'));
+        });
+
+        $this->app->alias(EasySms::class, 'sms');
     }
 }
