@@ -11,7 +11,7 @@ class NodeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show']);
+        $this->middleware('auth:api')->except(['index', 'show', 'threads']);
     }
 
     /**
@@ -41,6 +41,20 @@ class NodeController extends Controller
         return ThreadResource::collection($threads);
     }
 
+    public function subscribe(Node $node)
+    {
+        auth()->user()->subscribe($node);
+
+        return response()->json([]);
+    }
+
+    public function unsubscribe(Node $node)
+    {
+        auth()->user()->unsubscribe($node);
+
+        return response()->json([]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -66,13 +80,9 @@ class NodeController extends Controller
      * @param \App\Node $node
      *
      * @return \App\Http\Resources\NodeResource
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Node $node)
     {
-        $this->authorize('view', $node);
-
         return new NodeResource($node);
     }
 

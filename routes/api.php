@@ -40,6 +40,8 @@ Route::post('user/{user}/follow', 'UserController@follow');
 Route::post('user/{user}/unfollow', 'UserController@unfollow');
 
 Route::get('nodes/{node}/threads', 'NodeController@threads');
+Route::post('nodes/{node}/subscribe', 'NodeController@subscribe');
+Route::post('nodes/{node}/unsubscribe', 'NodeController@unsubscribe');
 
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');

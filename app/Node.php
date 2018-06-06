@@ -5,6 +5,7 @@ namespace App;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 /**
  * Class Node.
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Node extends Model
 {
-    use SoftDeletes, Filterable;
+    use SoftDeletes, Filterable, CanBeSubscribed;
 
     protected $fillable = [
         'node_id', 'title', 'icon', 'banner', 'description', 'settings', 'cache',
@@ -34,6 +35,10 @@ class Node extends Model
         'node_id' => 'int',
         'settings' => 'json',
         'cache' => 'json',
+    ];
+
+    protected $appends = [
+        'has_subscribed'
     ];
 
     public function children()
@@ -54,5 +59,10 @@ class Node extends Model
     public function threads()
     {
         return $this->hasMany(Thread::class);
+    }
+
+    public function getHasSubscribedAttribute()
+    {
+        return $this->isSubscribedBy(auth()->user());
     }
 }
