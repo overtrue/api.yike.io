@@ -79,18 +79,12 @@ class ThreadController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
      * @param \App\Thread $thread
      *
      * @return \App\Http\Resources\ThreadResource
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Thread $thread)
     {
-        $this->authorize('view', $thread);
-
         $thread->loadMissing('content');
 
         return new ThreadResource($thread);
