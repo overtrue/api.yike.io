@@ -41,6 +41,20 @@ class ThreadController extends Controller
         return response()->json([]);
     }
 
+    public function subscribe(Thread $thread)
+    {
+        auth()->user()->subscribe($thread);
+
+        return response()->json([]);
+    }
+
+    public function unsubscribe(Thread $thread)
+    {
+        auth()->user()->unsubscribe($thread);
+
+        return response()->json([]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

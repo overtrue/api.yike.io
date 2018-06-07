@@ -54,7 +54,7 @@ class Thread extends Model
     protected $appends = [
         'has_pinned', 'has_banned', 'has_excellent', 'has_frozen',
         'created_at_timeago', 'updated_at_timeago', 'has_liked',
-        'likers_count', 'comments_count',
+        'likers_count', 'comments_count', 'has_subscribed',
     ];
 
     protected static function boot()
@@ -119,6 +119,11 @@ class Thread extends Model
     public function getHasFrozenAttribute()
     {
         return (bool) $this->frozen_at;
+    }
+
+    public function getHasSubscribedAttribute()
+    {
+        return $this->isSubscribedBy(auth()->user());
     }
 
     public function getHasLikedAttribute()
