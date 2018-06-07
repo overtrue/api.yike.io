@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Http\Resources\CommentResource;
+use App\Notifications\CommentMyThread;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,11 @@ class CommentController extends Controller
             'content.markdown' => 'required_if:type,markdown',
         ]);
 
-        return new CommentResource(Comment::create($request->all()));
+        $comment = Comment::create($request->all());
+
+        $comment->user->notify(new CommentMyThread($comment, auth()->user()));
+
+        return new CommentResource($comment);
     }
 
     /**

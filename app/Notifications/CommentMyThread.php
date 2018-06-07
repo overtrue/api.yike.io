@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Comment;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +13,20 @@ class CommentMyThread extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $comment;
+
+    protected $user;
+
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\Comment
+     * @param \App\User
      */
-    public function __construct()
+    public function __construct(Comment $comment, User $user)
     {
-        //
+        $this->comment = $comment;
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +37,7 @@ class CommentMyThread extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +63,9 @@ class CommentMyThread extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->user->id,
+            'user_name' => $this->user->name,
+            'comment_id' => $this->comment->id,
         ];
     }
 }

@@ -63,6 +63,10 @@ class Thread extends Model
 
         static::creating(function($thread){
             $thread->user_id = \auth()->id();
+            $thread->cache = [
+                'comments_count' => 0,
+                'views_count' => 0,
+            ];
         });
 
         static::saving(function($thread){

@@ -38,7 +38,7 @@ class ThreadController extends Controller
             ->causedBy(auth()->user())
             ->log(auth()->user()->name . " 点赞了 {$thread->name}");
 
-        $thread->user()->notify(new LikedMyThread($thread, auth()->user()));
+        $thread->user->notify(new LikedMyThread($thread, auth()->user()));
 
         return response()->json([]);
     }
@@ -59,7 +59,7 @@ class ThreadController extends Controller
             ->causedBy(auth()->user())
             ->log(auth()->user()->name . " 订阅了 {$thread->name}");
 
-        $thread->user()->notify(new SubscribedMyThread($thread, auth()->user()));
+        $thread->user->notify(new SubscribedMyThread($thread, auth()->user()));
 
         return response()->json([]);
     }
