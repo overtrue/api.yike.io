@@ -103,6 +103,8 @@ class ThreadController extends Controller
     {
         $thread->loadMissing('content');
 
+        $thread->update(['cache->views_count' => $thread->cache['views_count'] + 1]);
+
         return new ThreadResource($thread);
     }
 
