@@ -39,16 +39,16 @@ class UserController extends Controller
         return response()->json([]);
     }
 
-    public function followers(User $user)
+    public function followers(Request $request, User $user)
     {
-        $users = $user->followers()->get();
+        $users = $user->followers()->paginate($request->get('per_page', 20));
 
         return UserResource::collection($users);
     }
 
-    public function followings(User $user)
+    public function followings(Request $request, User $user)
     {
-        $users = $user->followings()->get();
+        $users = $user->followings()->paginate($request->get('per_page', 20));
 
         return UserResource::collection($users);
     }

@@ -23,7 +23,7 @@ class ThreadFilter extends ModelFilter
                 $this->latest('pinned_at')->latest('excellent_at');
                 break;
             case 'featured':
-                $this->latest('excellent_at');
+                $this->whereNotNull('excellent_at')->latest('excellent_at');
                 break;
             case 'recent':
                 $this->latest()->latest('updated_at');
