@@ -2,23 +2,32 @@
 
 namespace App\Notifications;
 
+use App\Thread;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewPrivateMessage extends Notification implements ShouldQueue
+class SubscribedMyThread extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    protected $thread;
+
+    protected $user;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\Thread
+     * @param \App\User
      */
-    public function __construct()
+    public function __construct(Thread $thread, User $user)
     {
-        //
+        $this->thread = $thread;
+
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +38,7 @@ class NewPrivateMessage extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +64,10 @@ class NewPrivateMessage extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->user->id,
+            'user_name' => $this->user->name,
+            'thread_id'   => $this->thread->id,
+            'thread_title' => $this->thread->title,
         ];
     }
 }

@@ -2,23 +2,26 @@
 
 namespace App\Notifications;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewFollower extends Notification
+class NewFollower extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    protected $user;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\User
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +32,7 @@ class NewFollower extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +58,8 @@ class NewFollower extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->user->id,
+            'user_name' => $this->user->name,
         ];
     }
 }

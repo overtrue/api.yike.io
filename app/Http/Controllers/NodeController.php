@@ -45,6 +45,11 @@ class NodeController extends Controller
     {
         auth()->user()->subscribe($node);
 
+        activity('subscribe')
+            ->performedOn($node)
+            ->causedBy(auth()->user())
+            ->log(auth()->user()->name . " 订阅了 {$node->name}");
+
         return response()->json([]);
     }
 

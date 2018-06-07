@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Notifications\NewFollower;
+use App\Notifications\Welcome;
 use UrlSigner;
 use App\User;
 use App\Http\Resources\UserResource;
@@ -28,6 +30,13 @@ class UserController extends Controller
     public function follow(User $user)
     {
         auth()->user()->follow($user);
+
+        activity('follow')
+            ->performedOn($user)
+            ->causedBy(auth()->user())
+            ->log(auth()->user()->name . " 关注了 {$user->name}");
+
+        $user->notify(new NewFollower(auth()->user()));
 
         return response()->json([]);
     }
@@ -66,6 +75,8 @@ class UserController extends Controller
     {
         if (UrlSigner::validate($request->fullUrl())) {
             User::whereEmail($request->email)->first()->activate();
+
+            auth()->user()->notify(new Welcome());
 
             return \redirect(config('app.site_url').'?active-success=yes');
         }

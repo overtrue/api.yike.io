@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ThreadResource;
+use App\Notifications\LikedMyThread;
+use App\Notifications\SubscribedMyThread;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,13 @@ class ThreadController extends Controller
     {
         auth()->user()->like($thread);
 
+        activity('like')
+            ->performedOn($thread)
+            ->causedBy(auth()->user())
+            ->log(auth()->user()->name . " 点赞了 {$thread->name}");
+
+        $thread->user()->notify(new LikedMyThread($thread, auth()->user()));
+
         return response()->json([]);
     }
 
@@ -44,6 +53,13 @@ class ThreadController extends Controller
     public function subscribe(Thread $thread)
     {
         auth()->user()->subscribe($thread);
+
+        activity('subscribe')
+            ->performedOn($thread)
+            ->causedBy(auth()->user())
+            ->log(auth()->user()->name . " 订阅了 {$thread->name}");
+
+        $thread->user()->notify(new SubscribedMyThread($thread, auth()->user()));
 
         return response()->json([]);
     }

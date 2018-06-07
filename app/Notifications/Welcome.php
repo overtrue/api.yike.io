@@ -7,14 +7,15 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class Welcome extends Notification
+class Welcome extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\User $user
+     *
      */
     public function __construct()
     {
@@ -54,8 +55,6 @@ class Welcome extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            'user_id' => $notifiable->id,
-        ];
+        return [];
     }
 }
