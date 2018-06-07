@@ -43,5 +43,8 @@ Route::get('nodes/{node}/threads', 'NodeController@threads');
 Route::post('nodes/{node}/subscribe', 'NodeController@subscribe');
 Route::post('nodes/{node}/unsubscribe', 'NodeController@unsubscribe');
 
+Route::post('threads/{thread}/like', 'ThreadController@like');
+Route::post('threads/{thread}/unlike', 'ThreadController@unlike');
+
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');

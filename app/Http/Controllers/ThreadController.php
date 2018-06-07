@@ -27,6 +27,20 @@ class ThreadController extends Controller
         return ThreadResource::collection($threads);
     }
 
+    public function like(Thread $thread)
+    {
+        auth()->user()->like($thread);
+
+        return response()->json([]);
+    }
+
+    public function unlike(Thread $thread)
+    {
+        auth()->user()->unlike($thread);
+
+        return response()->json([]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

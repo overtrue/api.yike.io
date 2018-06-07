@@ -46,13 +46,15 @@ class Thread extends Model
     ];
 
     protected $dates = [
-        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at',
+        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at'
     ];
 
     protected $with = ['user'];
 
     protected $appends = [
-        'has_pinned', 'has_banned', 'has_excellent', 'has_frozen', 'created_at_timeago', 'updated_at_timeago',
+        'has_pinned', 'has_banned', 'has_excellent', 'has_frozen',
+        'created_at_timeago', 'updated_at_timeago', 'has_liked',
+        'likers_count', 'comments_count',
     ];
 
     protected static function boot()
@@ -117,5 +119,20 @@ class Thread extends Model
     public function getHasFrozenAttribute()
     {
         return (bool) $this->frozen_at;
+    }
+
+    public function getHasLikedAttribute()
+    {
+        return $this->isLikedBy(auth()->user());
+    }
+
+    public function getLikersCountAttribute()
+    {
+        return $this->fans()->count();
+    }
+
+    public function getCommentsCountAttribute()
+    {
+        return $this->comments()->count();
     }
 }
