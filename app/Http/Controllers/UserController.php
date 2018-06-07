@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show', 'activate']);
+        $this->middleware('auth:api')->except(['index', 'show', 'activate', 'followers', 'followings']);
     }
 
     public function index(Request $request)
