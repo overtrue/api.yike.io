@@ -53,7 +53,12 @@ class Node extends Model
 
     public function scopeRoot($query)
     {
-        return $query->whereNodeId(0);
+        return $query->whereNull('node_id');
+    }
+
+    public function scopeLeaf($query)
+    {
+        return $query->whereNotNull('node_id');
     }
 
     public function threads()

@@ -21,9 +21,13 @@ class NodeController extends Controller
      */
     public function index(Request $request)
     {
-        $nodes = Node::with('children')
-                    ->root()
-                    ->latest()
+        if ($request->has('all')) {
+            $builder = Node::with('children')->root();
+        } else {
+            $builder = Node::leaf();
+        }
+
+        $nodes = $builder->latest()
                     ->filter($request->all())
                     ->paginate($request->get('per_page', 20));
 
