@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NotificationResource;
 use App\Notifications\NewFollower;
 use App\Notifications\Welcome;
 use UrlSigner;
@@ -25,6 +26,11 @@ class UserController extends Controller
     public function me(Request $request)
     {
         return new UserResource($request->user());
+    }
+
+    public function notifications(Request $request)
+    {
+        return NotificationResource::collection($request->user()->notifications()->paginate($request->get('per_page', 20)));
     }
 
     public function follow(User $user)

@@ -65,7 +65,8 @@ class SubscribedMyThread extends Notification implements ShouldQueue
     {
         return [
             'user_id' => $this->user->id,
-            'user_name' => $this->user->name,
+            'username' => $this->user->name,
+            'avatar' => $this->user->avatar,
             'thread_id'   => $this->thread->id,
             'thread_title' => $this->thread->title,
         ];
