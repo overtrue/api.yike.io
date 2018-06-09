@@ -17,7 +17,6 @@ set('default_timeout', 1600);
 set('deploy_path', '/www/api.yike.io');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
-set('http_user', 'www-data');
 set('http_group', 'www-data');
 set('writable_mode', 'chown');
 set('default_stage', 'production');
