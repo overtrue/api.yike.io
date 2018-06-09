@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Validators\IdNumberValidator;
+use App\Validators\KeepWordValidator;
 use App\Validators\PhoneValidator;
 use App\Validators\PhoneVerifyCodeValidator;
 use App\Validators\PolyExistsValidator;
@@ -19,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         'phone' => PhoneValidator::class,
         'id_no' => IdNumberValidator::class,
         'verify_code' => PhoneVerifyCodeValidator::class,
+        'keep_word' => KeepWordValidator::class,
     ];
 
     /**
