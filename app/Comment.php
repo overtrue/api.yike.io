@@ -49,7 +49,7 @@ class Comment extends Model
     ];
 
     protected $appends = [
-        'created_at_timeago', 'updated_at_timeago',
+        'has_up_voted', 'has_down_voted', 'up_voters', 'down_voters', 'created_at_timeago', 'updated_at_timeago',
     ];
 
     protected static function boot()
@@ -95,5 +95,25 @@ class Comment extends Model
         $ref = new \ReflectionClass($target);
 
         return $ref->isSubclassOf(Commentable::class);
+    }
+
+    public function getHasUpVotedAttribute()
+    {
+        return $this->isUpvotedBy(auth()->user());
+    }
+
+    public function getHasDownVotedAttribute()
+    {
+        return $this->isDownvotedBy(auth()->user());
+    }
+
+    public function getUpVotersAttribute()
+    {
+        return $this->upvoters()->count();
+    }
+
+    public function getDownVotersAttribute()
+    {
+        return $this->downvoters()->count();
     }
 }

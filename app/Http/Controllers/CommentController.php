@@ -41,6 +41,27 @@ class CommentController extends Controller
         return CommentResource::collection($comments);
     }
 
+    public function upVote(Comment $comment)
+    {
+        auth()->user()->upvote($comment);
+
+        return response()->json([]);
+    }
+
+    public function downVote(Comment $comment)
+    {
+        auth()->user()->downvote($comment);
+
+        return response()->json([]);
+    }
+
+    public function cancelVote(Comment $comment)
+    {
+        auth()->user()->cancelVote($comment);
+
+        return response()->json([]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -108,9 +129,9 @@ class CommentController extends Controller
             'content.markdown' => 'required_if:type,markdown',
         ]);
 
-        $supplier->update($request->all());
+        $comment->update($request->all());
 
-        return new CommentResource(Comment::create($request->all()));
+        return new CommentResource($comment);
     }
 
     /**
