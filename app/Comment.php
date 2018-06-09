@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Contracts\Commentable;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
@@ -64,6 +65,10 @@ class Comment extends Model
             $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
             $comment->loadMissing('content');
         });
+
+        static::created(function($comment){
+            $comment->commentable->afterCommentCreated($comment);
+        });
     }
 
     public function user()
@@ -79,5 +84,16 @@ class Comment extends Model
     public function content()
     {
         return $this->morphOne(Content::class, 'contentable');
+    }
+
+    public static function isCommentable($target)
+    {
+        if (\is_object($target)) {
+            return $target instanceof Commentable;
+        }
+
+        $ref = new \ReflectionClass($target);
+
+        return $ref->isSubclassOf(Commentable::class);
     }
 }
