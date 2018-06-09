@@ -26,7 +26,6 @@ set('keep_releases', 2);
 host('api.yike.io')
     ->stage('production')
     ->user('deployer')
-    ->port(2200)
     ->multiplexing(true);
 
 desc('Restarting php-fpm.');
