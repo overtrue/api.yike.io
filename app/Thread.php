@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Contracts\Commentable;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
@@ -29,7 +30,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  * @property object $cache
  * @method   static \App\Thread published()
  */
-class Thread extends Model
+class Thread extends Model implements Commentable
 {
     use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate, WithDiffForHumanTimes;
 
@@ -161,5 +162,27 @@ class Thread extends Model
     public function getCommentsCountAttribute()
     {
         return $this->comments()->count();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function afterCommentCreated(Comment $lastComment)
+    {
+        $this->refreshCache($lastComment);
+    }
+
+    /**
+     * @param \App\Comment $lastComment
+     */
+    protected function refreshCache(Comment $lastComment)
+    {
+        $this->update([
+            'cache->comments_count' => $this->comments()->count(),
+            'cache->likes_count' => $this->likers()->count(),
+            'cache->subscriptions_count' => $this->subscribers()->count(),
+            'cache->last_reply_user_id' => $lastComment->user->id,
+            'cache->last_reply_user_name' => $lastComment->user->name,
+        ]);
     }
 }

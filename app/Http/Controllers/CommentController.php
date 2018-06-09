@@ -18,15 +18,25 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
     {
         $this->validate($request, [
-            'commentable_id' => 'required|poly_exists:commentable_type',
+            'user_id' => 'require_without:commentable_id',
+            'commentable_id' => 'required_without:user_id|poly_exists:commentable_type',
         ]);
 
-        $comments = Comment::latest()->filter($request->all())->paginate($request->get('per_page', 20));
+        if ($request->has('user_id')) {
+            $builder = Comment::whereUserId($request->get('user_id'));
+        } else {
+            $model = $request->get('commentable_type');
+            $builder = (new $model())->find($request->get('commentable_id'))->comments();
+        }
+
+        $comments = $builder->latest()->filter($request->all())->paginate($request->get('per_page', 20));
 
         return CommentResource::collection($comments);
     }
@@ -50,6 +60,10 @@ class CommentController extends Controller
             'content.body' => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
         ]);
+
+        if (!Comment::isCommentable($request->get('commentable_type'))) {
+            abort(403, 'Invalid request.');
+        }
 
         $comment = Comment::create($request->all());
 
