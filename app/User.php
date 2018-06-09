@@ -6,6 +6,7 @@ use App\Mail\UserActivation;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
+use Overtrue\LaravelFollow\Traits\CanVote;
 use UrlSigner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -54,7 +55,7 @@ use Overtrue\LaravelFollow\Traits\CanBeFollowed;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, Filterable, CanFavorite, CanLike, CanFollow, CanSubscribe, CanBeFollowed, WithDiffForHumanTimes;
+    use HasApiTokens, Notifiable, Filterable, CanFavorite, CanLike, CanFollow, CanVote, CanSubscribe, CanBeFollowed, WithDiffForHumanTimes;
 
     /**
      * The attributes that are mass assignable.

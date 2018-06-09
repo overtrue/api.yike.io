@@ -49,5 +49,9 @@ Route::post('threads/{thread}/unlike', 'ThreadController@unlike');
 Route::post('threads/{thread}/subscribe', 'ThreadController@subscribe');
 Route::post('threads/{thread}/unsubscribe', 'ThreadController@unsubscribe');
 
+Route::post('comments/{comment}/up-vote', 'CommentController@upVote');
+Route::post('comments/{comment}/down-vote', 'CommentController@downVote');
+Route::post('comments/{comment}/cancel-vote', 'CommentController@cancelVote');
+
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');
