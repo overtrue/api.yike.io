@@ -30,9 +30,11 @@ Route::resources([
 ]);
 
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
+Route::post('user/reset-password', 'AuthController@resetPassword');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
 Route::get('user', 'UserController@me');
 Route::get('user/notifications', 'UserController@notifications');
+
 Route::get('user/{user}', 'UserController@show');
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');
