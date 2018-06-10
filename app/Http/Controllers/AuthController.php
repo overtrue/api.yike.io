@@ -41,9 +41,9 @@ class AuthController extends Controller
             'old_password' => '旧密码'
         ]);
 
-        $user = auth()->user();
-        $user->password = bcrypt($request->get('password'));
-        $user->save();
+        auth()->user()->update([
+            'password' => bcrypt($request->get('password'))
+        ]);
 
         return response()->json([]);
     }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Mail\MailConfirmation;
 use App\Mail\UserActivation;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
@@ -185,9 +186,24 @@ class User extends Authenticatable
         return Mail::to($this->email)->queue(new UserActivation($this));
     }
 
+    public function sendUpdateMail(string $email)
+    {
+        return Mail::to($email)->queue(new MailConfirmation($this, $email));
+    }
+
     public function getActivationLink()
     {
         return UrlSigner::sign(route('user.activate').'?'.http_build_query(['email' => $this->email]), 60);
+    }
+
+    public function getUpdateMailLink(string $email)
+    {
+        $params = http_build_query([
+            'email' => $email,
+            'user_id' => $this->id,
+        ]);
+
+        return UrlSigner::sign(route('user.update-email').'?'.$params, 60);
     }
 
     public function activate()
