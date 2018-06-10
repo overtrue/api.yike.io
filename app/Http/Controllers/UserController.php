@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show', 'activate', 'followers', 'followings']);
+        $this->middleware('auth:api')->except(['index', 'show', 'activate', 'followers', 'followings', 'updateEmail']);
     }
 
     public function index(Request $request)
@@ -90,10 +90,36 @@ class UserController extends Controller
 
             auth()->user()->notify(new Welcome());
 
-            return \redirect(config('app.site_url').'?active-success=yes');
+            return redirect(config('app.site_url').'?active-success=yes&type=register');
         }
 
-        return \redirect(config('app.site_url').'?active-success=no');
+        return redirect(config('app.site_url').'?active-success=no&type=register');
+    }
+
+    public function editEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users'
+        ]);
+
+        $request->user()->sendUpdateMail($request->get('email'));
+
+        return response()->json([
+            'message' => '确认邮件已发送到新邮箱，请注意查收！'
+        ]);
+    }
+
+    public function updateEmail(Request $request)
+    {
+        if (UrlSigner::validate($request->fullUrl())) {
+            $user = User::findOrFail($request->get('user_id'));
+
+            $user->update(['email' => $request->get('email')]);
+
+            return redirect(config('app.site_url') . '?active-success=yes&type=email');
+        }
+
+        return redirect(config('app.site_url').'?active-success=no&type=email');
     }
 
     /**

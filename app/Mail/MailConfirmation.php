@@ -8,20 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserActivation extends Mailable implements ShouldQueue
+class MailConfirmation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     public $user;
+    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $email)
     {
         $this->user = $user;
+        $this->email = $email;
     }
 
     /**
@@ -31,6 +33,6 @@ class UserActivation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.user-activation');
+        return $this->markdown('mails.mail-confirmation');
     }
 }

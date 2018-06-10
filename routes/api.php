@@ -28,6 +28,8 @@ Route::post('user/reset-password', 'AuthController@resetPassword');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
 Route::get('user', 'UserController@me');
 Route::get('user/notifications', 'UserController@notifications');
+Route::post('user/mail', 'UserController@editEmail');
+Route::get('user/mail', 'UserController@updateEmail')->name('user.update-email');
 
 Route::get('user/{user}', 'UserController@show');
 Route::get('user/{user}/followers', 'UserController@followers');
