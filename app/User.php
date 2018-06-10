@@ -181,6 +181,11 @@ class User extends Authenticatable
         return $this->followings()->count();
     }
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function sendActiveMail()
     {
         return Mail::to($this->email)->queue(new UserActivation($this));

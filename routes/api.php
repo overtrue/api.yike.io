@@ -23,18 +23,16 @@ Route::resources([
 ]);
 
 // Others
+Route::get('me', 'UserController@me');
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
 Route::post('user/reset-password', 'AuthController@resetPassword');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
-Route::get('user', 'UserController@me');
 Route::get('user/notifications', 'UserController@notifications');
 Route::post('user/mail', 'UserController@editEmail');
 Route::get('user/mail', 'UserController@updateEmail')->name('user.update-email');
 
-Route::get('user/{user}', 'UserController@show');
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');
-Route::patch('user/{user}', 'UserController@update');
 Route::post('user/{user}/follow', 'UserController@follow');
 Route::post('user/{user}/unfollow', 'UserController@unfollow');
 

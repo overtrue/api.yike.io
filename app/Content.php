@@ -43,11 +43,6 @@ class Content extends Model
                 $content->body = app(\ParsedownExtra::class)->text(\emoji($content->markdown));
             }
 
-            $content->body = \str_replace(
-                ['<pre>', '<code>'],
-                ['<pre class="language-php">', '<code class="language-php">'],
-                $content->body
-            );
             $content->body = Purifier::clean($content->body);
         });
     }
