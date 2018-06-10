@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Validators\HashValidator;
 use App\Validators\IdNumberValidator;
 use App\Validators\KeepWordValidator;
 use App\Validators\PhoneValidator;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         'id_no' => IdNumberValidator::class,
         'verify_code' => PhoneVerifyCodeValidator::class,
         'keep_word' => KeepWordValidator::class,
+        'hash' => HashValidator::class,
     ];
 
     /**

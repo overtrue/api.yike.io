@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except(['register']);
+    }
+
     public function register(RegisterRequest $request)
     {
         $user = User::create([
@@ -22,5 +28,23 @@ class AuthController extends Controller
         return response()->json([
             'token' => $token
         ]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required|hash:' . auth()->user()->password,
+            'password' => 'required|different:old_password|confirmed',
+        ], [
+            'old_password.hash' => '旧密码输入错误！'
+        ], [
+            'old_password' => '旧密码'
+        ]);
+
+        $user = auth()->user();
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
+        return response()->json([]);
     }
 }
