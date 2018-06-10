@@ -98,7 +98,11 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $user->name = $user->username;
+            $user->name = $user->name ?? $user->username;
+
+            while (User::whereUsername($user->username)->exists()) {
+                $user->username = $user->username.\random_int(1, 200);
+            }
         });
 
         static::saving(function($user){

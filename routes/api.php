@@ -1,24 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Headers:*');
 header('Access-Control-Allow-Methods:*');
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+// Auth
 Route::post('auth/register', 'AuthController@register');
+Route::get('oauth/redirect-url/{platform}', 'OAuthController@getRedirectUrl');
+Route::get('oauth/callback/{platform}', 'OAuthController@handleCallback');
 
+// Resources
 Route::resources([
     'threads' => 'ThreadController',
     'nodes' => 'NodeController',
@@ -29,6 +22,7 @@ Route::resources([
     'notifications' => 'NotificationController',
 ]);
 
+// Others
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
 Route::post('user/reset-password', 'AuthController@resetPassword');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
