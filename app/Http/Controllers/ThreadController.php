@@ -71,6 +71,20 @@ class ThreadController extends Controller
         return response()->json([]);
     }
 
+    public function report(Request $request, Thread $thread)
+    {
+        $request->validate([
+            'remark' => 'required'
+        ]);
+
+        $thread->report()->create([
+            'user_id' => auth()->id(),
+            'remark' => $request->get('remark'),
+        ]);
+
+        return response()->json([]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

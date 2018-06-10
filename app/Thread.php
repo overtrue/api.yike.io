@@ -104,6 +104,11 @@ class Thread extends Model implements Commentable
         return $this->belongsTo(User::class);
     }
 
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'reportable');
+    }
+
     public function content()
     {
         return $this->morphOne(Content::class, 'contentable');
