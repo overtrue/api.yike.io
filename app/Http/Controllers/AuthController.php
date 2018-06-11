@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Mail;
 
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['register']);
+        $this->middleware('auth:api')->except(['register', 'forgetPassword']);
     }
 
     public function register(RegisterRequest $request)
@@ -30,6 +35,13 @@ class AuthController extends Controller
         ]);
     }
 
+    public function reset(Request $request)
+    {
+        return $request->get('email') ?
+            $this->resetPasswordByToken($request) :
+            $this->resetPassword($request);
+    }
+
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -45,6 +57,60 @@ class AuthController extends Controller
             'password' => bcrypt($request->get('password'))
         ]);
 
-        return response()->json([]);
+        return response()->json();
+    }
+
+    public function resetPasswordByToken(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $this->broker()->reset(
+            $this->credentials($request), function ($user, $password) {
+                $user->password = Hash::make($password);
+
+                $user->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return response()->json();
+    }
+
+    /**
+     * Get the password reset credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+
+        $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        return response()->json();
+    }
+
+    public function broker()
+    {
+        return Password::broker();
     }
 }

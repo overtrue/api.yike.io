@@ -25,11 +25,12 @@ Route::resources([
 // Others
 Route::get('me', 'UserController@me');
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
-Route::post('user/reset-password', 'AuthController@resetPassword');
+Route::post('user/reset-password', 'AuthController@reset');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
 Route::get('user/notifications', 'UserController@notifications');
 Route::post('user/mail', 'UserController@editEmail');
 Route::get('user/mail', 'UserController@updateEmail')->name('user.update-email');
+Route::post('user/forget-password', 'AuthController@forgetPassword');
 
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');

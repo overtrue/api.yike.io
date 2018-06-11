@@ -4,6 +4,7 @@ namespace App;
 
 use App\Mail\MailConfirmation;
 use App\Mail\UserActivation;
+use App\Mail\UserForgetPassword;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
@@ -194,6 +195,11 @@ class User extends Authenticatable
     public function sendUpdateMail(string $email)
     {
         return Mail::to($email)->queue(new MailConfirmation($this, $email));
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        return Mail::to($this->email)->queue(new UserForgetPassword($this->email, $token));
     }
 
     public function getActivationLink()
