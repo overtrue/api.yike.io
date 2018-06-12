@@ -17,6 +17,7 @@ set('default_timeout', 1600);
 set('deploy_path', '/www/api.yike.io');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
+set('http_user', 'deployer');
 set('http_group', 'www-data');
 set('writable_mode', 'chown');
 set('default_stage', 'production');
@@ -38,4 +39,4 @@ after('deploy:failed', 'deploy:unlock');
 // Migrate database before symlink new release.
 before('deploy:symlink', 'artisan:migrate');
 after('cleanup', 'php-fpm:restart');
-after('deploy:unlock', 'artisan:queue:restart');
+after('cleanup', 'artisan:queue:restart');
