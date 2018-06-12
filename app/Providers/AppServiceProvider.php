@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Comment;
+use App\Observers\CommentObserver;
 use App\Validators\HashValidator;
 use App\Validators\IdNumberValidator;
 use App\Validators\KeepWordValidator;
@@ -33,15 +35,9 @@ class AppServiceProvider extends ServiceProvider
         Resource::withoutWrapping();
         Carbon::setLocale('zh');
 
-        $this->registerValidators();
-    }
+        Comment::observe(CommentObserver::class);
 
-    /**
-     * Register any application services.
-     */
-    public function register()
-    {
-        //
+        $this->registerValidators();
     }
 
     /**
@@ -54,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerSmsService()
+    protected function registerSmsService()
     {
         $this->app->singleton(EasySms::class, function () {
             return new EasySms(config('sms'));
