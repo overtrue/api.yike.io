@@ -65,10 +65,6 @@ class Comment extends Model
             $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
             $comment->loadMissing('content');
         });
-
-        static::created(function($comment){
-            $comment->commentable->afterCommentCreated($comment);
-        });
     }
 
     public function user()

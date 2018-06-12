@@ -171,9 +171,11 @@ class Thread extends Model implements Commentable
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function afterCommentCreated(Comment $lastComment)
     {
+        $lastComment->user->subscribe($this);
         $this->refreshCache($lastComment);
     }
 
