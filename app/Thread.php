@@ -84,14 +84,6 @@ class Thread extends Model implements Commentable
         static::saving(function($thread){
             $thread->published_at = \request('is_draft', false) ? null : now();
         });
-
-        static::saved(function($thread){
-            if (\request('content')) {
-                $data = array_only(\request('content', []), \request('type', 'markdown'));
-                $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
-                $thread->loadMissing('content');
-            }
-        });
     }
 
     public function comments()
@@ -112,6 +104,11 @@ class Thread extends Model implements Commentable
     public function content()
     {
         return $this->morphOne(Content::class, 'contentable');
+    }
+
+    public function node()
+    {
+        return $this->belongsTo(Node::class);
     }
 
     public function tags()
@@ -170,26 +167,27 @@ class Thread extends Model implements Commentable
     }
 
     /**
+     * @param \App\Comment $lastComment
+     *
      * @return mixed
      * @throws \Exception
      */
     public function afterCommentCreated(Comment $lastComment)
     {
         $lastComment->user->subscribe($this);
-        $this->refreshCache($lastComment);
     }
 
-    /**
-     * @param \App\Comment $lastComment
-     */
-    protected function refreshCache(Comment $lastComment)
+    public function refreshCache()
     {
+        $lastComment = $this->comments()->latest()->first();
+
         $this->update([
             'cache->comments_count' => $this->comments()->count(),
             'cache->likes_count' => $this->likers()->count(),
+            'cache->favoriters_count' => $this->favoriters()->count(),
             'cache->subscriptions_count' => $this->subscribers()->count(),
-            'cache->last_reply_user_id' => $lastComment->user->id,
-            'cache->last_reply_user_name' => $lastComment->user->name,
+            'cache->last_reply_user_id' => $lastComment ? $lastComment->user->id : 0,
+            'cache->last_reply_user_name' => $lastComment ? $lastComment->user->name : '',
         ]);
     }
 }

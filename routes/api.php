@@ -34,6 +34,7 @@ Route::post('user/forget-password', 'AuthController@forgetPassword');
 
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');
+Route::get('user/{user}/activities', 'UserController@activities');
 Route::post('user/{user}/follow', 'UserController@follow');
 Route::post('user/{user}/unfollow', 'UserController@unfollow');
 

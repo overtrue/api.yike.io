@@ -66,6 +66,14 @@ class Node extends Model
         return $this->hasMany(Thread::class);
     }
 
+    public function refreshCache()
+    {
+        $this->update([
+            'cache->threads_count' => $this->threads()->count(),
+            'cache->subscribers_count' => $this->subscribers()->count(),
+        ]);
+    }
+
     public function getHasSubscribedAttribute()
     {
         return $this->isSubscribedBy(auth()->user());

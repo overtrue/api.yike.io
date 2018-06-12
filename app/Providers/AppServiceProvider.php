@@ -4,6 +4,11 @@ namespace App\Providers;
 
 use App\Comment;
 use App\Observers\CommentObserver;
+use App\Observers\RelationObserver;
+use App\Observers\ThreadObserver;
+use App\Observers\UserObserver;
+use App\Thread;
+use App\User;
 use App\Validators\HashValidator;
 use App\Validators\IdNumberValidator;
 use App\Validators\KeepWordValidator;
@@ -15,6 +20,7 @@ use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Overtrue\EasySms\EasySms;
+use Overtrue\LaravelFollow\FollowRelation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,9 +39,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Resource::withoutWrapping();
+
         Carbon::setLocale('zh');
 
+        User::observe(UserObserver::class);
+        Thread::observe(ThreadObserver::class);
         Comment::observe(CommentObserver::class);
+        FollowRelation::observe(RelationObserver::class);
 
         $this->registerValidators();
     }
