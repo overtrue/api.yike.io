@@ -15,12 +15,13 @@ use Overtrue\LaravelFollow\Traits\CanBeVoted;
  *
  * @author overtrue <i@overtrue.me>
  *
- * @property int   $commentable_id
+ * @property int       $commentable_id
  * @property string    $commentable_type
- * @property int   $user_id
- * @property bool   $banned_at
+ * @property int       $user_id
+ * @property bool      $banned_at
  * @property object    $cache
  * @property \App\User $user
+ * @property Model     commentable
  */
 class Comment extends Model
 {
@@ -60,7 +61,7 @@ class Comment extends Model
             $thread->user_id = \auth()->id();
         });
 
-        static::saved(function($comment){
+        static::created(function($comment){
             $data = array_only(\request('content'), \request('type', 'markdown'));
             $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
             $comment->loadMissing('content');

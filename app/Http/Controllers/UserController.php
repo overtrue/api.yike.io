@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityResource;
 use App\Http\Resources\NotificationResource;
 use App\Notification;
 use App\Notifications\NewFollower;
@@ -43,11 +44,6 @@ class UserController extends Controller
     {
         auth()->user()->follow($user);
 
-        activity('follow')
-            ->performedOn($user)
-            ->causedBy(auth()->user())
-            ->log(auth()->user()->name . " 关注了 {$user->name}");
-
         $user->notify(new NewFollower(auth()->user()));
 
         return response()->json([]);
@@ -72,6 +68,13 @@ class UserController extends Controller
         $users = $user->followings()->paginate($request->get('per_page', 20));
 
         return UserResource::collection($users);
+    }
+
+    public function activities(Request $request, User $user)
+    {
+        $activities = $user->activities()->paginate($request->get('per_page', 20));
+
+        return ActivityResource::collection($activities);
     }
 
     public function sendActiveMail(Request $request)

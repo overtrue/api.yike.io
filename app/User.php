@@ -9,6 +9,7 @@ use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
 use Overtrue\LaravelFollow\Traits\CanVote;
+use Spatie\Activitylog\Models\Activity;
 use UrlSigner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -129,6 +130,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'causer_id')->with('subject')->latest();
+    }
+
     public function scopeRecent($query)
     {
         return $query->latest();
@@ -220,6 +226,18 @@ class User extends Authenticatable
     public function activate()
     {
         return $this->update(['activated_at' => now()]);
+    }
+
+    public function refreshCache()
+    {
+        $this->update([
+            'cache->threads_count' => $this->threads()->count(),
+            'cache->comments_count' => $this->comments()->count(),
+            'cache->likes_count' => $this->likes()->count(),
+            'cache->followings_count' => $this->followings()->count(),
+            'cache->followers_count' => $this->followers()->count(),
+            'cache->subscriptions_count' => $this->subscriptions()->count(),
+        ]);
     }
 
     /**

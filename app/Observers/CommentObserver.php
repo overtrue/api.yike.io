@@ -1,8 +1,9 @@
 <?php
 
-
 namespace App\Observers;
+
 use App\Comment;
+use App\Thread;
 
 
 /**
@@ -12,13 +13,41 @@ use App\Comment;
  */
 class CommentObserver
 {
-    public function created(Comment $comment)
+    public function saved(Comment $comment)
     {
-        $comment->commentable->afterCommentCreated($comment);
+        $comment->user->refreshCache();
+
+        $this->createActionLog($comment);
+
+        if (\is_callable([$comment->commentable, 'refreshCache'])) {
+            $comment->commentable->refreshCache();
+        }
+
+        if ($comment->commentable instanceof Thread) {
+            $comment->commentable->node->refreshCache();
+        }
     }
 
     public function deleted(Comment $comment)
     {
+        $comment->user->refreshCache();
 
+        if (\is_callable([$comment->commentable, 'refreshCache'])) {
+            $comment->commentable->refreshCache();
+        }
+    }
+
+    protected function createActionLog($comment)
+    {
+        if (!$comment->wasRecentlyCreated) {
+            return;
+        }
+
+        $targetType = \strtolower(\class_basename($comment->commentable_type));
+
+        \activity('commented.'.$targetType)
+            ->performedOn($comment->commentable)
+            ->withProperty('content', \str_limit(\strip_tags($comment->content->body), 100))
+            ->log('评论');
     }
 }
