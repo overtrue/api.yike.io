@@ -32,7 +32,8 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  */
 class Thread extends Model implements Commentable
 {
-    use SoftDeletes, Filterable, CanBeSubscribed, CanBeFavorited, CanBeLiked, OnlyActivatedUserCanCreate, WithDiffForHumanTimes;
+    use SoftDeletes, Filterable, OnlyActivatedUserCanCreate, WithDiffForHumanTimes,
+        CanBeSubscribed, CanBeFavorited, CanBeLiked;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
@@ -80,6 +81,17 @@ class Thread extends Model implements Commentable
                 'views_count' => 0,
             ];
         });
+
+        $saveContent = function($thread){
+            if (\request('content')) {
+                $data = array_only(\request('content'), \request('type', 'markdown'));
+                $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
+                $thread->loadMissing('content');
+            }
+        };
+
+        static::updated($saveContent);
+        static::created($saveContent);
 
         static::saving(function($thread){
             $thread->published_at = \request('is_draft', false) ? null : now();

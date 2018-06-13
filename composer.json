@@ -14,7 +14,7 @@
         "overtrue/easy-sms": "^1.0",
         "overtrue/laravel-emoji": "^1.0",
         "overtrue/laravel-filesystem-qiniu": "^1.0",
-        "overtrue/laravel-follow": "^1.1",
+        "overtrue/laravel-follow": "dev-master",
         "overtrue/laravel-lang": "^3.0",
         "overtrue/laravel-socialite": "^2.0",
         "overtrue/laravel-uploader": "^0.0.8",
@@ -49,8 +49,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
@@ -72,8 +71,10 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [{
+    "repositories": [
+        {
             "type": "path",
-            "url": "../laravel-one"
-        }]
+            "url": "../laravel-follow/"
+        }
+    ]
 }
