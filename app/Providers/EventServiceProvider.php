@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Listeners\RelationAttachedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Overtrue\LaravelFollow\Events\RelationAttached;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -13,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        RelationAttached::class => [
+            RelationAttachedListener::class,
         ],
     ];
 

@@ -45,7 +45,6 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Thread::observe(ThreadObserver::class);
         Comment::observe(CommentObserver::class);
-        FollowRelation::observe(RelationObserver::class);
 
         $this->registerValidators();
     }

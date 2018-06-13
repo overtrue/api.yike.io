@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d49d43b7042b6dfb1736f7e6bb17c423",
+    "content-hash": "ae39883f1fc1c75c7141a8200a9d28f3",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -64,16 +64,16 @@
         },
         {
             "name": "caouecs/laravel-lang",
-            "version": "3.0.48",
+            "version": "3.0.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "00a265f660c80c59d1208f6b190349365d4cb053"
+                "reference": "c009f791582e58abfca70c8f0ded08b2668e81a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/00a265f660c80c59d1208f6b190349365d4cb053",
-                "reference": "00a265f660c80c59d1208f6b190349365d4cb053",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/c009f791582e58abfca70c8f0ded08b2668e81a8",
+                "reference": "c009f791582e58abfca70c8f0ded08b2668e81a8",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -108,7 +108,7 @@
                 "laravel",
                 "lpm"
             ],
-            "time": "2018-05-08T14:16:52+00:00"
+            "time": "2018-06-07T19:27:38+00:00"
         },
         {
             "name": "danielstjules/stringy",
@@ -1361,16 +1361,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.24",
+            "version": "v5.6.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "56290edeb0d8051826d40b4cbd8ed3c30348b2b5"
+                "reference": "a15efe4fbcd6b38ea76edc5c8939ffde4f4c7b7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/56290edeb0d8051826d40b4cbd8ed3c30348b2b5",
-                "reference": "56290edeb0d8051826d40b4cbd8ed3c30348b2b5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a15efe4fbcd6b38ea76edc5c8939ffde4f4c7b7f",
+                "reference": "a15efe4fbcd6b38ea76edc5c8939ffde4f4c7b7f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1502,7 +1502,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-06-04T14:51:03+00:00"
+            "time": "2018-06-12T14:39:24+00:00"
         },
         {
             "name": "laravel/passport",
@@ -1650,16 +1650,16 @@
         },
         {
             "name": "laravolt/avatar",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravolt/avatar.git",
-                "reference": "907047814ba0e467cdc6de26438a9204d95344cc"
+                "reference": "f2fecdeea44d9e9979f1d701fdead27aa26864a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravolt/avatar/zipball/907047814ba0e467cdc6de26438a9204d95344cc",
-                "reference": "907047814ba0e467cdc6de26438a9204d95344cc",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/f2fecdeea44d9e9979f1d701fdead27aa26864a4",
+                "reference": "f2fecdeea44d9e9979f1d701fdead27aa26864a4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1717,7 +1717,7 @@
                 "laravel",
                 "laravolt"
             ],
-            "time": "2018-02-27T19:28:48+00:00"
+            "time": "2018-06-06T21:16:18+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -2349,16 +2349,16 @@
         },
         {
             "name": "overtrue/easy-sms",
-            "version": "1.0.8",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/easy-sms.git",
-                "reference": "2a1c840d3f42287f77958df3c40366e0bf277087"
+                "reference": "9c1d04a607c7aabc9f427b6da591d2a1d8b73726"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/2a1c840d3f42287f77958df3c40366e0bf277087",
-                "reference": "2a1c840d3f42287f77958df3c40366e0bf277087",
+                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/9c1d04a607c7aabc9f427b6da591d2a1d8b73726",
+                "reference": "9c1d04a607c7aabc9f427b6da591d2a1d8b73726",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2392,7 +2392,7 @@
                 }
             ],
             "description": "The easiest way to send short message.",
-            "time": "2018-05-25T05:27:04+00:00"
+            "time": "2018-06-07T08:43:03+00:00"
         },
         {
             "name": "overtrue/flysystem-qiniu",
@@ -2552,23 +2552,12 @@
         },
         {
             "name": "overtrue/laravel-follow",
-            "version": "1.1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "cf76116eb4a5b527f3f32e8627b0e7925730fa2e"
-            },
+            "version": "dev-master",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/cf76116eb4a5b527f3f32e8627b0e7925730fa2e",
-                "reference": "cf76116eb4a5b527f3f32e8627b0e7925730fa2e",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "type": "path",
+                "url": "../laravel-follow",
+                "reference": "1a4dd8f796a220a923a94eff4ca5e89eadd657cd",
+                "shasum": null
             },
             "require": {
                 "php": ">=5.5.9"
@@ -2591,7 +2580,11 @@
                     "Overtrue\\LaravelFollow\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Overtrue\\LaravelFollow\\Test\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -2601,8 +2594,7 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "description": "Laravel 5 User Based System",
-            "time": "2018-05-23T02:12:09+00:00"
+            "description": "Laravel 5 User Based System"
         },
         {
             "name": "overtrue/laravel-lang",
@@ -3312,16 +3304,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.5",
+            "version": "v0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106"
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/0951e91ac04ca28cf317f3997a0adfc319e80106",
-                "reference": "0951e91ac04ca28cf317f3997a0adfc319e80106",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/4a2ce86f199d51b6e2524214dc06835e872f4fce",
+                "reference": "4a2ce86f199d51b6e2524214dc06835e872f4fce",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3386,7 +3378,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2018-06-02T16:39:22+00:00"
+            "time": "2018-06-10T17:57:20+00:00"
         },
         {
             "name": "qiniu/php-sdk",
@@ -4983,16 +4975,16 @@
         },
         {
             "name": "tucker-eric/eloquentfilter",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
-                "reference": "cdf78b8b58d76c33f109ab06ab13a589b8d7b178"
+                "reference": "bb1575087359d668e17f6f37fdc19a6b2f554d8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/cdf78b8b58d76c33f109ab06ab13a589b8d7b178",
-                "reference": "cdf78b8b58d76c33f109ab06ab13a589b8d7b178",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/bb1575087359d668e17f6f37fdc19a6b2f554d8a",
+                "reference": "bb1575087359d668e17f6f37fdc19a6b2f554d8a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5045,7 +5037,7 @@
                 "query",
                 "search"
             ],
-            "time": "2018-05-11T04:41:56+00:00"
+            "time": "2018-06-12T15:40:39+00:00"
         },
         {
             "name": "vinkla/hashids",
@@ -5553,16 +5545,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/478465659fd987669df0bd8a9bf22a8710e5f1b6",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5603,7 +5595,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-05-29T17:25:09+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "nunomaduro/collision",
@@ -6183,16 +6175,16 @@
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "e20525b0c2945c7c317fff95660698cb3d2a53bc"
+                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/e20525b0c2945c7c317fff95660698cb3d2a53bc",
-                "reference": "e20525b0c2945c7c317fff95660698cb3d2a53bc",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/cecbc684605bb0cc288828eb5d65d93d5c676d3c",
+                "reference": "cecbc684605bb0cc288828eb5d65d93d5c676d3c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6232,7 +6224,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2018-05-28T12:13:49+00:00"
+            "time": "2018-06-11T11:44:00+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -6604,16 +6596,16 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "e09160918c66281713f1c324c1f4c4c3037ba1e8"
+                "reference": "366541b989927187c4ca70490a35615d3fef2dce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/e09160918c66281713f1c324c1f4c4c3037ba1e8",
-                "reference": "e09160918c66281713f1c324c1f4c4c3037ba1e8",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/366541b989927187c4ca70490a35615d3fef2dce",
+                "reference": "366541b989927187c4ca70490a35615d3fef2dce",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6662,7 +6654,7 @@
                 "unidiff",
                 "unified diff"
             ],
-            "time": "2018-02-01T13:45:15+00:00"
+            "time": "2018-06-10T07:54:39+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -7216,6 +7208,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "overtrue/laravel-follow": 20,
         "overtrue/laravel-one": 20
     },
     "prefer-stable": true,
