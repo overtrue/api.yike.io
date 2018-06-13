@@ -13,4 +13,11 @@ class NodeFilter extends ModelFilter
      * @var array
      */
     public $relations = [];
+
+    public function hot($count)
+    {
+        $this->orderBy('cache->threads_count', 'desc')
+            ->orderBy('cache->subscribers_count', 'desc')
+            ->take($count);
+    }
 }

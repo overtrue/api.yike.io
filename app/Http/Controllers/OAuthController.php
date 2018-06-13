@@ -22,7 +22,7 @@ class OAuthController extends Controller
     /**
      * @param string $platform
      *
-     * @return array|void
+     * @return array
      */
     public function handleCallback(string $platform)
     {
