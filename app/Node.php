@@ -28,6 +28,7 @@ class Node extends Model
 
     protected $fillable = [
         'node_id', 'title', 'icon', 'banner', 'description', 'settings', 'cache',
+        'cache->threads_count', 'cache->subscribers_count',
     ];
 
     protected $casts = [
