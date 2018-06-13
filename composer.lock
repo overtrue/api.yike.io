@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae39883f1fc1c75c7141a8200a9d28f3",
+    "content-hash": "fba2ac4352d67a12b9cd933788bee1ff",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2553,11 +2553,22 @@
         {
             "name": "overtrue/laravel-follow",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-follow.git",
+                "reference": "786e6dc6547a3e14b1b4ccc56e89cf16052d2b70"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-follow",
-                "reference": "1a4dd8f796a220a923a94eff4ca5e89eadd657cd",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/786e6dc6547a3e14b1b4ccc56e89cf16052d2b70",
+                "reference": "786e6dc6547a3e14b1b4ccc56e89cf16052d2b70",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.5.9"
@@ -2580,11 +2591,7 @@
                     "Overtrue\\LaravelFollow\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Overtrue\\LaravelFollow\\Test\\": "tests"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2594,7 +2601,8 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "description": "Laravel 5 User Based System"
+            "description": "Laravel 5 User Based System",
+            "time": "2018-06-13T01:57:59+00:00"
         },
         {
             "name": "overtrue/laravel-lang",

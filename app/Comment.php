@@ -61,11 +61,16 @@ class Comment extends Model
             $thread->user_id = \auth()->id();
         });
 
-        static::updated(function($comment){
-            $data = array_only(\request('content', []), \request('type', 'markdown'));
-            $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
-            $comment->loadMissing('content');
-        });
+        $saveContent = function($comment){
+            if (\request('content')) {
+                $data = array_only(\request('content'), \request('type', 'markdown'));
+                $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
+                $comment->loadMissing('content');
+            }
+        };
+
+        static::updated($saveContent);
+        static::created($saveContent);
     }
 
     public function user()

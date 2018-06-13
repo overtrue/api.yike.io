@@ -70,11 +70,5 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../laravel-follow/"
-        }
-    ]
+    "prefer-stable": true
 }
