@@ -24,16 +24,16 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|min:5|keep_word',
-            'email' => 'required|email',
-            'password' => 'required',
+            'username' => 'required|min:5|keep_word|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ];
     }
 
     public function messages()
     {
         return [
-            'username.keep_word' => ':input 是保留单词。'
+            'username.keep_word' => ':input 不可用。'
         ];
     }
 }
