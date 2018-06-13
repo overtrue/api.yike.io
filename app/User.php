@@ -71,6 +71,15 @@ class User extends Authenticatable
         'last_active_at', 'banned_at', 'activated_at',
     ];
 
+    const CACHE_FIELDS = [
+        'threads_count' => 0,
+        'comments_count' => 0,
+        'likes_count' => 0,
+        'followings_count' => 0,
+        'followers_count' => 0,
+        'subscriptions_count' => 0,
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -186,6 +195,11 @@ class User extends Authenticatable
     public function getFollowingsCountAttribute()
     {
         return $this->followings()->count();
+    }
+
+    public function getCacheAttribute()
+    {
+        return \array_merge(self::CACHE_FIELDS, \json_decode($this->attributes['cache'] ?? '{}', true));
     }
 
     public function getRouteKeyName()

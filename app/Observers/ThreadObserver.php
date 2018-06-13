@@ -12,6 +12,11 @@ use App\Thread;
  */
 class ThreadObserver
 {
+    public function created(Thread $thread)
+    {
+        $thread->user->refreshCache();
+    }
+
     public function saved(Thread $thread)
     {
         if ($thread->wasRecentlyCreated) {
