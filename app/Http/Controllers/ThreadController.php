@@ -88,10 +88,10 @@ class ThreadController extends Controller
     {
         $this->authorize('create', Thread::class);
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|min:6',
             'type' => 'in:markdown,html',
             'content.body' => 'required_if:type,html',
-            'content.markdown' => 'required_if:type,markdown',
+            'content.markdown' => 'required_if:type,markdown|min:31',
             'is_draft' => 'boolean',
         ]);
 
