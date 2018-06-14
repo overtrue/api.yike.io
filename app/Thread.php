@@ -193,13 +193,13 @@ class Thread extends Model implements Commentable
     {
         $lastComment = $this->comments()->latest()->first();
 
-        $this->update([
-            'cache->comments_count' => $this->comments()->count(),
-            'cache->likes_count' => $this->likers()->count(),
-            'cache->favoriters_count' => $this->favoriters()->count(),
-            'cache->subscriptions_count' => $this->subscribers()->count(),
-            'cache->last_reply_user_id' => $lastComment ? $lastComment->user->id : 0,
-            'cache->last_reply_user_name' => $lastComment ? $lastComment->user->name : '',
-        ]);
+        $this->update(['cache' => \array_merge(self::CACHE_FIELDS, [
+            'comments_count' => $this->comments()->count(),
+            'likes_count' => $this->likers()->count(),
+            'favoriters_count' => $this->favoriters()->count(),
+            'subscriptions_count' => $this->subscribers()->count(),
+            'last_reply_user_id' => $lastComment ? $lastComment->user->id : 0,
+            'last_reply_user_name' => $lastComment ? $lastComment->user->name : '',
+        ])]);
     }
 }

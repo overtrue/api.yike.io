@@ -2556,12 +2556,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "786e6dc6547a3e14b1b4ccc56e89cf16052d2b70"
+                "reference": "cc421c90237e83f1b420e2fe2ad369dfd5771e76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/786e6dc6547a3e14b1b4ccc56e89cf16052d2b70",
-                "reference": "786e6dc6547a3e14b1b4ccc56e89cf16052d2b70",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/cc421c90237e83f1b420e2fe2ad369dfd5771e76",
+                "reference": "cc421c90237e83f1b420e2fe2ad369dfd5771e76",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2602,7 +2602,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2018-06-13T01:57:59+00:00"
+            "time": "2018-06-13T14:13:12+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
