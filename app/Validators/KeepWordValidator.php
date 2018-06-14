@@ -3,7 +3,7 @@
 namespace App\Validators;
 
 /**
- * Class IdNumberValidator.
+ * Class KeepWordValidator.
  */
 class KeepWordValidator
 {

@@ -5,7 +5,7 @@ namespace App\Validators;
 use Illuminate\Support\Facades\Hash;
 
 /**
- * Class IdNumberValidator.
+ * Class HashValidator.
  */
 class HashValidator
 {

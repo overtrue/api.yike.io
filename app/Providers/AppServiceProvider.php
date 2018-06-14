@@ -15,6 +15,7 @@ use App\Validators\KeepWordValidator;
 use App\Validators\PhoneValidator;
 use App\Validators\PhoneVerifyCodeValidator;
 use App\Validators\PolyExistsValidator;
+use App\Validators\UserUniqueContentValidator;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         'verify_code' => PhoneVerifyCodeValidator::class,
         'keep_word' => KeepWordValidator::class,
         'hash' => HashValidator::class,
+        'user_unique_content' => UserUniqueContentValidator::class,
     ];
 
     /**

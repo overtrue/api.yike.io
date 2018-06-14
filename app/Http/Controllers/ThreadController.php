@@ -88,10 +88,10 @@ class ThreadController extends Controller
     {
         $this->authorize('create', Thread::class);
         $this->validate($request, [
-            'title' => 'required|min:6',
+            'title' => 'required|min:6|user_unique_content:threads,title',
             'type' => 'in:markdown,html',
             'content.body' => 'required_if:type,html',
-            'content.markdown' => 'required_if:type,markdown|min:31',
+            'content.markdown' => 'required_if:type,markdown',
             'is_draft' => 'boolean',
         ]);
 
@@ -127,7 +127,7 @@ class ThreadController extends Controller
         $this->authorize('update', $thread);
 
         $this->validate($request, [
-            'title' => 'required',
+            'title' => 'required|min:6|user_unique_content:threads,title,'.$thread->id,
             'type' => 'in:markdown,html',
             'content.body' => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
