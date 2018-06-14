@@ -135,7 +135,6 @@ class User extends Authenticatable
             if (Hash::needsRehash($user->password)) {
                 $user->password = \bcrypt($user->password);
             }
-
         });
     }
 
