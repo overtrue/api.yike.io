@@ -155,14 +155,8 @@ class UserController extends Controller
             // validation rules...
         ]);
 
-        $extends = $request->get('extends');
-
-        $user->update(array_merge($request->all(), [
-            'extends' => [
-                'company' => $extends['company'],
-                'website' => $extends['website'],
-                'location' => $extends['location'],
-            ]
+        $user->update($request->only([
+            'avatar', 'realname', 'bio', 'extends', 'settings', 'cache', 'gender'
         ]));
 
         return new UserResource($user);
