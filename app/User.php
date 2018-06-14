@@ -168,6 +168,11 @@ class User extends Authenticatable
         return $query->latest('');
     }
 
+    public function setExtendsAttribute($value)
+    {
+        $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends'], true), $value));
+    }
+
     public function getHasBannedAttribute()
     {
         return (bool) $this->banned_at;
