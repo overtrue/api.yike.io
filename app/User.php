@@ -9,7 +9,6 @@ use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
 use Overtrue\LaravelFollow\Traits\CanVote;
-use Spatie\Activitylog\Models\Activity;
 use UrlSigner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -170,7 +169,7 @@ class User extends Authenticatable
 
     public function setExtendsAttribute($value)
     {
-        $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends'], true), $value));
+        $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends'], true) ?? [], $value));
     }
 
     public function getHasBannedAttribute()
