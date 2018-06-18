@@ -18,6 +18,7 @@ trait WithDiffForHumanTimes
 
             return $date ? $date->diffForHumans() : null;
         }
+
         return parent::__call($method, $arguments);
     }
 }
