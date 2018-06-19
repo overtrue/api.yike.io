@@ -63,7 +63,7 @@ class Comment extends Model
 
         $saveContent = function($comment){
             if (\request('content')) {
-                $data = array_only(\request('content'), \request('type', 'markdown'));
+                $data = array_only(\request('comment.content'), \request('type', 'markdown'));
                 $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
                 $comment->loadMissing('content');
             }
