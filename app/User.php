@@ -169,7 +169,7 @@ class User extends Authenticatable
 
     public function setExtendsAttribute($value)
     {
-        $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends']  ?? '{}', true), $value));
+        $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends'] ?? '{}', true), $value));
     }
 
     public function getHasBannedAttribute()
