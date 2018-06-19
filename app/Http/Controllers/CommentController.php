@@ -86,8 +86,6 @@ class CommentController extends Controller
             abort(403, 'Invalid request.');
         }
 
-        $request->merge(['comment.content' => $request->get('content')]);
-
         $comment = Comment::create($request->all());
 
         $comment->user->notify(new CommentMyThread($comment, auth()->user()));
@@ -130,8 +128,6 @@ class CommentController extends Controller
             'content.body' => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
         ]);
-
-        $request->merge(['comment.content' => $request->get('content')]);
 
         $comment->update($request->all());
 
