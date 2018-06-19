@@ -95,7 +95,7 @@ class ThreadController extends Controller
             'is_draft' => 'boolean',
         ]);
 
-        $request->merge(['thread.content' => $request->content]);
+        $request->merge(['thread.content' => $request->get('content')]);
 
         return new ThreadResource(Thread::create($request->all()));
     }
@@ -136,7 +136,7 @@ class ThreadController extends Controller
             'is_draft' => 'boolean',
         ]);
 
-        $request->merge(['thread.content' => $request->content]);
+        $request->merge(['thread.content' => $request->get('content')]);
 
         $thread->update($request->all());
 

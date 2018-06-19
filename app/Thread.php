@@ -83,7 +83,7 @@ class Thread extends Model implements Commentable
         });
 
         $saveContent = function($thread){
-            if (\request('content')) {
+            if (\request()->has('thread.content')) {
                 $data = array_only(\request('thread.content'), \request('type', 'markdown'));
                 $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
                 $thread->loadMissing('content');
