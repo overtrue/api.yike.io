@@ -29,38 +29,6 @@ class ThreadController extends Controller
         return ThreadResource::collection($threads);
     }
 
-    public function like(Thread $thread)
-    {
-        auth()->user()->like($thread);
-
-        $thread->user->notify(new LikedMyThread($thread, auth()->user()));
-
-        return response()->json([]);
-    }
-
-    public function unlike(Thread $thread)
-    {
-        auth()->user()->unlike($thread);
-
-        return response()->json([]);
-    }
-
-    public function subscribe(Thread $thread)
-    {
-        auth()->user()->subscribe($thread);
-
-        $thread->user->notify(new SubscribedMyThread($thread, auth()->user()));
-
-        return response()->json([]);
-    }
-
-    public function unsubscribe(Thread $thread)
-    {
-        auth()->user()->unsubscribe($thread);
-
-        return response()->json([]);
-    }
-
     public function report(Request $request, Thread $thread)
     {
         $request->validate([

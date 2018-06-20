@@ -35,17 +35,13 @@ Route::post('user/forget-password', 'AuthController@forgetPassword');
 Route::get('user/{user}/followers', 'UserController@followers');
 Route::get('user/{user}/followings', 'UserController@followings');
 Route::get('user/{user}/activities', 'UserController@activities');
-Route::post('user/{user}/follow', 'UserController@follow');
-Route::post('user/{user}/unfollow', 'UserController@unfollow');
+
+Route::post('user/{user}/{type}', 'RelationController@toggleFollow');
+Route::post('threads/{thread}/{type}', 'RelationController@toggleActionThread');
+Route::post('nodes/{node}/{type}', 'NodeController@toggleSubscribeNode');
 
 Route::get('nodes/{node}/threads', 'NodeController@threads');
-Route::post('nodes/{node}/subscribe', 'NodeController@subscribe');
-Route::post('nodes/{node}/unsubscribe', 'NodeController@unsubscribe');
 
-Route::post('threads/{thread}/like', 'ThreadController@like');
-Route::post('threads/{thread}/unlike', 'ThreadController@unlike');
-Route::post('threads/{thread}/subscribe', 'ThreadController@subscribe');
-Route::post('threads/{thread}/unsubscribe', 'ThreadController@unsubscribe');
 Route::post('threads/{thread}/report', 'ThreadController@report');
 
 Route::post('comments/{comment}/up-vote', 'CommentController@upVote');
