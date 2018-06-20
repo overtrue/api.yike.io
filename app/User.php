@@ -83,14 +83,14 @@ class User extends Authenticatable
         'company' => '',
         'location' => '',
         'home_url' => '',
-        'github_id' => '',
-        'twitter_id' => '',
-        'facebook_id' => '',
-        'instagram_id' => '',
-        'telegram_id' => '',
-        'coding_id' => '',
-        'steam_id' => '',
-        'weibo_url' => '',
+        'github' => '',
+        'twitter' => '',
+        'facebook' => '',
+        'instagram' => '',
+        'telegram' => '',
+        'coding' => '',
+        'steam' => '',
+        'weibo' => '',
     ];
 
     /**
