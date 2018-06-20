@@ -45,24 +45,6 @@ class NodeController extends Controller
         return ThreadResource::collection($threads);
     }
 
-    public function subscribe(Node $node)
-    {
-        auth()->user()->subscribe($node);
-
-        $node->refreshCache();
-
-        return response()->json([]);
-    }
-
-    public function unsubscribe(Node $node)
-    {
-        auth()->user()->unsubscribe($node);
-
-        $node->refreshCache();
-
-        return response()->json([]);
-    }
-
     /**
      * Store a newly created resource in storage.
      *

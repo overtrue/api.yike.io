@@ -40,22 +40,6 @@ class UserController extends Controller
         return NotificationResource::collection($notifications);
     }
 
-    public function follow(User $user)
-    {
-        auth()->user()->follow($user);
-
-        $user->notify(new NewFollower(auth()->user()));
-
-        return response()->json([]);
-    }
-
-    public function unfollow(User $user)
-    {
-        auth()->user()->unfollow($user);
-
-        return response()->json([]);
-    }
-
     public function followers(Request $request, User $user)
     {
         $users = $user->followers()->paginate($request->get('per_page', 20));
