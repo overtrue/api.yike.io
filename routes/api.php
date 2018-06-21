@@ -23,6 +23,7 @@ Route::resources([
 ]);
 
 // Others
+Route::post('relations/{relation}', 'RelationController@toggleRelation')->name('relations.toggle');
 Route::get('me', 'UserController@me');
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
 Route::post('user/reset-password', 'AuthController@reset');

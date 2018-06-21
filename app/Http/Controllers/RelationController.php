@@ -2,73 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Node;
-use App\Notifications\LikedMyThread;
-use App\Notifications\NewFollower;
-use App\Notifications\SubscribedMyThread;
-use App\Thread;
-use App\User;
+use Illuminate\Http\Request;
 
 class RelationController extends Controller
 {
-    public function toggleFollow(User $user, string $type)
+    public function toggleRelation(Request $request, $relation)
     {
-        if ($type == 'follow') {
-            auth()->user()->follow($user);
+        $this->validate($request, [
+            'relation' => 'in:like,follow,subscribe,favorite,upvote,downvote',
+            'followable_id' => 'required|poly_exists:followable_type',
+        ]);
 
-            $user->notify(new NewFollower(auth()->user()));
-        } else {
-            auth()->user()->unfollow($user);
-        }
+        $method = 'toggle'.\studly_case($relation);
 
-        return response()->json([]);
-    }
+        \call_user_func_array([$request->user(), $method], $request->only(['followable_id', 'followable_type']));
 
-    public function toggleActionThread(Thread $thread, string $type)
-    {
-        if (in_array($type, ['like', 'unlike'])) {
-            return $this->toggleLike($type, $thread);
-        } else if (in_array($type, ['subscribe', 'unsubscribe'])) {
-            return $this->toggleSubscribeThread($type, $thread);
-        }
-    }
-
-    public function toggleLike(Thread $thread, string $type)
-    {
-        if ($type == 'like') {
-            auth()->user()->like($thread);
-
-            $thread->user->notify(new LikedMyThread($thread, auth()->user()));
-        } else {
-            auth()->user()->unlike($thread);
-        }
-
-        return response()->json([]);
-    }
-
-    public function toggleSubscribeThread(Thread $thread, string $type)
-    {
-        if ($type == 'subscribe') {
-            auth()->user()->subscribe($thread);
-
-            $thread->user->notify(new SubscribedMyThread($thread, auth()->user()));
-        } else {
-            auth()->user()->unsubscribe($thread);
-        }
-
-        return response()->json([]);
-    }
-
-    public function toggleSubscribeNode(Node $node, string $type)
-    {
-        if ($type == 'subscribe') {
-            auth()->user()->subscribe($node);
-        } else {
-            auth()->user()->unsubscribe($node);
-        }
-
-        $node->refreshCache();
-
-        return response()->json([]);
+        return $this->withNoContent();
     }
 }
