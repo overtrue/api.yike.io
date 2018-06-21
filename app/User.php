@@ -115,7 +115,7 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'has_banned', 'has_activated', 'has_followed', 'followers_count', 'followings_count', 'created_at_timeago', 'updated_at_timeago',
+        'has_banned', 'has_activated', 'has_followed', 'created_at_timeago', 'updated_at_timeago',
     ];
 
     public static function boot()
@@ -202,17 +202,11 @@ class User extends Authenticatable
 
     public function getHasFollowedAttribute()
     {
-        return $this->isFollowedBy(auth()->user());
-    }
+        if (auth()->guest()) {
+            return false;
+        }
 
-    public function getFollowersCountAttribute()
-    {
-        return $this->followers()->count();
-    }
-
-    public function getFollowingsCountAttribute()
-    {
-        return $this->followings()->count();
+        return $this->relationLoaded('followers') ? $this->followers->contains(auth()->user()) : $this->isFollowedBy(auth()->user());
     }
 
     public function getCacheAttribute()

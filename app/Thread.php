@@ -67,7 +67,7 @@ class Thread extends Model implements Commentable
     protected $appends = [
         'has_pinned', 'has_banned', 'has_excellent', 'has_frozen',
         'created_at_timeago', 'updated_at_timeago', 'has_liked',
-        'likers_count', 'comments_count', 'has_subscribed',
+        'has_subscribed',
     ];
 
     protected static function boot()
@@ -76,10 +76,6 @@ class Thread extends Model implements Commentable
 
         static::creating(function($thread){
             $thread->user_id = \auth()->id();
-            $thread->cache = [
-                'comments_count' => 0,
-                'views_count' => 0,
-            ];
         });
 
         $saveContent = function($thread){
@@ -160,22 +156,20 @@ class Thread extends Model implements Commentable
 
     public function getHasSubscribedAttribute()
     {
-        return $this->isSubscribedBy(auth()->user());
+        if (auth()->guest()) {
+            return false;
+        }
+
+        return $this->relationLoaded('subscribers') ? $this->subscribers->contains(auth()->user()) : $this->isSubscribedBy(auth()->user());
     }
 
     public function getHasLikedAttribute()
     {
-        return $this->isLikedBy(auth()->user());
-    }
+        if (auth()->guest()) {
+            return false;
+        }
 
-    public function getLikersCountAttribute()
-    {
-        return $this->fans()->count();
-    }
-
-    public function getCommentsCountAttribute()
-    {
-        return $this->comments()->count();
+        return $this->relationLoaded('likers') ? $this->likers->contains(auth()->user()) : $this->isLikedBy(auth()->user());
     }
 
     /**
