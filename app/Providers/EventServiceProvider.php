@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Listeners\RelationAttachedListener;
+use App\Listeners\RelationToggledListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
-use Overtrue\LaravelFollow\Events\RelationAttached;
+use Overtrue\LaravelFollow\Events\RelationToggled;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        RelationAttached::class => [
-            RelationAttachedListener::class,
+        RelationToggled::class => [
+            RelationToggledListener::class,
         ],
     ];
 
