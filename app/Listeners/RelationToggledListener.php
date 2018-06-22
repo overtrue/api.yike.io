@@ -37,7 +37,7 @@ class RelationToggledListener
 
             $event->causer->refreshCache();
 
-            if (\is_callable($target, 'refreshCache')) {
+            if (method_exists($target, 'refreshCache')) {
                 $target->refreshCache();
             }
 
