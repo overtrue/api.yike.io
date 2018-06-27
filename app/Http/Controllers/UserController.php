@@ -73,9 +73,9 @@ class UserController extends Controller
     public function activate(Request $request)
     {
         if (UrlSigner::validate($request->fullUrl())) {
-            User::whereEmail($request->email)->first()->activate();
-
-            auth()->user()->notify(new Welcome());
+            $user = User::whereEmail($request->email)->first();
+            $user->activate();
+            $user->notify(new Welcome());
 
             return redirect(config('app.site_url').'?active-success=yes&type=register');
         }
