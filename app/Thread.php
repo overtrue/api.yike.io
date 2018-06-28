@@ -58,6 +58,10 @@ class Thread extends Model implements Commentable
         'last_reply_user_name' => null,
     ];
 
+    const SENSITIVE_FIELDS = [
+        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at',
+    ];
+
     protected $dates = [
         'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at'
     ];
@@ -74,11 +78,21 @@ class Thread extends Model implements Commentable
     {
         parent::boot();
 
-        static::creating(function($thread){
+        static::saving(function(Thread $thread){
             $thread->user_id = \auth()->id();
+
+            if (\array_has($thread->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
+                abort('非法请求！');
+            }
+
+            foreach ($thread->getDirty() as $field => $value) {
+                if (\ends_with($field, '_at')) {
+                    $thread->$field = $value ? now() : null;
+                }
+            }
         });
 
-        $saveContent = function($thread){
+        $saveContent = function(Thread $thread){
             if (request()->routeIs('threads.*') && \request()->has('content')) {
                 $data = array_only(\request()->input('content', []), \request()->input('type', 'markdown'));
                 $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
@@ -89,6 +103,7 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
+        //XXX: fix the bug
         static::saving(function($thread){
             $thread->published_at = \request('is_draft', false) ? null : now();
         });
