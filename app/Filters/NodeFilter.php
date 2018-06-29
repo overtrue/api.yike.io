@@ -18,6 +18,6 @@ class NodeFilter extends ModelFilter
     {
         $this->orderBy('cache->threads_count', 'desc')
             ->orderBy('cache->subscribers_count', 'desc')
-            ->take($count);
+            ->limit($count);
     }
 }
