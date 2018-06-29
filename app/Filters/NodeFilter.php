@@ -16,8 +16,10 @@ class NodeFilter extends ModelFilter
 
     public function hot($count)
     {
+        \request()->merge(['per_page' => $count]);
+        
         $this->orderBy('cache->threads_count', 'desc')
             ->orderBy('cache->subscribers_count', 'desc')
-            ->limit($count);
+            ->take($count);
     }
 }
