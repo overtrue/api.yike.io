@@ -78,9 +78,11 @@ class Thread extends Model implements Commentable
     {
         parent::boot();
 
-        static::saving(function(Thread $thread){
+        static::creating(function(Thread $thread){
             $thread->user_id = \auth()->id();
+        });
 
+        static::saving(function(Thread $thread){
             if (\array_has($thread->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
                 abort('非法请求！');
             }
