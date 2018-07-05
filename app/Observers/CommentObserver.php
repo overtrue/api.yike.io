@@ -47,7 +47,8 @@ class CommentObserver
 
         \activity('commented.'.$targetType)
             ->performedOn($comment->commentable)
-            ->withProperty('content', \str_limit(\strip_tags($comment->content->body), 100))
+            ->withProperty('content', $comment->content->activity_log_content)
+            ->withProperty('comment_id', $comment->id)
             ->log('评论');
     }
 }

@@ -23,9 +23,13 @@ class RelationToggledListener
         $event->getTargetsCollection()->map(function($target) use ($event, $relation, $targetType) {
             $logName = $relation.'.'.$targetType;
             if (\in_array($target->id, $event->attached)) {
-                \activity($logName)
+                $activity = \activity($logName)
                     ->performedOn($target)
                     ->log('创建关系');
+
+                if ($targetType == 'thread') {
+                    $activity->withProperty('content', $target->content->activity_log_content);
+                }
             } else if (\in_array($target->id, $event->detached)) {
                 // 删除今天内的相关动作
                 Activity::whereSubjectType(\get_class($target))

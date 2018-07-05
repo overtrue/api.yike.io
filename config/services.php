@@ -52,4 +52,15 @@ return [
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
         'redirect'      => 'https://yike.io/auth/oauth-callback/facebook',
     ],
+
+    'captcha' => [
+        'publish' => [
+            'aid' => env('CAPTCHA_ID_PUBLISH'),
+            'secret' => env('CAPTCHA_SECRET_PUBLISH')
+        ],
+        'register' => [
+            'aid' => env('CAPTCHA_ID_REGISTER'),
+            'secret' => env('CAPTCHA_SECRET_REGISTER')
+        ],
+    ],
 ];
