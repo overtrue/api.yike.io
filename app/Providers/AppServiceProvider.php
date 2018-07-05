@@ -15,11 +15,13 @@ use App\Validators\KeepWordValidator;
 use App\Validators\PhoneValidator;
 use App\Validators\PhoneVerifyCodeValidator;
 use App\Validators\PolyExistsValidator;
+use App\Validators\TicketValidator;
 use App\Validators\UserUniqueContentValidator;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 use Overtrue\EasySms\EasySms;
 use Overtrue\LaravelFollow\FollowRelation;
 
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         'verify_code' => PhoneVerifyCodeValidator::class,
         'keep_word' => KeepWordValidator::class,
         'hash' => HashValidator::class,
+        'ticket' => TicketValidator::class,
         'user_unique_content' => UserUniqueContentValidator::class,
     ];
 
@@ -49,6 +52,10 @@ class AppServiceProvider extends ServiceProvider
         Comment::observe(CommentObserver::class);
 
         $this->registerValidators();
+
+        Horizon::auth(function ($request) {
+            return true;
+        });
     }
 
     /**

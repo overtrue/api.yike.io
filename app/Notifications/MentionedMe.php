@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +12,19 @@ class MentionedMe extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public $causer;
+    public $me;
+
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param \App\User $causer
+     * @param \App\User $me
      */
-    public function __construct()
+    public function __construct(User $causer, User $me)
     {
-        //
+        $this->causer = $causer;
+        $this->me = $me;
     }
 
     /**

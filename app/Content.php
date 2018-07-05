@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Jobs\FetchContentMentions;
 use App\Traits\OnlyActivatedUserCanCreate;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ use Mews\Purifier\Facades\Purifier;
  * @property string $contentable_type
  * @property string $body
  * @property string $markdown
+ * @property string activity_log_content
  * @property \Illuminate\Database\Eloquent\Model $contentable
  * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $mentions
  */
@@ -45,6 +47,10 @@ class Content extends Model
 
             $content->body = Purifier::clean($content->body);
         });
+
+        static::saved(function($content){
+            \dispatch(new FetchContentMentions($content));
+        });
     }
 
     public function contentable()
@@ -55,5 +61,10 @@ class Content extends Model
     public function mentions()
     {
         return $this->belongsToMany(User::class, 'content_mention');
+    }
+
+    public function getActivityLogContentAttribute()
+    {
+        return \str_limit(\strip_tags($this->body), 200);
     }
 }

@@ -56,7 +56,9 @@ class UserController extends Controller
 
     public function activities(Request $request, User $user)
     {
-        $activities = $user->activities()->paginate($request->get('per_page', 20));
+        $activities = $user->activities()->whereIn('log_name', [
+            'published.thread', 'commented.thread', 'follow.user', 'like.thread', 'subscribe.thread', 'subscribe.node',
+        ])->paginate($request->get('per_page', 20));
 
         return ActivityResource::collection($activities);
     }
