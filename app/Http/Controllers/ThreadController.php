@@ -100,7 +100,7 @@ class ThreadController extends Controller
             'type' => 'in:markdown,html',
             'content.body' => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
-            'ticket' => 'required|ticket',
+            'ticket' => 'required|ticket:publish',
             'is_draft' => 'boolean',
         ]);
 
