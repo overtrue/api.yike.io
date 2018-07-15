@@ -15,6 +15,10 @@ class TicketValidator
 {
     public function validate($attribute, $value, $parameters, $validator)
     {
+        if (\auth()->user()->is_admin) {
+            return true;
+        }
+
         $config = config('services.captcha.'.$parameters[0]);
         $query = [
             'aid' => $config['aid'],

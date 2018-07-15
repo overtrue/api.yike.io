@@ -10,6 +10,7 @@ header('Access-Control-Allow-Methods:*');
 Route::post('auth/register', 'AuthController@register');
 Route::get('oauth/redirect-url/{platform}', 'OAuthController@getRedirectUrl');
 Route::get('oauth/callback/{platform}', 'OAuthController@handleCallback');
+Route::post('contents/preview', 'ContentController@preview');
 
 // Resources
 Route::resources([
