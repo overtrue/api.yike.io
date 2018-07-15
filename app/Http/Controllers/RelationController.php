@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class RelationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function toggleRelation(Request $request, $relation)
     {
         $this->validate($request, [

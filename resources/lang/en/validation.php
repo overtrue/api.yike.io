@@ -113,6 +113,8 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
+    'user_unique_content' => '您已经发布过相同的内容，请勿重复发布！',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

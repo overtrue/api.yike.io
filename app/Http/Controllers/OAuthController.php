@@ -32,11 +32,6 @@ class OAuthController extends Controller
             return abort(401, $e->getMessage());
         }
 
-        $profile = Profile::createFromSocialite($socialiteUser, $platform);
-
-        return [
-            'user' => $profile->user,
-            'token' => $profile->user->createToken('Laravel Password Grant Client')->accessToken,
-        ];
+        return Profile::createFromSocialite($socialiteUser, $platform);
     }
 }

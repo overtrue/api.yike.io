@@ -42,7 +42,7 @@ class Content extends Model
 
         static::saving(function($content){
             if ($content->isDirty('markdown') && !empty($content->markdown)) {
-                $content->body = app(\ParsedownExtra::class)->text(\emoji($content->markdown));
+                $content->body = self::toHTML($content->markdown);
             }
 
             $content->body = Purifier::clean($content->body);
@@ -51,6 +51,11 @@ class Content extends Model
         static::saved(function($content){
             \dispatch(new FetchContentMentions($content));
         });
+    }
+
+    public static function toHTML(string $markdown)
+    {
+        return app(\ParsedownExtra::class)->text(\emoji($markdown));
     }
 
     public function contentable()

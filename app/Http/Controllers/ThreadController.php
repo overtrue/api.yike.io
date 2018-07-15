@@ -95,13 +95,20 @@ class ThreadController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->validate($request, [
+        $rules = [
             'title' => 'required|min:6|user_unique_content:threads,title,'.$thread->id,
             'type' => 'in:markdown,html',
             'content.body' => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
-            'ticket' => 'required|ticket:publish',
             'is_draft' => 'boolean',
+        ];
+
+        if (!$request->user()->is_admin) {
+            $rules['ticket'] = 'required|ticket:publish';
+        }
+
+        $this->validate($request, $rules, [
+            'ticket.required' => '请先完成验证',
         ]);
 
         $thread->update($request->all());

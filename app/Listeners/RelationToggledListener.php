@@ -23,9 +23,7 @@ class RelationToggledListener
         $event->getTargetsCollection()->map(function($target) use ($event, $relation, $targetType) {
             $logName = $relation.'.'.$targetType;
             if (\in_array($target->id, $event->attached)) {
-                $properties = [
-
-                ];
+                $properties = [];
                 if ($targetType == 'thread') {
                     $properties['content'] = $target->content->activity_log_content;
                 }

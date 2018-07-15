@@ -44,20 +44,6 @@ class Profile extends Model
         'user_id' => 'int',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function($profile){
-            if (empty($profile->user_id)) {
-                \DB::transaction(function() use ($profile) {
-                    $user = self::getUserFromProfile($profile);
-                    $profile->user_id = $user->id;
-                });
-            }
-        });
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
