@@ -15,7 +15,7 @@ class TicketValidator
 {
     public function validate($attribute, $value, $parameters, $validator)
     {
-        if (\auth()->user()->is_admin) {
+        if (auth()->check() && \auth()->user()->is_admin) {
             return true;
         }
 
