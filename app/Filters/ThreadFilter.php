@@ -33,4 +33,9 @@ class ThreadFilter extends ModelFilter
                 break;
         }
     }
+
+    public function userId($userId)
+    {
+        $this->where('user_id', $userId);
+    }
 }
