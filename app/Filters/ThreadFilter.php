@@ -34,7 +34,7 @@ class ThreadFilter extends ModelFilter
         }
     }
 
-    public function userId($userId)
+    public function user($userId)
     {
         $this->where('user_id', $userId);
     }
