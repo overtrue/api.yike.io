@@ -12,18 +12,10 @@ Route::get('oauth/redirect-url/{platform}', 'OAuthController@getRedirectUrl');
 Route::get('oauth/callback/{platform}', 'OAuthController@handleCallback');
 Route::post('contents/preview', 'ContentController@preview');
 
-// Resources
-Route::resources([
-    'threads' => 'ThreadController',
-    'nodes' => 'NodeController',
-    'banners' => 'BannerController',
-    'tags' => 'TagController',
-    'comments' => 'CommentController',
-    'users' => 'UserController',
-    'notifications' => 'NotificationController',
-]);
+\LaravelUploader::routes();
 
 // Others
+Route::get('relations', 'RelationController@index')->name('relations.index');
 Route::post('relations/{relation}', 'RelationController@toggleRelation')->name('relations.toggle');
 Route::get('me', 'UserController@me');
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
@@ -48,3 +40,14 @@ Route::post('comments/{comment}/cancel-vote', 'CommentController@cancelVote');
 
 Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsRead')
             ->name('notifications.mark_all_as_read');
+
+// Resources
+Route::resources([
+    'threads' => 'ThreadController',
+    'nodes' => 'NodeController',
+    'banners' => 'BannerController',
+    'tags' => 'TagController',
+    'comments' => 'CommentController',
+    'users' => 'UserController',
+    'notifications' => 'NotificationController',
+]);
