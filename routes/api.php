@@ -18,6 +18,7 @@ Route::post('contents/preview', 'ContentController@preview');
 Route::get('relations', 'RelationController@index')->name('relations.index');
 Route::post('relations/{relation}', 'RelationController@toggleRelation')->name('relations.toggle');
 Route::get('me', 'UserController@me');
+Route::post('user/exists', 'UserController@exists');
 Route::post('user/send-active-mail', 'UserController@sendActiveMail');
 Route::post('user/reset-password', 'AuthController@reset');
 Route::get('user/activate', 'UserController@activate')->name('user.activate');
