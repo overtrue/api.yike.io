@@ -125,8 +125,8 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->name = $user->name ?? $user->username;
 
-            while (User::whereUsername($user->username)->exists()) {
-                $user->username = $user->username.\random_int(1, 200);
+            if (User::isUsernameExists($user->username)) {
+                \abort(400, '用户名已经存在');
             }
         });
 
@@ -217,6 +217,11 @@ class User extends Authenticatable
     public function getExtendsAttribute()
     {
         return \array_merge(self::EXTENDS_FIELDS, \json_decode($this->attributes['extends'] ?? '{}', true));
+    }
+
+    public static function isUsernameExists(string $username)
+    {
+        return self::whereRaw(\sprintf('lower(username) = "%s" ', \strtolower($username)))->exists();
     }
 
     public function getRouteKeyName()

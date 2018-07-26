@@ -15,14 +15,29 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show', 'activities', 'activate', 'followers', 'followings', 'updateEmail']);
+        $this->middleware('auth:api')->except(
+            ['index', 'show', 'activities', 'activate', 'followers', 'followings', 'updateEmail', 'exists']
+        );
     }
 
     public function index(Request $request)
     {
-        $users = User::filter($request->all())->paginate($request->get('per_page', 20));
+        $users = User::filter($request->all())->paginate($request->get('per_page', $request->get('limit', 20)));
 
         return UserResource::collection($users);
+    }
+
+    public function exists(Request $request)
+    {
+        if ($request->has('email')) {
+            return ['success' => !User::whereEmail($request->get('email'))->exists()];
+        }
+
+        if ($request->has('username')) {
+            return ['success' => !User::isUsernameExists($request->get('username'))];
+        }
+
+        \abort(400);
     }
 
     public function me(Request $request)

@@ -18,6 +18,7 @@
         "overtrue/laravel-filesystem-qiniu": "^1.0",
         "overtrue/laravel-follow": "dev-master",
         "overtrue/laravel-lang": "^3.0",
+        "overtrue/laravel-mail-aliyun": "dev-master",
         "overtrue/laravel-socialite": "^2.0",
         "overtrue/laravel-uploader": "^0.0.8",
         "predis/predis": "^1.1",

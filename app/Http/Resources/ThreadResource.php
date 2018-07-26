@@ -6,7 +6,7 @@ class ThreadResource extends Resource
 {
     public static function collection($resource)
     {
-        $resource->load('likers', 'subscribers');
+        $resource->loadMissing('likers', 'subscribers');
 
         return parent::collection($resource);
     }
