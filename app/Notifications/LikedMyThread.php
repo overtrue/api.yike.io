@@ -64,7 +64,8 @@ class LikedMyThread extends Notification implements ShouldQueue
     {
         return [
             'user_id' => $this->user->id,
-            'username' => $this->user->name,
+            'name' => $this->user->name,
+            'username' => $this->user->username,
             'avatar' => $this->user->avatar,
             'thread_id' => $this->thread->id,
             'thread_title' => $this->thread->title,

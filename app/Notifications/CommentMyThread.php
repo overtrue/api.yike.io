@@ -64,7 +64,8 @@ class CommentMyThread extends Notification implements ShouldQueue
     {
         return [
             'user_id' => $this->user->id,
-            'username' => $this->user->name,
+            'name' => $this->user->name,
+            'username' => $this->user->username,
             'avatar' => $this->user->avatar,
             'comment_id' => $this->comment->id,
             'thread_title' => $this->comment->commentable->title,
