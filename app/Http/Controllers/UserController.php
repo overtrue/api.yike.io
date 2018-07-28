@@ -52,6 +52,8 @@ class UserController extends Controller
             ->filter($request->all())
             ->paginate($request->get('per_page', 20));
 
+        $request->user()->unreadNotifications->markAsRead();
+
         return NotificationResource::collection($notifications);
     }
 
