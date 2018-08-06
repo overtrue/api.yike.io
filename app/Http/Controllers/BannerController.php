@@ -52,13 +52,9 @@ class BannerController extends Controller
      * @param \App\Banner $banner
      *
      * @return \App\Http\Resources\BannerResource
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Banner $banner)
     {
-        $this->authorize('view', $banner);
-
         return new BannerResource($banner);
     }
 
