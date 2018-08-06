@@ -22,6 +22,7 @@
         "overtrue/laravel-socialite": "^2.0",
         "overtrue/laravel-uploader": "^0.0.8",
         "predis/predis": "^1.1",
+        "sentry/sentry-laravel": "^0.9.2",
         "spatie/laravel-activitylog": "^2.5",
         "spatie/laravel-url-signer": "^2.2",
         "tucker-eric/eloquentfilter": "^1.3",

@@ -51,7 +51,7 @@ class FetchContentMentions implements ShouldQueue
                         ->on($this->content->contentable)
                         ->withProperties(['content' => $this->content->activity_log_content])
                         ->log('提到了你');
-                    $user->notify(new MentionedMe($causer, $user));
+                    $user->notify(new MentionedMe($causer, $user, $this->content));
                 }
             }
         }
