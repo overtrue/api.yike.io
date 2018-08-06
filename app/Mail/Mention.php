@@ -2,29 +2,33 @@
 
 namespace App\Mail;
 
+use App\Content;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MailConfirmation extends Mailable implements ShouldQueue
+class Mention extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $causer;
     public $user;
-    public $email;
+    public $content;
 
     /**
      * Create a new message instance.
      *
-     * @param \App\User $user
-     * @param string    $email
+     * @param \App\User    $causer
+     * @param \App\User    $user
+     * @param \App\Content $content
      */
-    public function __construct(User $user, string $email)
+    public function __construct(User $causer, User $user, Content $content)
     {
+        $this->causer = $causer;
         $this->user = $user;
-        $this->email = $email;
+        $this->content = $content;
     }
 
     /**
@@ -34,6 +38,6 @@ class MailConfirmation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.mail-confirmation');
+        return $this->markdown('mails.mention');
     }
 }

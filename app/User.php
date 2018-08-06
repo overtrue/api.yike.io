@@ -3,8 +3,8 @@
 namespace App;
 
 use App\Mail\MailConfirmation;
-use App\Mail\UserActivation;
-use App\Mail\UserForgetPassword;
+use App\Mail\Activation;
+use App\Mail\ResetPassword;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Support\Facades\Mail;
@@ -219,6 +219,11 @@ class User extends Authenticatable
         return \array_merge(self::EXTENDS_FIELDS, \json_decode($this->attributes['extends'] ?? '{}', true));
     }
 
+    public function getUrlAttribute()
+    {
+        return \sprintf('%s/%s', \config('app.site_url'), $this->username);
+    }
+
     public static function isUsernameExists(string $username)
     {
         return self::whereRaw(\sprintf('lower(username) = "%s" ', \strtolower($username)))->exists();
@@ -231,7 +236,7 @@ class User extends Authenticatable
 
     public function sendActiveMail()
     {
-        return Mail::to($this->email)->queue(new UserActivation($this));
+        return Mail::to($this->email)->queue(new Activation($this));
     }
 
     public function sendUpdateMail(string $email)
@@ -241,7 +246,7 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        return Mail::to($this->email)->queue(new UserForgetPassword($this->email, $token));
+        return Mail::to($this->email)->queue(new ResetPassword($this->email, $token));
     }
 
     public function getActivationLink()

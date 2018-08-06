@@ -12,17 +12,6 @@ class Welcome extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Create a new notification instance.
-     *
-     * @param \App\User $user
-     *
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
@@ -55,6 +44,13 @@ class Welcome extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return [];
+        $admin = User::first();
+        
+        return [
+            'user_id' => $admin->id,
+            'name' => $admin->name,
+            'username' => $admin->username,
+            'avatar' => $admin->avatar,
+        ];
     }
 }

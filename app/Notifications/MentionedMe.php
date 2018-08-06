@@ -2,8 +2,11 @@
 
 namespace App\Notifications;
 
+use App\Content;
+use App\Mail\Mention;
 use App\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,17 +17,20 @@ class MentionedMe extends Notification implements ShouldQueue
 
     public $causer;
     public $me;
+    public $content;
 
     /**
      * Create a new notification instance.
      *
-     * @param \App\User $causer
-     * @param \App\User $me
+     * @param \App\User    $causer
+     * @param \App\User    $me
+     * @param \App\Content $content
      */
-    public function __construct(User $causer, User $me)
+    public function __construct(User $causer, User $me, Content $content)
     {
         $this->causer = $causer;
         $this->me = $me;
+        $this->content = $content;
     }
 
     /**
@@ -35,21 +41,19 @@ class MentionedMe extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param  mixed $notifiable
+     *
+     * @return \App\Mail\Mention
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new Mention($this->causer, $notifiable, $this->content))->to($notifiable->email);
     }
 
     /**
@@ -61,7 +65,14 @@ class MentionedMe extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'user_id' => $this->causer->id,
+            'name' => $this->causer->name,
+            'username' => $this->causer->username,
+            'avatar' => $this->causer->avatar,
+            'contentable_type' => $this->content->contentable_type,
+            'contentable_id' => $this->content->contentable_id,
+            'contentable_title' => $this->content->contentable->title,
+            'content' => $this->content->activity_log_content,
         ];
     }
 }

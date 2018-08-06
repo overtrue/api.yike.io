@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserActivation extends Mailable implements ShouldQueue
+class Activation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,7 @@ class UserActivation extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param \App\User $user
      */
     public function __construct(User $user)
     {
