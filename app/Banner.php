@@ -26,4 +26,9 @@ class Banner extends Model
     protected $casts = [
         'banners' => 'array',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

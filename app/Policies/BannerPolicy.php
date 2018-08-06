@@ -17,7 +17,7 @@ class BannerPolicy extends Policy
      */
     public function view(User $authUser, Banner  $banner)
     {
-        return $banner->user_id == $authUser->id || $authUser->can('view-banner');
+        return true;
     }
 
     /**
