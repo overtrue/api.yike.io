@@ -31,6 +31,6 @@ class Activation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.user-activation');
+        return $this->markdown('mails.activation');
     }
 }
