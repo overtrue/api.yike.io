@@ -189,6 +189,11 @@ class Thread extends Model implements Commentable
         return $this->relationLoaded('likers') ? $this->likers->contains(auth()->user()) : $this->isLikedBy(auth()->user());
     }
 
+    public function getUrlAttribute()
+    {
+        return \route('threads.show', [$this->id]);
+    }
+
     /**
      * @param \App\Comment $lastComment
      *
