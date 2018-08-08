@@ -1,5 +1,5 @@
 <?php
-namespace App\Policies;
+namespace App\Polices;
 
 use App\User;
 

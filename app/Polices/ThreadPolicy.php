@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Polices;
 
 use App\Thread;
 use App\User;

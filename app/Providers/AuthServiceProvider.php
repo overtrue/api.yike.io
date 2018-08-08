@@ -5,14 +5,14 @@ namespace App\Providers;
 use App\Banner;
 use App\Comment;
 use App\Node;
-use App\Policies\BannerPolicy;
-use App\Policies\CommentPolicy;
-use App\Policies\ContentPolicy;
-use App\Policies\NodePolicy;
-use App\Policies\ProfilePolicy;
-use App\Policies\TagPolicy;
-use App\Policies\ThreadPolicy;
-use App\Policies\UserPolicy;
+use App\Polices\BannerPolicy;
+use App\Polices\CommentPolicy;
+use App\Polices\ContentPolicy;
+use App\Polices\NodePolicy;
+use App\Polices\ProfilePolicy;
+use App\Polices\TagPolicy;
+use App\Polices\ThreadPolicy;
+use App\Polices\UserPolicy;
 use App\Profile;
 use App\Tag;
 use App\Thread;
@@ -27,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $policies = [
+    protected $Polices = [
         Banner::class => BannerPolicy::class,
         Comment::class => CommentPolicy::class,
         Node::class => NodePolicy::class,
@@ -42,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        $this->registerPolices();
 
         Passport::routes();
     }
