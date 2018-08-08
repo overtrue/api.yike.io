@@ -13,7 +13,8 @@ class Policy
 
     public function before(User $user)
     {
-        if ($user->is_admin || $user->hasRole('creator')) {
+//        if ($user->is_admin || $user->hasRole('creator')) {
+        if ($user->is_admin) {
             return true;
         }
     }
