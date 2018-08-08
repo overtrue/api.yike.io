@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Polices;
+namespace App\Policies;
 
 use App\Tag;
 use App\User;
