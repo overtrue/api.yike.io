@@ -1,5 +1,5 @@
 <?php
-namespace App\Policies;
+namespace App\Polices;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -13,8 +13,8 @@ class Policy
 
     public function before(User $user)
     {
-        //if ($user->is_admin || $user->hasRole('creator')) {
-        //    return true;
-        //}
+        if ($user->is_admin || $user->hasRole('creator')) {
+            return true;
+        }
     }
 }
