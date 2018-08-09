@@ -29,6 +29,23 @@ blockquote {
     text-align: left;
 }
 
+blockquote {
+    text-indent: 0;
+    margin-left: 0;
+    padding: 20px;
+    background: rgba(100,100, 100, .025);
+    border-left: 2px solid #ccc;
+}
+
+.attributes {
+    margin: 0 0 21px;
+}
+
+.attributes_content {
+    background-color: #EDEFF2;
+    padding: 16px;
+}
+
 a {
     color: #3869D4;
 }
