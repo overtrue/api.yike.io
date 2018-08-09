@@ -44,6 +44,6 @@ class ResetPassword extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.reset-password');
+        return $this->subject('重置密码')->markdown('mails.reset-password');
     }
 }

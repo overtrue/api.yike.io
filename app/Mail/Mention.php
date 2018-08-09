@@ -38,6 +38,6 @@ class Mention extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.mention');
+        return $this->subject('有人在讨论中提到了您')->markdown('mails.mention');
     }
 }

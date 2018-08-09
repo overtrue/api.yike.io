@@ -31,6 +31,6 @@ class NewComment extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.new-comment');
+        return $this->subject('有人评论了您的文章')->markdown('mails.new-comment');
     }
 }
