@@ -191,7 +191,7 @@ class Thread extends Model implements Commentable
 
     public function getUrlAttribute()
     {
-        return \route('threads.show', [$this->id]);
+        return \sprintf('%s/threads/%d', \config('app.site_url'), $this->id);
     }
 
     /**
