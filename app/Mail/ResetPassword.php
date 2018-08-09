@@ -19,6 +19,7 @@ class ResetPassword extends Mailable implements ShouldQueue
     /**
      * UserForgetPassword constructor.
      *
+     * @param string $email
      * @param string $token
      */
     public function __construct(string $email, string $token)
