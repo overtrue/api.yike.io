@@ -88,7 +88,8 @@ class CommentController extends Controller
 
         $comment = Comment::create($request->all());
 
-        $comment->user->notify(new CommentMyThread($comment, auth()->user()));
+        // XXX: 不科学
+        $comment->commentable->user->notify(new CommentMyThread($comment, auth()->user()));
 
         return new CommentResource($comment);
     }
