@@ -31,6 +31,6 @@ class Activation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.activation');
+        return $this->subject('请激活您的账户')->markdown('mails.activation');
     }
 }

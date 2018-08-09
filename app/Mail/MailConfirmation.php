@@ -34,6 +34,6 @@ class MailConfirmation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mails.mail-confirmation');
+        return $this->subject('请确认您的邮箱')->markdown('mails.mail-confirmation');
     }
 }
