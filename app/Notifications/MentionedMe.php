@@ -69,9 +69,10 @@ class MentionedMe extends Notification implements ShouldQueue
             'name' => $this->causer->name,
             'username' => $this->causer->username,
             'avatar' => $this->causer->avatar,
-            'contentable_type' => $this->content->contentable_type,
-            'contentable_id' => $this->content->contentable_id,
-            'contentable_title' => $this->content->contentable->title,
+            'comment_id' => $this->content->contentable_id,
+            'commentable_id' => $this->content->contentable->commentable_id,
+            'commentable_type' => $this->content->contentable->commentable_type,
+            'commentable_title' => $this->content->contentable->commentable->title,
             'content' => $this->content->activity_log_content,
         ];
     }
