@@ -143,7 +143,10 @@ class Thread extends Model implements Commentable
 
     public function scopePublished($query)
     {
-        $query->where('published_at', '<=', now());
+        $query->where('published_at', '<=', now())
+            ->whereHas('user', function($q){
+                $q->whereNotNull('activated_at')->whereNull('banned_at');
+            });
     }
 
     public function getCacheAttribute()

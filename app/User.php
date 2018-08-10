@@ -182,6 +182,11 @@ class User extends Authenticatable
         return $query->latest('');
     }
 
+    public function scopeValid()
+    {
+        return $this->whereNotNull('activated_at')->whereNull('banned_at');
+    }
+
     public function setExtendsAttribute($value)
     {
         $this->attributes['extends'] = json_encode(array_merge(json_decode($this->attributes['extends'] ?? '{}', true), $value));

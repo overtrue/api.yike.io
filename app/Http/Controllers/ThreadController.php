@@ -78,6 +78,10 @@ class ThreadController extends Controller
 
         $thread->update(['cache->views_count' => $thread->cache['views_count'] + 1]);
 
+        if (!$thread->user->is_valid) {
+            \abort(404);
+        }
+
         return new ThreadResource($thread);
     }
 
