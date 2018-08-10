@@ -159,7 +159,7 @@ class UserController extends Controller
         ]);
 
         $user->update($request->only([
-            'name', 'avatar', 'realname', 'bio', 'extends', 'settings', 'cache', 'gender'
+            'name', 'avatar', 'realname', 'bio', 'extends', 'settings', 'cache', 'gender', 'banned_at'
         ]));
 
         return new UserResource($user);
