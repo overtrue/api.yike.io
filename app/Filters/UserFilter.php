@@ -18,4 +18,9 @@ class UserFilter extends ModelFilter
     {
         $this->take($count);
     }
+
+    public function query($query)
+    {
+        $this->where('username', 'like', \sprintf('%%%s%%', $query));
+    }
 }
