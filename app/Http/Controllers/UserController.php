@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::filter($request->all())->paginate($request->get('per_page', $request->get('limit', 20)));
+        $users = User::withoutBanned()->filter($request->all())->paginate($request->get('per_page', $request->get('limit', 20)));
 
         return UserResource::collection($users);
     }
