@@ -37,6 +37,7 @@ use Overtrue\LaravelFollow\Traits\CanBeFollowed;
  * @property object $settings
  * @property int $level
  * @property bool $is_admin
+ * @property bool $is_valid
  * @property bool $has_banned
  * @property bool $has_activated
  * @property object $cache
@@ -93,6 +94,10 @@ class User extends Authenticatable
         'weibo' => '',
     ];
 
+    const SENSITIVE_FIELDS = [
+        'last_active_at', 'banned_at',
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -133,6 +138,16 @@ class User extends Authenticatable
         static::saving(function($user){
             if (Hash::needsRehash($user->password)) {
                 $user->password = \bcrypt($user->password);
+            }
+
+            if (\array_has($user->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
+                abort('非法请求！');
+            }
+
+            foreach ($user->getDirty() as $field => $value) {
+                if (\ends_with($field, '_at')) {
+                    $user->$field = $value ? now() : null;
+                }
             }
         });
     }
@@ -212,6 +227,11 @@ class User extends Authenticatable
     public function getCacheAttribute()
     {
         return \array_merge(self::CACHE_FIELDS, \json_decode($this->attributes['cache'] ?? '{}', true));
+    }
+
+    public function getIsValidAttribute()
+    {
+        return $this->has_activated && !$this->has_banned;
     }
 
     public function getExtendsAttribute()

@@ -9,7 +9,7 @@ class RelationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth:api', 'active_user'])->except('index');
     }
 
     public function index(Request $request)
