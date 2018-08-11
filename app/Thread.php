@@ -105,9 +105,8 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
-        //XXX: fix the bug
         static::saving(function($thread){
-            $thread->published_at = \request('is_draft', false) ? null : now();
+            $thread->published_at = $thread->published_at ?: \request('is_draft', false) ? null : now();
         });
     }
 
