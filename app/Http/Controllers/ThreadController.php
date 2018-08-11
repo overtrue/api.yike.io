@@ -28,7 +28,6 @@ class ThreadController extends Controller
             ->orderByDesc('pinned_at')
             ->orderByDesc('excellent_at')
             ->orderByDesc('published_at')
-            ->orderByDesc('updated_at')
             ->filter($request->all())->paginate($request->get('per_page', 20));
 
         return ThreadResource::collection($threads);
