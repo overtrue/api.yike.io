@@ -80,6 +80,8 @@ class Thread extends Model implements Commentable
 
         static::creating(function(Thread $thread){
             $thread->user_id = \auth()->id();
+
+            static::throttleCheck($thread->user);
         });
 
         static::saving(function(Thread $thread){
@@ -223,5 +225,14 @@ class Thread extends Model implements Commentable
             'last_reply_user_id' => $lastComment ? $lastComment->user->id : 0,
             'last_reply_user_name' => $lastComment ? $lastComment->user->name : '',
         ])]);
+    }
+
+    public static function throttleCheck(User $user)
+    {
+        $lastThread = $user->threads()->latest()->first();
+
+        if ($lastThread && $lastThread->created_at->gt(now()->subHours(config('throttle.thread.create')))) {
+            \abort(403, '发贴太频繁');
+        }
     }
 }
