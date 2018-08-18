@@ -57,8 +57,8 @@ class Comment extends Model
     {
         parent::boot();
 
-        static::creating(function($thread){
-            $thread->user_id = \auth()->id();
+        static::creating(function($comment){
+            $comment->user_id = \auth()->id();
         });
 
         $saveContent = function($comment){
@@ -86,6 +86,13 @@ class Comment extends Model
     public function content()
     {
         return $this->morphOne(Content::class, 'contentable');
+    }
+
+    public function scopeValid($query)
+    {
+        $query->whereHas('user', function($q){
+            $q->whereNotNull('activated_at')->whereNull('banned_at');
+        });
     }
 
     public static function isCommentable($target)
