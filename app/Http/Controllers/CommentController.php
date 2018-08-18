@@ -36,7 +36,7 @@ class CommentController extends Controller
             $builder = (new $model())->find($request->get('commentable_id'))->comments();
         }
 
-        $comments = $builder->oldest()->filter($request->all())->paginate($request->get('per_page', 20));
+        $comments = $builder->oldest()->valid()->filter($request->all())->paginate($request->get('per_page', 20));
 
         return CommentResource::collection($comments);
     }
