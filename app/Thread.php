@@ -46,7 +46,7 @@ class Thread extends Model implements Commentable
         'id' => 'int',
         'user_id' => 'int',
         'is_excellent' => 'bool',
-        'cache' => 'json',
+        'cache' => 'array',
     ];
 
     const CACHE_FIELDS = [
@@ -218,6 +218,7 @@ class Thread extends Model implements Commentable
         $lastComment = $this->comments()->latest()->first();
 
         $this->update(['cache' => \array_merge(self::CACHE_FIELDS, [
+            'views_count' => $this->cache['views_count'],
             'comments_count' => $this->comments()->count(),
             'likes_count' => $this->likers()->count(),
             'favoriters_count' => $this->favoriters()->count(),
