@@ -12,7 +12,7 @@ class ThreadController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:api', 'active_user'])->except(['index', 'show']);
+        $this->middleware(['auth:api', 'active_user'])->except(['index', 'show', 'search']);
     }
 
     /**
@@ -29,6 +29,13 @@ class ThreadController extends Controller
             ->orderByDesc('excellent_at')
             ->orderByDesc('published_at')
             ->filter($request->all())->paginate($request->get('per_page', 20));
+
+        return ThreadResource::collection($threads);
+    }
+
+    public function search(Request $request)
+    {
+        $threads = Thread::search($request->q)->paginate(10);
 
         return ThreadResource::collection($threads);
     }

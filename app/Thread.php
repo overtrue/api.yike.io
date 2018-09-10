@@ -8,6 +8,7 @@ use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use Overtrue\LaravelFollow\Traits\CanBeFavorited;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
@@ -33,7 +34,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 class Thread extends Model implements Commentable
 {
     use SoftDeletes, Filterable, OnlyActivatedUserCanCreate, WithDiffForHumanTimes,
-        CanBeSubscribed, CanBeFavorited, CanBeLiked;
+        CanBeSubscribed, CanBeFavorited, CanBeLiked, Searchable;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
@@ -114,6 +115,13 @@ class Thread extends Model implements Commentable
                 $thread->published_at = now();
             }
         });
+    }
+
+    public function toSearchableArray()
+    {
+        $this->loadMissing('content');
+
+        return \array_except($this->toArray(), 'user');
     }
 
     public function comments()

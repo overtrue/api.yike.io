@@ -15,6 +15,7 @@ Route::post('contents/preview', 'ContentController@preview');
 \LaravelUploader::routes();
 
 // Others
+Route::get('threads/search', 'ThreadController@search')->name('threads.search');
 Route::get('relations', 'RelationController@index')->name('relations.index');
 Route::post('relations/{relation}', 'RelationController@toggleRelation')->name('relations.toggle');
 Route::get('me', 'UserController@me');
