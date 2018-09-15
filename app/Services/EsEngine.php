@@ -53,6 +53,7 @@ class EsEngine extends ElasticsearchEngine
             && isset($builder->model->searchSettings['attributesToHighlight'])
         ) {
             $attributes = $builder->model->searchSettings['attributesToHighlight'];
+
             foreach ($attributes as $attribute) {
                 $params['body']['highlight']['fields'][$attribute] = new \stdClass();
             }
@@ -83,7 +84,7 @@ class EsEngine extends ElasticsearchEngine
      */
     public function map($results, $model)
     {
-        if (count($results['hits']['total']) === 0) {
+        if ($results['hits']['total'] === 0) {
             return Collection::make();
         }
 
