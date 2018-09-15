@@ -120,9 +120,9 @@ class Thread extends Model implements Commentable
 
     public function toSearchableArray()
     {
-        $this->loadMissing('content');
+        $content = $this->content->markdown;
 
-        return \array_except($this->toArray(), 'user');
+        return array_merge(\array_except($this->toArray(), 'user'), \compact('content'));
     }
 
     public function comments()
