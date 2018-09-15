@@ -19,9 +19,11 @@ trait EsHighlightAttributes
 
     public $highlights = [];
 
-    public function bootEsHighlightAttributes()
+    public static function bootEsHighlightAttributes()
     {
-        \array_push($this->appends, 'highlights');
+        self::retrieved(function($item){
+            \array_push($item->appends, 'highlights');
+        });
     }
 
     public function getHighlightsAttribute()
