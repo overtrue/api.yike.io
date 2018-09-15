@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contracts\Commentable;
+use App\Traits\EsHighlightAttributes;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
@@ -34,15 +35,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 class Thread extends Model implements Commentable
 {
     use SoftDeletes, Filterable, OnlyActivatedUserCanCreate, WithDiffForHumanTimes,
-        CanBeSubscribed, CanBeFavorited, CanBeLiked, Searchable;
-
-    public $searchSettings = [
-        'attributesToHighlight' => [
-            '*'
-        ]
-    ];
-
-    public $highlight = [];
+        CanBeSubscribed, CanBeFavorited, CanBeLiked, Searchable, EsHighlightAttributes;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
