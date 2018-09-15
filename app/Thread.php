@@ -36,6 +36,14 @@ class Thread extends Model implements Commentable
     use SoftDeletes, Filterable, OnlyActivatedUserCanCreate, WithDiffForHumanTimes,
         CanBeSubscribed, CanBeFavorited, CanBeLiked, Searchable;
 
+    public $searchSettings = [
+        'attributesToHighlight' => [
+            '*'
+        ]
+    ];
+
+    public $highlight = [];
+
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
         'pinned_at', 'frozen_at', 'banned_at', 'published_at', 'cache',
