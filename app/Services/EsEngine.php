@@ -102,7 +102,7 @@ class EsEngine extends ElasticsearchEngine
              * 这里返回的数据，如果有 highlight，就把对应的  highlight 设置到对象上面
              */
             if (isset($hit['highlight'])) {
-                $one->highlight = $hit['highlight'];
+                $one->highlights = $hit['highlight'];
             }
             return $one;
         });
