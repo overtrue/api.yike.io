@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Builder;
 use ScoutEngines\Elasticsearch\ElasticsearchEngine;
 
