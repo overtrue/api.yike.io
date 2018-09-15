@@ -52,7 +52,7 @@ class ESInit extends Command
                                     'match_mapping_type' => 'string',
                                     'mapping' => [
                                         'type' => 'text',
-                                        'analyzer' => 'ik_smart',
+                                        'analyzer' => 'ik_max_word',
                                         'fields' => [
                                             'keyword' => [
                                                 'type' => 'keyword'
