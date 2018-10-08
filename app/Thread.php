@@ -65,7 +65,7 @@ class Thread extends Model implements Commentable
     ];
 
     protected $dates = [
-        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at'
+        'popular_at', 'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at'
     ];
 
     protected $with = ['user'];
@@ -73,7 +73,7 @@ class Thread extends Model implements Commentable
     protected $appends = [
         'has_pinned', 'has_banned', 'has_excellent', 'has_frozen',
         'created_at_timeago', 'updated_at_timeago', 'has_liked',
-        'has_subscribed',
+        'has_subscribed', 'is_popular'
     ];
 
     protected static function boot()
@@ -181,6 +181,11 @@ class Thread extends Model implements Commentable
     public function getHasExcellentAttribute()
     {
         return (bool) $this->excellent_at;
+    }
+
+    public function getIsPopularAttribute()
+    {
+        return !!$this->popular_at;
     }
 
     public function getHasFrozenAttribute()
