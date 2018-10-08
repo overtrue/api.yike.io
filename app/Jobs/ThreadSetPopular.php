@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Model\Thread;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,14 +13,15 @@ class ThreadSetPopular implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $threadId;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($threadId)
     {
-        //
+        $this->threadId = $threadId;
     }
 
     /**
@@ -29,6 +31,8 @@ class ThreadSetPopular implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Thread::Where(['id' => $this->threadId])->update([
+            "popular_at" => \Carbon\Carbon::now()
+        ]);
     }
 }
