@@ -7,6 +7,7 @@
 
 > 🏵前端源码：https://github.com/overtrue/yike.io
 
+开源中国 Gitee 仓库：[![Fork me on Gitee](https://gitee.com/overtrue/api.yike.io/widgets/widget_3.svg)](https://gitee.com/overtrue/api.yike.io)
 
 ## 运行环境要求
 
