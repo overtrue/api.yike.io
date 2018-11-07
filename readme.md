@@ -113,8 +113,9 @@ php artisan key:generate
 
 ## 扩展包使用情况
 
-| 扩展包 | 一句话描述 | 本项目应用场景 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+
+| **扩展包** | **一句话描述** | **本项目应用场景** |
+| ---- | ---- | ---- | 
 | [Intervention/image](https://github.com/Intervention/image) | 图片处理功能库 | 用于图片裁切 |
 | [guzzlehttp/guzzle](https://github.com/guzzle/guzzle) | HTTP 请求套件 | 我也记不得，反正就是要用  |
 | [predis/predis](https://github.com/nrk/predis.git) | Redis 官方首推的 PHP 客户端开发包 | 缓存驱动 Redis 基础扩展包 |
