@@ -21,13 +21,13 @@
 
 ### 基础安装
 
-#### 1. 克隆源代码
+#### 克隆源代码
 
 克隆源代码到本地：
 
     > git clone git@github.com:overtrue/api.yike.io.git
 
-#### 2. 配置本地的 Homestead 环境
+#### 配置本地的 Homestead 环境
 
 1). 运行以下命令编辑 Homestead.yaml 文件：
 
@@ -60,11 +60,11 @@ homestead provision
 
 随后请运行 `homestead reload` 进行重启。
 
-#### 3. 安装扩展包依赖
+#### 安装扩展包依赖
 
 	composer install
 
-#### 4. 生成配置文件
+#### 生成配置文件
 
 ```
 cp .env.example .env
@@ -81,7 +81,7 @@ DB_USERNAME=homestead
 DB_PASSWORD=secret
 ```
 
-#### 5. 生成数据表及生成测试数据
+#### 生成数据表及生成测试数据
 
 在 Homestead 的网站根目录下运行以下命令
 
@@ -91,13 +91,21 @@ $ php artisan migrate --seed
 
 初始的用户角色权限已使用数据迁移生成。
 
-#### 7. 生成秘钥
+#### 生成秘钥
 
 ```shell
-php artisan key:generate
+$ php artisan key:generate
 ```
 
-#### 8. 配置 hosts 文件
+#### Passport 初始化
+
+```shell
+$ php artisan passport:install
+```
+
+将生成的 password grant 对应的 id 与 secret 记录下来，用于配置前端应用的 env 变量。
+
+#### 配置 hosts 文件
 
     echo "192.168.10.10   api.yike.io.test" | sudo tee -a /etc/hosts
 
