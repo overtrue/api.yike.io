@@ -76,7 +76,7 @@ class BannerController extends Controller
             // validation rules...
         ]);
 
-        $supplier->update($request->all());
+        $banner->update($request->all());
 
         return new BannerResource(Banner::create($request->all()));
     }
