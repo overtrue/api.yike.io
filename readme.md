@@ -9,6 +9,9 @@
 
 开源中国 Gitee 仓库：[![Fork me on Gitee](https://gitee.com/overtrue/api.yike.io/widgets/widget_3.svg)](https://gitee.com/overtrue/api.yike.io)
 
+> 🚨此次开源只是应大家的要求，所以请不要联系我咨询任何使用问题，遇到问题请自行解决，熟读 Laravel 文档。
+> 如果你有兴趣参与改进，请直接 PR 即可。
+
 ## 运行环境要求
 
 - Nginx 1.8+
