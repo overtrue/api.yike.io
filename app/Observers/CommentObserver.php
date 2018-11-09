@@ -24,7 +24,7 @@ class CommentObserver
         }
 
         if ($comment->commentable instanceof Thread) {
-            $comment->commentable->node->refreshCache();
+            $comment->commentable->refreshCache();
         }
     }
 
