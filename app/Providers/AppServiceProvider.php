@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Comment;
 use App\Observers\CommentObserver;
-use App\Observers\RelationObserver;
 use App\Observers\ThreadObserver;
 use App\Observers\UserObserver;
 use App\Services\EsEngine;
@@ -27,7 +26,6 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
 use Laravel\Scout\EngineManager;
 use Overtrue\EasySms\EasySms;
-use Overtrue\LaravelFollow\FollowRelation;
 
 class AppServiceProvider extends ServiceProvider
 {

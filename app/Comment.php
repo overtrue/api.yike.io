@@ -57,11 +57,11 @@ class Comment extends Model
     {
         parent::boot();
 
-        static::creating(function($comment){
+        static::creating(function ($comment) {
             $comment->user_id = \auth()->id();
         });
 
-        $saveContent = function($comment){
+        $saveContent = function ($comment) {
             if (request()->routeIs('comments.*') && \request()->has('content')) {
                 $data = array_only(\request()->input('content', []), \request()->input('type', 'markdown'));
                 $comment->content()->updateOrCreate(['contentable_id' => $comment->id], $data);
@@ -90,7 +90,7 @@ class Comment extends Model
 
     public function scopeValid($query)
     {
-        $query->whereHas('user', function($q){
+        $query->whereHas('user', function ($q) {
             $q->whereNotNull('activated_at')->whereNull('banned_at');
         });
     }

@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Observers;
+
 use App\User;
 
-
 /**
- * Class UserObserver
+ * Class UserObserver.
  *
  * @author overtrue <i@overtrue.me>
  */
@@ -18,6 +17,5 @@ class UserObserver
 
     public function deleted(User $user)
     {
-
     }
 }

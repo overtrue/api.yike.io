@@ -12,14 +12,14 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  *
  * @author overtrue <i@overtrue.me>
  *
- * @property int $node_id
- * @property string  $title
- * @property string  $icon
- * @property string  $banner
- * @property string  $description
- * @property object  $settings
- * @property object  $cache
- * @property \App\Node $node
+ * @property int                                                   $node_id
+ * @property string                                                $title
+ * @property string                                                $icon
+ * @property string                                                $banner
+ * @property string                                                $description
+ * @property object                                                $settings
+ * @property object                                                $cache
+ * @property \App\Node                                             $node
  * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $threads
  */
 class Node extends Model
@@ -39,7 +39,7 @@ class Node extends Model
     ];
 
     protected $appends = [
-        'has_subscribed'
+        'has_subscribed',
     ];
 
     public function children()

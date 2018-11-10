@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Socialite;
-use Illuminate\Http\Request;
-use Overtrue\Socialite\User as SocialiteUser;
 
 class OAuthController extends Controller
 {

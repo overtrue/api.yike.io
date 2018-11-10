@@ -1,15 +1,15 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ActivityResource;
 use App\Http\Resources\NotificationResource;
-use App\Notification;
-use App\Notifications\NewFollower;
-use App\Notifications\Welcome;
-use UrlSigner;
-use App\User;
 use App\Http\Resources\UserResource;
+use App\Notification;
+use App\Notifications\Welcome;
+use App\User;
 use Illuminate\Http\Request;
+use UrlSigner;
 
 class UserController extends Controller
 {
@@ -85,7 +85,7 @@ class UserController extends Controller
         $request->user()->sendActiveMail();
 
         return response()->json([
-            'message' => '激活邮件已发送，请注意查收！'
+            'message' => '激活邮件已发送，请注意查收！',
         ]);
     }
 
@@ -105,13 +105,13 @@ class UserController extends Controller
     public function editEmail(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|unique:users'
+            'email' => 'required|email|unique:users',
         ]);
 
         $request->user()->sendUpdateMail($request->get('email'));
 
         return response()->json([
-            'message' => '确认邮件已发送到新邮箱，请注意查收！'
+            'message' => '确认邮件已发送到新邮箱，请注意查收！',
         ]);
     }
 
@@ -122,7 +122,7 @@ class UserController extends Controller
 
             $user->update(['email' => $request->get('email')]);
 
-            return redirect(config('app.site_url') . '?active-success=yes&type=email');
+            return redirect(config('app.site_url').'?active-success=yes&type=email');
         }
 
         return redirect(config('app.site_url').'?active-success=no&type=email');
@@ -131,9 +131,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param    \App\User   $user
+     * @param \App\User $user
      *
-     * @return  \App\Http\Resources\UserResource
+     * @return \App\Http\Resources\UserResource
      */
     public function show(User $user)
     {
@@ -143,12 +143,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param    \Illuminate\Http\Request  $request
-     * @param    \App\User   $user
+     * @param \Illuminate\Http\Request $request
+     * @param \App\User                $user
      *
-     * @return  \App\Http\Resources\UserResource
+     * @return \App\Http\Resources\UserResource
      *
-     * @throws  \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, User $user)
     {
@@ -159,7 +159,7 @@ class UserController extends Controller
         ]);
 
         $user->update($request->only([
-            'name', 'avatar', 'realname', 'bio', 'extends', 'settings', 'cache', 'gender', 'banned_at'
+            'name', 'avatar', 'realname', 'bio', 'extends', 'settings', 'cache', 'gender', 'banned_at',
         ]));
 
         return new UserResource($user);

@@ -23,8 +23,6 @@ class ESInit extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -40,7 +38,7 @@ class ESInit extends Command
     {
         $client = new Client();
         //创建模板
-        $url = config('scout.elasticsearch.hosts')[0] . '/_template/tmp';
+        $url = config('scout.elasticsearch.hosts')[0].'/_template/tmp';
         $param = [
             'json' => [
                 'template' => config('scout.elasticsearch.index'),
@@ -55,23 +53,23 @@ class ESInit extends Command
                                         'analyzer' => 'ik_max_word',
                                         'fields' => [
                                             'keyword' => [
-                                                'type' => 'keyword'
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                                'type' => 'keyword',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ];
-        $client->put($url,$param);
+        $client->put($url, $param);
 
         $this->info('========= create template success ========');
 
         //创建索引
-        $url = config('scout.elasticsearch.hosts')[0] . '/' . config('scout.elasticsearch.index');
+        $url = config('scout.elasticsearch.hosts')[0].'/'.config('scout.elasticsearch.index');
         $param = [
             'json' => [
                 'settings' => [
@@ -82,13 +80,13 @@ class ESInit extends Command
                 'mappings' => [
                     '_default_' => [
                         '_all' => [
-                            'enabled' => false
-                        ]
-                    ]
-                ]
-            ]
+                            'enabled' => false,
+                        ],
+                    ],
+                ],
+            ],
         ];
-        $client->put($url,$param);
+        $client->put($url, $param);
 
         $this->info('=========== create index success ==========');
     }

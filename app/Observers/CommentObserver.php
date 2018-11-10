@@ -5,9 +5,8 @@ namespace App\Observers;
 use App\Comment;
 use App\Thread;
 
-
 /**
- * Class CommentObserver
+ * Class CommentObserver.
  *
  * @author overtrue <i@overtrue.me>
  */

@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Mail;
 
 class AuthController extends Controller
 {
@@ -31,7 +30,7 @@ class AuthController extends Controller
         $token = $user->createToken('Laravel Password Grant Client')->accessToken;
 
         return response()->json([
-            'token' => $token
+            'token' => $token,
         ]);
     }
 
@@ -45,16 +44,16 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'old_password' => 'required|hash:' . auth()->user()->password,
+            'old_password' => 'required|hash:'.auth()->user()->password,
             'password' => 'required|different:old_password|confirmed',
         ], [
-            'old_password.hash' => '旧密码输入错误！'
+            'old_password.hash' => '旧密码输入错误！',
         ], [
-            'old_password' => '旧密码'
+            'old_password' => '旧密码',
         ]);
 
         auth()->user()->update([
-            'password' => bcrypt($request->get('password'))
+            'password' => bcrypt($request->get('password')),
         ]);
 
         return response()->json();
@@ -86,7 +85,8 @@ class AuthController extends Controller
     /**
      * Get the password reset credentials from the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     protected function credentials(Request $request)

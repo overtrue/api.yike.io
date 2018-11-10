@@ -24,13 +24,13 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(User::class, 'activated', function($faker){
+$factory->state(User::class, 'activated', function ($faker) {
     return [
         'activated_at' => now(),
     ];
 });
 
-$factory->state(User::class, 'admin', function($faker){
+$factory->state(User::class, 'admin', function ($faker) {
     return [
         'is_admin' => true,
     ];
