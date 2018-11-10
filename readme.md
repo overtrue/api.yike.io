@@ -3,6 +3,8 @@
 
 <h1 align="left"><a href="https://yike.io">Yike.io</a></h1>
 
+[![Build Status](https://travis-ci.org/overtrue/api.yike.io.svg?branch=master)](https://travis-ci.org/overtrue/api.yike.io)
+
 此项目为 https://yike.io 的后端 API，基于 Laravel 5 开发。
 
 > 🏵前端源码：https://github.com/overtrue/yike.io

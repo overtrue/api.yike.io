@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - 7.2
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+
+script:
+  - ./vendor/bin/php-cs-fixer fix --dry-run --diff 1>&2
