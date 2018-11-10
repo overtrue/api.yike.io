@@ -6,10 +6,10 @@ use App\Content;
 use App\Notifications\MentionedMe;
 use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class FetchContentMentions implements ShouldQueue
 {
@@ -29,12 +29,10 @@ class FetchContentMentions implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle()
     {
-        \preg_match_all('/@(?<username>\w+)/', $this->content->body,$matches);
+        \preg_match_all('/@(?<username>\w+)/', $this->content->body, $matches);
 
         if (!empty($matches['username'])) {
             $mentioned = $this->content->mentions->pluck('username')->toArray();

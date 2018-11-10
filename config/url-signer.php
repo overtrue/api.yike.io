@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     * This string is used the to generate a signature. You should
     * keep this value secret.
@@ -17,8 +16,7 @@ return [
      * These strings are used a parameter names in a signed url.
      */
     'parameters' => [
-        'expires'   => 'expires',
+        'expires' => 'expires',
         'signature' => 'signature',
     ],
-
 ];

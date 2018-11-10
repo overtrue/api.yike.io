@@ -14,7 +14,7 @@ abstract class TestCase extends BaseTestCase
     protected $faker;
 
     /**
-     * Set up the test
+     * Set up the test.
      */
     public function setUp()
     {
@@ -23,7 +23,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Reset the migrations
+     * Reset the migrations.
      */
     public function tearDown()
     {

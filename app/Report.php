@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use EloquentFilter\Filterable;
@@ -9,6 +10,6 @@ class Report extends Model
     use Filterable;
 
     protected $fillable = [
-        'user_id', 'remark'
+        'user_id', 'remark',
     ];
 }

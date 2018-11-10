@@ -14,5 +14,5 @@ return [
         'dashboard', 'explore', 'market', 'marketplace',
         'logout', 'author', 'weibo', 'md5', 'place', 'store', 'documentation', 'docs',
         'other', 'install',
-    ]
+    ],
 ];

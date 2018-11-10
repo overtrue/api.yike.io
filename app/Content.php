@@ -20,7 +20,7 @@ use Mews\Purifier\Facades\Purifier;
  * @property string $body
  * @property string $markdown
  * @property string activity_log_content
- * @property \Illuminate\Database\Eloquent\Model $contentable
+ * @property \Illuminate\Database\Eloquent\Model                   $contentable
  * @property \Illuminate\Database\Eloquent\Relations\BelongsToMany $mentions
  */
 class Content extends Model
@@ -40,7 +40,7 @@ class Content extends Model
     {
         parent::boot();
 
-        static::saving(function($content){
+        static::saving(function ($content) {
             if ($content->isDirty('markdown') && !empty($content->markdown)) {
                 $content->body = self::toHTML($content->markdown);
             }
@@ -48,7 +48,7 @@ class Content extends Model
             $content->body = Purifier::clean($content->body);
         });
 
-        static::saved(function($content){
+        static::saved(function ($content) {
             \dispatch(new FetchContentMentions($content));
         });
     }

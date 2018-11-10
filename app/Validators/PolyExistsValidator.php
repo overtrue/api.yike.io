@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Validators;
 
-
 /**
- * Class PolyExistsValidator
+ * Class PolyExistsValidator.
  *
  * @author overtrue <i@overtrue.me>
  */
@@ -21,6 +19,7 @@ class PolyExistsValidator
             return !empty(resolve($objectType)->find($value));
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
+
             return false;
         }
     }

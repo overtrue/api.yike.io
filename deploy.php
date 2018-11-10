@@ -1,4 +1,5 @@
 <?php
+
 namespace Deployer;
 
 require 'recipe/laravel.php';
@@ -29,7 +30,7 @@ host('api.yike.io')
     ->multiplexing(true);
 
 desc('Restarting php-fpm.');
-task('php-fpm:restart', function(){
+task('php-fpm:restart', function () {
     run('sudo service php7.2-fpm restart');
 });
 

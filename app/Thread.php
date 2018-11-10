@@ -19,18 +19,19 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  *
  * @author overtrue <i@overtrue.me>
  *
- * @property int $user_id
- * @property string $title
+ * @property int            $user_id
+ * @property string         $title
  * @property \Carbon\Carbon $excellent_at
  * @property \Carbon\Carbon $pinned_at
  * @property \Carbon\Carbon $frozen_at
  * @property \Carbon\Carbon $banned_at
- * @property bool $has_pinned
- * @property bool $has_banned
- * @property bool $has_excellent
- * @property bool $has_frozen
- * @property object $cache
- * @method   static \App\Thread published()
+ * @property bool           $has_pinned
+ * @property bool           $has_banned
+ * @property bool           $has_excellent
+ * @property bool           $has_frozen
+ * @property object         $cache
+ *
+ * @method static \App\Thread published()
  */
 class Thread extends Model implements Commentable
 {
@@ -65,7 +66,7 @@ class Thread extends Model implements Commentable
     ];
 
     protected $dates = [
-        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at'
+        'excellent_at', 'pinned_at', 'frozen_at', 'banned_at', 'published_at',
     ];
 
     protected $with = ['user'];
@@ -80,13 +81,13 @@ class Thread extends Model implements Commentable
     {
         parent::boot();
 
-        static::creating(function(Thread $thread){
+        static::creating(function (Thread $thread) {
             $thread->user_id = \auth()->id();
 
             static::throttleCheck($thread->user);
         });
 
-        static::saving(function(Thread $thread){
+        static::saving(function (Thread $thread) {
             if (\array_has($thread->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
                 abort('非法请求！');
             }
@@ -98,7 +99,7 @@ class Thread extends Model implements Commentable
             }
         });
 
-        $saveContent = function(Thread $thread){
+        $saveContent = function (Thread $thread) {
             if (request()->routeIs('threads.*') && \request()->has('content')) {
                 $data = array_only(\request()->input('content', []), \request()->input('type', 'markdown'));
                 $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
@@ -109,10 +110,10 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
-        static::saving(function($thread){
+        static::saving(function ($thread) {
             if (\request('is_draft', false)) {
                 $thread->published_at = null;
-            } else if (!$thread->published_at) {
+            } elseif (!$thread->published_at) {
                 $thread->published_at = now();
             }
         });
@@ -158,7 +159,7 @@ class Thread extends Model implements Commentable
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', now())
-            ->whereHas('user', function($q){
+            ->whereHas('user', function ($q) {
                 $q->whereNotNull('activated_at')->whereNull('banned_at');
             });
     }
@@ -215,6 +216,7 @@ class Thread extends Model implements Commentable
      * @param \App\Comment $lastComment
      *
      * @return mixed
+     *
      * @throws \Exception
      */
     public function afterCommentCreated(Comment $lastComment)

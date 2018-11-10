@@ -2,57 +2,58 @@
 
 namespace App;
 
-use App\Mail\MailConfirmation;
 use App\Mail\Activation;
+use App\Mail\MailConfirmation;
 use App\Mail\ResetPassword;
 use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
-use Illuminate\Support\Facades\Mail;
-use Overtrue\LaravelFollow\Traits\CanVote;
-use UrlSigner;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Passport\HasApiTokens;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanLike;
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
-use Overtrue\LaravelFollow\Traits\CanBeFollowed;
+use Overtrue\LaravelFollow\Traits\CanVote;
+use UrlSigner;
 
 /**
  * Class User.
  *
  * @author overtrue <i@overtrue.me>
  *
- * @property string $name
- * @property string $username
- * @property string $email
- * @property string $password
- * @property string $avatar
- * @property string $realname
- * @property string $bio
- * @property object $extends
- * @property object $settings
- * @property int $level
- * @property bool $is_admin
- * @property bool $is_valid
- * @property bool $has_banned
- * @property bool $has_activated
- * @property object $cache
- * @property string $github_id
- * @property string $linkedin_id
- * @property string $twitter_id
- * @property string $weibo_url
- * @property \Carbon\Carbon $last_active_at
- * @property \Carbon\Carbon $banned_at
- * @property \Carbon\Carbon $activated_at
- * @property \Illuminate\Database\Eloquent\Relations\HasMany $profiles
- * @property \Illuminate\Database\Eloquent\Relations\HasMany $threads
- * @property \Illuminate\Database\Eloquent\Relations\HasMany $comments
+ * @property string                                                   $name
+ * @property string                                                   $username
+ * @property string                                                   $email
+ * @property string                                                   $password
+ * @property string                                                   $avatar
+ * @property string                                                   $realname
+ * @property string                                                   $bio
+ * @property object                                                   $extends
+ * @property object                                                   $settings
+ * @property int                                                      $level
+ * @property bool                                                     $is_admin
+ * @property bool                                                     $is_valid
+ * @property bool                                                     $has_banned
+ * @property bool                                                     $has_activated
+ * @property object                                                   $cache
+ * @property string                                                   $github_id
+ * @property string                                                   $linkedin_id
+ * @property string                                                   $twitter_id
+ * @property string                                                   $weibo_url
+ * @property \Carbon\Carbon                                           $last_active_at
+ * @property \Carbon\Carbon                                           $banned_at
+ * @property \Carbon\Carbon                                           $activated_at
+ * @property \Illuminate\Database\Eloquent\Relations\HasMany          $profiles
+ * @property \Illuminate\Database\Eloquent\Relations\HasMany          $threads
+ * @property \Illuminate\Database\Eloquent\Relations\HasMany          $comments
  * @property \Illuminate\Notifications\DatabaseNotificationCollection $unreadNotifications
  * @property \Illuminate\Notifications\DatabaseNotificationCollection $notifications
+ *
  * @method static \App\User popular()
  * @method static \App\User recent()
  */
@@ -135,7 +136,7 @@ class User extends Authenticatable
             }
         });
 
-        static::saving(function($user){
+        static::saving(function ($user) {
             if (Hash::needsRehash($user->password)) {
                 $user->password = \bcrypt($user->password);
             }
@@ -315,9 +316,11 @@ class User extends Authenticatable
      * Find the user identified by the given $identifier.
      *
      * @param $identifier email|phone
+     *
      * @return mixed
      */
-    public function findForPassport($identifier) {
+    public function findForPassport($identifier)
+    {
         return User::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
     }
 }
