@@ -11,19 +11,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @author overtrue <i@overtrue.me>
  *
- * @property \App\User $user
- * @property int $user_id
- * @property string $from
- * @property string $uid
- * @property string $username
- * @property string $name
- * @property string $email
- * @property string $location
- * @property string $description
- * @property string $avatar
- * @property string $access_token
+ * @property \App\User      $user
+ * @property int            $user_id
+ * @property string         $from
+ * @property string         $uid
+ * @property string         $username
+ * @property string         $name
+ * @property string         $email
+ * @property string         $location
+ * @property string         $description
+ * @property string         $avatar
+ * @property string         $access_token
  * @property \Carbon\Carbon $access_token_expired_at
- * @property string $access_token_secret
+ * @property string         $access_token_secret
  */
 class Profile extends Model
 {
@@ -71,7 +71,6 @@ class Profile extends Model
             'raw' => $socialiteUser->getOriginal(),
         ]);
 
-
         return $profile;
     }
 
@@ -99,7 +98,7 @@ class Profile extends Model
             ],
         ];
         if ($user) {
-            foreach(['realname', 'avatar', 'extends'] as $key) {
+            foreach (['realname', 'avatar', 'extends'] as $key) {
                 if (empty($user->$key)) {
                     $user->$key = $attributes[$key];
                 }

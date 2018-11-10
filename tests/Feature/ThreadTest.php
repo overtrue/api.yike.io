@@ -7,9 +7,6 @@ use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {
-    /**
-     * @return void
-     */
     public function testCreateThreadWithoutLogin()
     {
         $this->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
@@ -37,7 +34,7 @@ class ThreadTest extends TestCase
 
         $this->actingAs($user, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201)
-            ->assertJsonStructure(['title', 'user_id', 'content' => ['body',]])
+            ->assertJsonStructure(['title', 'user_id', 'content' => ['body']])
             ->assertJsonFragment(['title' => 'Hello world!', 'body' => 'hello every one.']);
 
         $this->actingAs($user, 'api')->patchJson('api/threads/1', [
@@ -67,7 +64,7 @@ class ThreadTest extends TestCase
 
         $this->actingAs($user, 'api')->postJson('api/threads', ['title' => 'Hello world!', 'body' => 'hello every one.'])
             ->assertStatus(201)
-            ->assertJsonStructure(['title', 'user_id', 'content' => ['body',]])
+            ->assertJsonStructure(['title', 'user_id', 'content' => ['body']])
             ->assertJsonFragment(['title' => 'Hello world!', 'body' => 'hello every one.']);
 
         $this->get('api/threads/1')->assertJsonFragment([

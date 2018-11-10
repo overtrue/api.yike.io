@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Contracts;
+
 use App\Comment;
 
-
 /**
- * Interface Commentable
+ * Interface Commentable.
  *
  * @author overtrue <i@overtrue.me>
  */

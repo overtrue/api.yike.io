@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.keep_word' => '用户名 :input 不可用。'
+            'username.keep_word' => '用户名 :input 不可用。',
         ];
     }
 }

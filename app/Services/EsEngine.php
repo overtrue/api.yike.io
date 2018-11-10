@@ -1,15 +1,13 @@
 <?php
 
-
 namespace App\Services;
-
 
 use Illuminate\Database\Eloquent\Collection;
 use Laravel\Scout\Builder;
 use ScoutEngines\Elasticsearch\ElasticsearchEngine;
 
 /**
- * Class EsEngine
+ * Class EsEngine.
  *
  * @author overtrue <i@overtrue.me>
  */
@@ -17,18 +15,19 @@ class EsEngine extends ElasticsearchEngine
 {
     public function search(Builder $builder)
     {
-        $result =  $this->performSearch($builder, array_filter([
+        $result = $this->performSearch($builder, array_filter([
             'numericFilters' => $this->filters($builder),
             'size' => $builder->limit,
         ]));
+
         return $result;
     }
 
     /**
      * Perform the given search on the engine.
      *
-     * @param  Builder $builder
-     * @param array    $options
+     * @param Builder $builder
+     * @param array   $options
      *
      * @return mixed
      */
@@ -44,10 +43,10 @@ class EsEngine extends ElasticsearchEngine
                         'fuzziness' => 'AUTO',
                         'fields' => ['title^3', 'content'],
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
-        /**
+        /*
          * 这里使用了 highlight 的配置
          */
         if ($builder->model->searchSettings
@@ -79,8 +78,9 @@ class EsEngine extends ElasticsearchEngine
     /**
      * Map the given results to instances of the given model.
      *
-     * @param  mixed  $results
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param mixed                               $results
+     * @param \Illuminate\Database\Eloquent\Model $model
+     *
      * @return Collection
      */
     public function map($results, $model)
@@ -98,14 +98,14 @@ class EsEngine extends ElasticsearchEngine
 
         return collect($results['hits']['hits'])->map(function ($hit) use ($model, $models) {
             $one = $models[$hit['_id']];
-            /**
+            /*
              * 这里返回的数据，如果有 highlight，就把对应的  highlight 设置到对象上面
              */
             if (isset($hit['highlight'])) {
                 $one->highlights = $hit['highlight'];
             }
+
             return $one;
         });
     }
-
 }

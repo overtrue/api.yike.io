@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ThreadResource;
-use App\Notifications\LikedMyThread;
-use App\Notifications\SubscribedMyThread;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -43,7 +41,7 @@ class ThreadController extends Controller
     public function report(Request $request, Thread $thread)
     {
         $request->validate([
-            'remark' => 'required'
+            'remark' => 'required',
         ]);
 
         $thread->report()->create([

@@ -10,6 +10,6 @@ class Notification extends Model
     use Filterable;
 
     protected $casts = [
-        'data' => 'json'
+        'data' => 'json',
     ];
 }

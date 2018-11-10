@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,9 +14,9 @@ class NotificationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      *
-     * @return  array
+     * @return array
      */
     public function index(Request $request)
     {
@@ -25,8 +26,8 @@ class NotificationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param    \Illuminate\Http\Request $request
-     * @param    String                      $id
+     * @param \Illuminate\Http\Request $request
+     * @param string                   $id
      *
      * @return int
      */

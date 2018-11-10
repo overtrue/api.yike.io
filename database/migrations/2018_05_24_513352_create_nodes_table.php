@@ -1,14 +1,13 @@
 <?php
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateNodesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return  void
      */
     public function up()
     {
@@ -20,7 +19,7 @@ class CreateNodesTable extends Migration
             $table->string('banner')->nullable();
             $table->string('description')->nullable();
             $table->json('settings')->nullable(); // title_color/description_color
-            $table->json('cache')->nullable();// threads_count/views_count/followers_count
+            $table->json('cache')->nullable(); // threads_count/views_count/followers_count
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,8 +27,6 @@ class CreateNodesTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return  void
      */
     public function down()
     {

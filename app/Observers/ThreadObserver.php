@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Observers;
+
 use App\Thread;
 
-
 /**
- * Class ThreadObserver
+ * Class ThreadObserver.
  *
  * @author overtrue <i@overtrue.me>
  */
@@ -29,6 +28,5 @@ class ThreadObserver
 
     public function deleted(Thread $thread)
     {
-
     }
 }

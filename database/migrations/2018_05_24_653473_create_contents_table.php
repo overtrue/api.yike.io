@@ -1,14 +1,13 @@
 <?php
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateContentsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return  void
      */
     public function up()
     {
@@ -21,7 +20,7 @@ class CreateContentsTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('content_mention', function(Blueprint $table){
+        Schema::create('content_mention', function (Blueprint $table) {
             $table->unsignedInteger('content_id');
             $table->unsignedInteger('user_id');
         });
@@ -29,8 +28,6 @@ class CreateContentsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return  void
      */
     public function down()
     {

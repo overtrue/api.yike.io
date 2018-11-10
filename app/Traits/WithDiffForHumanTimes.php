@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Traits;
 
-
 /**
- * Trait WithDiffForHumanTimes
+ * Trait WithDiffForHumanTimes.
  *
  * @author overtrue <i@overtrue.me>
  */

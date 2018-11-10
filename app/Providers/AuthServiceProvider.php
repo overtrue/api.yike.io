@@ -7,7 +7,6 @@ use App\Comment;
 use App\Node;
 use App\Policies\BannerPolicy;
 use App\Policies\CommentPolicy;
-use App\Policies\ContentPolicy;
 use App\Policies\NodePolicy;
 use App\Policies\ProfilePolicy;
 use App\Policies\TagPolicy;

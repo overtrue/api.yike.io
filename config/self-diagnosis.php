@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
      * A list of environment aliases mapped to the actual environment configuration.
      */
@@ -91,5 +90,4 @@ return [
             //],
         ],
     ],
-
 ];

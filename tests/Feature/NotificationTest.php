@@ -4,17 +4,12 @@ namespace Tests\Feature;
 
 use App\Notifications\Welcome;
 use App\User;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class NotificationTest extends TestCase
 {
     /**
      * A basic test example.
-     *
-     * @return void
      */
     public function testUserCanGetNotifications()
     {
@@ -45,7 +40,7 @@ class NotificationTest extends TestCase
             ->getContent(), true);
         $first = $notifications[0];
 
-        $this->patchJson('api/notifications/' . $first['id'])->assertStatus(200);
+        $this->patchJson('api/notifications/'.$first['id'])->assertStatus(200);
         $notifications = json_decode($this->actingAs($user, 'api')->getJson('api/notifications')
             ->assertStatus(200)
             ->getContent(), true);

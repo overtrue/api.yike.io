@@ -2,8 +2,6 @@
 
 namespace App\Validators;
 
-use Illuminate\Support\Facades\Hash;
-
 /**
  * Class UsernameValidator.
  */
