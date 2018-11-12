@@ -151,7 +151,7 @@ $ php artisan passport:install
 | [sentry/sentry-laravel](https://github.com/getsentry/sentry-laravel) | Sentry 报错监控 | 监控系统错误 |
 | [spatie/laravel-activitylog](https://github.com/spatie/laravel-activitylog) | 用户行为记录 | 个人中心的用户动态 |
 | [spatie/laravel-url-signer](https://github.com/spatie/laravel-url-signer) | URL 加密 | 用户激活链接 |
-| [tamayo/laravel-scout-elastic](https://github.com/tamayo/laravel-scout-elastic) | Laravel Scout ES 驱动 | 帖子搜索 |
+| [tamayo/laravel-scout-elastic](https://github.com/ErickTamayo/laravel-scout-elastic) | Laravel Scout ES 驱动 | 帖子搜索 |
 | [tucker-eric/eloquentfilter](https://github.com/tucker-eric/eloquentfilter) | 模型字段过滤 | 接口字段过滤 |
 | [vinkla/hashids](https://github.com/vinkla/hashids) | HashID 实现 | 暂时好像没用到 |
 | [beyondcode/laravel-self-diagnosis](https://github.com/beyondcode/laravel-self-diagnosis) | Laravel 基础环境检查工具 | 检查配置是否正确 |
