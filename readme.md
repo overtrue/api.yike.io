@@ -117,6 +117,29 @@ $ php artisan passport:install
 
     echo "192.168.10.10   api.yike.io.test" | sudo tee -a /etc/hosts
 
+#### 其它服务
+##### 腾讯 007 防水墙
+
+去 [腾讯防水墙](https://007.qq.com/) 注册账号，创建验证码服务（你可能需要创建两个验证，一个用于发布文章，一个用于注册账号），获取对应的配置填写到 `.env` 中：
+
+```env
+# 用于发布文章的验证码
+CAPTCHA_ID_PUBLISH=
+CAPTCHA_SECRET_PUBLISH=
+
+# 用于用户注册用的验证码
+CAPTCHA_ID_REGISTER=
+CAPTCHA_SECRET_REGISTER=
+```
+
+##### 帖子搜索服务
+
+帖子搜索基于 [ElasticSearch](https://www.elastic.co/) 实现，所以你需要在任何机器上部署一个 ES 服务，然后将地址与索引名称配置到：
+
+```env
+ELASTICSEARCH_INDEX=yike
+ELASTICSEARCH_HOST=http://127.0.0.1:9200
+```
 
 ### 链接入口
 
