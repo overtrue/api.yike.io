@@ -117,7 +117,7 @@ $ php artisan passport:install
 
     echo "192.168.10.10   api.yike.io.test" | sudo tee -a /etc/hosts
 
-#### 其它服务
+#### 其它服务配置
 ##### 腾讯 007 防水墙
 
 去 [腾讯防水墙](https://007.qq.com/) 注册账号，创建验证码服务（你可能需要创建两个验证，一个用于发布文章，一个用于注册账号），获取对应的配置填写到 `.env` 中：
