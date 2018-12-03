@@ -22,8 +22,8 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::withoutBanned()->filter($request->all())->paginate($request->get('per_page', $request->get('limit', 20)));
-
+        $users = User::withoutBanned()->filter($request->all())->paginate($request->get('per_page', $request->get('limit', 20)))->makeHidden('email');
+        
         return UserResource::collection($users);
     }
 
@@ -137,6 +137,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        if(!auth()->user() || auth()->user()->getAuthIdentifier() != $user->id){
+            $emailArry = explode('@',$user->email);
+            if(strlen($emailArry[0])<=3){
+                $user->email = substr($user->email,0,1).'****@'.$emailArry[1];
+            }else{
+                $user->email = substr($user->email,0,3).'****@'.$emailArry[1];
+            }
+        }
         return new UserResource($user);
     }
 
