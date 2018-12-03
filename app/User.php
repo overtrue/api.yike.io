@@ -96,6 +96,10 @@ class User extends Authenticatable
     ];
 
     const SENSITIVE_FIELDS = [
+        'last_active_at', 'banned_at', 'email', 'realname', 'phone', 'settings',
+    ];
+
+    const UPDATE_SENSITIVE_FIELDS = [
         'last_active_at', 'banned_at',
     ];
 
@@ -141,7 +145,7 @@ class User extends Authenticatable
                 $user->password = \bcrypt($user->password);
             }
 
-            if (\array_has($user->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
+            if (\array_has($user->getDirty(), self::UPDATE_SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
                 abort('非法请求！');
             }
 

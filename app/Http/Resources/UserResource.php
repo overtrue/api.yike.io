@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\User;
+
 class UserResource extends Resource
 {
     public static function collection($resource)
@@ -9,5 +11,14 @@ class UserResource extends Resource
         $resource->loadMissing('followers');
 
         return parent::collection($resource);
+    }
+
+    public function toArray($request)
+    {
+        if (\auth()->id() !== $this->resource->id) {
+            $this->resource->makeHidden(User::SENSITIVE_FIELDS);
+        }
+
+        return parent::toArray($request);
     }
 }
