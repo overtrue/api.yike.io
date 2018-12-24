@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Contracts\Commentable;
+use App\Jobs\ThreadAddPopular;
 use App\Traits\EsHighlightAttributes;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
@@ -16,9 +17,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 /**
  * Class Thread.
- *
  * @author overtrue <i@overtrue.me>
- *
  * @property int            $user_id
  * @property string         $title
  * @property \Carbon\Carbon $excellent_at
@@ -30,7 +29,6 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  * @property bool           $has_excellent
  * @property bool           $has_frozen
  * @property object         $cache
- *
  * @method static \App\Thread published()
  */
 class Thread extends Model implements Commentable
@@ -42,7 +40,7 @@ class Thread extends Model implements Commentable
         'user_id', 'title', 'excellent_at', 'node_id',
         'pinned_at', 'frozen_at', 'banned_at', 'published_at', 'cache',
         'cache->views_count', 'cache->comments_count', 'cache->likes_count', 'cache->subscriptions_count',
-        'cache->last_reply_user_id', 'cache->last_reply_user_name',
+        'cache->last_reply_user_id', 'cache->last_reply_user_name', 'popular_at',
     ];
 
     protected $casts = [
@@ -77,9 +75,17 @@ class Thread extends Model implements Commentable
         'has_subscribed',
     ];
 
+    const POPULAR_CONDITION_LIKES_COUNT = 15;
+    const POPULAR_CONDITION_VIEWS_COUNT = 200;
+    const POPULAR_CONDITION_COMMENTS_COUNT = 10;
+
     protected static function boot()
     {
         parent::boot();
+
+        static::retrieved(function ($thread) {
+            \dispatch(new ThreadAddPopular($thread));
+        });
 
         static::creating(function (Thread $thread) {
             $thread->user_id = \auth()->id();
@@ -216,7 +222,6 @@ class Thread extends Model implements Commentable
      * @param \App\Comment $lastComment
      *
      * @return mixed
-     *
      * @throws \Exception
      */
     public function afterCommentCreated(Comment $lastComment)
