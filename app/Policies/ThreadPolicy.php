@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Thread;
 use App\User;
+use Illuminate\Support\Facades\Cache;
 
 class ThreadPolicy extends Policy
 {
@@ -15,7 +16,7 @@ class ThreadPolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Thread  $thread)
+    public function view(User $authUser, Thread $thread)
     {
         return true;
     }
@@ -29,6 +30,10 @@ class ThreadPolicy extends Policy
      */
     public function create(User $authUser)
     {
+        if (Cache::get('thread_sensitive_trigger_' . $authUser->id, 0) >= Thread::THREAD_SENSITIVE_TRIGGER_LIMIT) {
+            return false;
+        }
+
         return true;
     }
 
@@ -53,7 +58,7 @@ class ThreadPolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Thread  $thread)
+    public function delete(User $authUser, Thread $thread)
     {
         return $thread->user_id == $authUser->id || $authUser->can('delete-thread');
     }

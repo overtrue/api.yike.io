@@ -4,6 +4,7 @@ namespace App;
 
 use App\Contracts\Commentable;
 use App\Jobs\ThreadAddPopular;
+use App\Jobs\ThreadSensitiveFilter;
 use App\Traits\EsHighlightAttributes;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
@@ -79,6 +80,8 @@ class Thread extends Model implements Commentable
     const POPULAR_CONDITION_VIEWS_COUNT = 200;
     const POPULAR_CONDITION_COMMENTS_COUNT = 10;
 
+    const THREAD_SENSITIVE_TRIGGER_LIMIT = 5;
+
     protected static function boot()
     {
         parent::boot();
@@ -103,11 +106,18 @@ class Thread extends Model implements Commentable
                     $thread->$field = $value ? now() : null;
                 }
             }
+
+            $thread->title = \dispatch_now(new ThreadSensitiveFilter($thread->title));
         });
 
         $saveContent = function (Thread $thread) {
             if (request()->routeIs('threads.*') && \request()->has('content')) {
-                $data = array_only(\request()->input('content', []), \request()->input('type', 'markdown'));
+                $type = \request()->input('type', 'markdown');
+
+                $data = array_only(\request()->input('content', []), $type);
+
+                $data[$type] = \dispatch_now(new ThreadSensitiveFilter(\array_get($data, $type)));;
+
                 $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
                 $thread->loadMissing('content');
             }
