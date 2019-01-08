@@ -43,8 +43,7 @@ class ThreadAddPopular implements ShouldQueue
             || $this->thread->likes()->count() >= Thread::POPULAR_CONDITION_LIKES_COUNT
             || $this->thread->comments()->count() >= Thread::POPULAR_CONDITION_COMMENTS_COUNT) {
 
-            $this->thread->popular_at = \now();
-            $this->thread->save();
+            $this->thread->update(['popular_at' => now()]);
         }
     }
 }
