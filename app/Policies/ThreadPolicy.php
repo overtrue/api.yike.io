@@ -30,7 +30,7 @@ class ThreadPolicy extends Policy
      */
     public function create(User $authUser)
     {
-        if (Cache::get('thread_sensitive_trigger_' . $authUser->id, 0) >= Thread::THREAD_SENSITIVE_TRIGGER_LIMIT) {
+        if (Cache::get('thread_sensitive_trigger_'.$authUser->id, 0) >= Thread::THREAD_SENSITIVE_TRIGGER_LIMIT) {
             return false;
         }
 

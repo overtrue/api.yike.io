@@ -18,7 +18,9 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 /**
  * Class Thread.
+ *
  * @author overtrue <i@overtrue.me>
+ *
  * @property int            $user_id
  * @property string         $title
  * @property \Carbon\Carbon $excellent_at
@@ -30,6 +32,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  * @property bool           $has_excellent
  * @property bool           $has_frozen
  * @property object         $cache
+ *
  * @method static \App\Thread published()
  */
 class Thread extends Model implements Commentable
@@ -45,18 +48,18 @@ class Thread extends Model implements Commentable
     ];
 
     protected $casts = [
-        'id' => 'int',
-        'user_id' => 'int',
+        'id'           => 'int',
+        'user_id'      => 'int',
         'is_excellent' => 'bool',
-        'cache' => 'array',
+        'cache'        => 'array',
     ];
 
     const CACHE_FIELDS = [
-        'views_count' => 0,
-        'comments_count' => 0,
-        'likes_count' => 0,
-        'subscriptions_count' => 0,
-        'last_reply_user_id' => 0,
+        'views_count'          => 0,
+        'comments_count'       => 0,
+        'likes_count'          => 0,
+        'subscriptions_count'  => 0,
+        'last_reply_user_id'   => 0,
         'last_reply_user_name' => null,
     ];
 
@@ -116,7 +119,7 @@ class Thread extends Model implements Commentable
 
                 $data = array_only(\request()->input('content', []), $type);
 
-                $data[$type] = \dispatch_now(new ThreadSensitiveFilter(\array_get($data, $type)));;
+                $data[$type] = \dispatch_now(new ThreadSensitiveFilter(\array_get($data, $type)));
 
                 $thread->content()->updateOrCreate(['contentable_id' => $thread->id], $data);
                 $thread->loadMissing('content');
@@ -231,8 +234,9 @@ class Thread extends Model implements Commentable
     /**
      * @param \App\Comment $lastComment
      *
-     * @return mixed
      * @throws \Exception
+     *
+     * @return mixed
      */
     public function afterCommentCreated(Comment $lastComment)
     {
@@ -244,12 +248,12 @@ class Thread extends Model implements Commentable
         $lastComment = $this->comments()->latest()->first();
 
         $this->update(['cache' => \array_merge(self::CACHE_FIELDS, [
-            'views_count' => $this->cache['views_count'],
-            'comments_count' => $this->comments()->count(),
-            'likes_count' => $this->likers()->count(),
-            'favoriters_count' => $this->favoriters()->count(),
-            'subscriptions_count' => $this->subscribers()->count(),
-            'last_reply_user_id' => $lastComment ? $lastComment->user->id : 0,
+            'views_count'          => $this->cache['views_count'],
+            'comments_count'       => $this->comments()->count(),
+            'likes_count'          => $this->likers()->count(),
+            'favoriters_count'     => $this->favoriters()->count(),
+            'subscriptions_count'  => $this->subscribers()->count(),
+            'last_reply_user_id'   => $lastComment ? $lastComment->user->id : 0,
             'last_reply_user_name' => $lastComment ? $lastComment->user->name : '',
         ])]);
     }

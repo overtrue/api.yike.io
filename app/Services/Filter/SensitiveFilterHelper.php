@@ -5,21 +5,21 @@ namespace App\Services\Filter;
 class SensitiveFilterHelper
 {
     /**
-     * 待检测语句长度
+     * 待检测语句长度.
      *
      * @var int
      */
     protected $contentLength = 0;
 
     /**
-     * 铭感词库树
+     * 铭感词库树.
      *
      * @var HashMap|null
      */
     protected $wordTree = null;
 
     /**
-     * 存放待检测语句铭感词
+     * 存放待检测语句铭感词.
      *
      * @var array|null
      */
@@ -32,7 +32,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 构建铭感词树【文件模式】
+     * 构建铭感词树【文件模式】.
      *
      * @param string $filepath
      *
@@ -54,7 +54,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 构建铭感词树【数组模式】
+     * 构建铭感词树【数组模式】.
      *
      * @param null $sensitiveWords
      *
@@ -76,7 +76,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 检测文字中的敏感词
+     * 检测文字中的敏感词.
      *
      * @param string $content   待检测内容
      * @param int    $matchType 匹配类型 [默认为最小匹配规则]
@@ -150,7 +150,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 替换敏感字字符
+     * 替换敏感字字符.
      *
      * @param        $content
      * @param string $replaceChar
@@ -175,7 +175,7 @@ class SensitiveFilterHelper
 
         foreach ($badWordList as $badWord) {
             if ($sTag || $eTag) {
-                $replaceChar = $sTag . $badWord . $eTag;
+                $replaceChar = $sTag.$badWord.$eTag;
             }
 
             $content = str_replace($badWord, $replaceChar, $content);
@@ -185,7 +185,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 被检测内容是否合法
+     * 被检测内容是否合法.
      *
      * @param $content
      *
@@ -252,7 +252,7 @@ class SensitiveFilterHelper
     }
 
     /**
-     * 将单个敏感词构建成树结构
+     * 将单个敏感词构建成树结构.
      *
      * @param string $word
      */
@@ -267,7 +267,6 @@ class SensitiveFilterHelper
         $wordLength = mb_strlen($word, 'utf-8');
 
         for ($i = 0; $i < $wordLength; $i++) {
-
             $keyChar = mb_substr($word, $i, 1, 'utf-8');
 
             // 获取子节点树结构
@@ -288,7 +287,5 @@ class SensitiveFilterHelper
                 $tree->put('ending', true);
             }
         }
-
-        return;
     }
 }

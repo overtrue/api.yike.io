@@ -5,13 +5,14 @@ namespace App\Services\Filter;
 class HashMap
 {
     /**
-     * 哈希表变量
+     * 哈希表变量.
+     *
      * @var array|null
      */
     protected $hashTable = [];
 
     /**
-     * 向HashMap中添加一个键值对
+     * 向HashMap中添加一个键值对.
      *
      * @param $key
      * @param $value
@@ -34,7 +35,7 @@ class HashMap
     }
 
     /**
-     * 根据key获取对应的value
+     * 根据key获取对应的value.
      *
      * @param $key
      *
@@ -50,7 +51,7 @@ class HashMap
     }
 
     /**
-     * 删除指定key的键值对
+     * 删除指定key的键值对.
      *
      * @param $key
      *
@@ -77,12 +78,11 @@ class HashMap
 
             return $tempValue;
         }
-
-        return null;
     }
 
     /**
-     * 获取HashMap的所有键值
+     * 获取HashMap的所有键值.
+     *
      * @return array
      */
     public function keys()
@@ -91,7 +91,8 @@ class HashMap
     }
 
     /**
-     * 获取HashMap的所有value值
+     * 获取HashMap的所有value值.
+     *
      * @return array
      */
     public function values()
@@ -100,7 +101,7 @@ class HashMap
     }
 
     /**
-     * 将一个HashMap的值全部put到当前HashMap中
+     * 将一个HashMap的值全部put到当前HashMap中.
      *
      * @param HashMap $map
      *
@@ -120,7 +121,8 @@ class HashMap
     }
 
     /**
-     * 移除HashMap中所有元素
+     * 移除HashMap中所有元素.
+     *
      * @return bool
      */
     public function removeAll()
@@ -131,7 +133,7 @@ class HashMap
     }
 
     /**
-     * 判断HashMap中是否包含指定的值
+     * 判断HashMap中是否包含指定的值.
      *
      * @param $value
      *
@@ -151,7 +153,7 @@ class HashMap
     }
 
     /**
-     * 判断HashMap中是否包含指定的键key
+     * 判断HashMap中是否包含指定的键key.
      *
      * @param $key
      *
@@ -163,7 +165,7 @@ class HashMap
     }
 
     /**
-     * 获取HashMap中元素个数
+     * 获取HashMap中元素个数.
      *
      * @return int
      */
@@ -173,12 +175,12 @@ class HashMap
     }
 
     /**
-     * 判断HashMap是否为空
+     * 判断HashMap是否为空.
      *
      * @return bool
      */
     public function isEmpty()
     {
-        return (count($this->hashTable) == 0);
+        return count($this->hashTable) == 0;
     }
 }
