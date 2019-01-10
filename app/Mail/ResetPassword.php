@@ -12,7 +12,9 @@ class ResetPassword extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $email;
+
     public $token;
+
     public $link;
 
     /**
