@@ -3,11 +3,11 @@
 namespace App\Services\Filter;
 
 /**
- * Class SensitiveFilterHelper.
+ * Class SensitiveFilter.
  *
  * @author v_haodouliu <haodouliu@gmail.com>
  */
-class SensitiveFilterHelper
+class SensitiveFilter
 {
     /**
      * 待检测语句长度.
@@ -22,14 +22,6 @@ class SensitiveFilterHelper
      * @var HashMap|null
      */
     protected $wordTree = null;
-
-    /**
-     * 存放待检测语句铭感词.
-     *
-     * @var array|null
-     */
-    protected static $badWords = null;
-
 
     public function __construct()
     {
@@ -89,7 +81,7 @@ class SensitiveFilterHelper
      *
      * @return array
      */
-    public function getBadWord($content, $matchType = 1, $count = 0)
+    public function getBadWords($content, $matchType = 1, $count = 0)
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
 
@@ -168,7 +160,7 @@ class SensitiveFilterHelper
             \abort(404, '检测内容为空');
         }
 
-        $badWords = self::$badWords ? self::$badWords : $this->getBadWord($content, $matchType);
+        $badWords = $this->getBadWords($content, $matchType);
 
         // 未检测到敏感词，直接返回
         if (empty($badWords)) {

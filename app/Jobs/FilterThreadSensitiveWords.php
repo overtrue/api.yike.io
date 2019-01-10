@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Notifications\ThreadSensitiveExcessive;
-use App\Services\Filter\SensitiveFilterHelper;
+use App\Services\Filter\SensitiveFilter;
 use App\Thread;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +33,9 @@ class FilterThreadSensitiveWords
      */
     public function handle()
     {
-        $sensitiveFilterHelper = \app(SensitiveFilterHelper::class);
+        $sensitiveFilter = \app(SensitiveFilter::class);
 
-        $isLegal = $sensitiveFilterHelper->isLegal($this->content);
+        $isLegal = $sensitiveFilter->isLegal($this->content);
 
         if ($isLegal) {
             $cacheKey = 'thread_sensitive_trigger_'.Auth::id();
@@ -51,7 +51,7 @@ class FilterThreadSensitiveWords
 
             Cache::increment($cacheKey);
 
-            $this->content = $sensitiveFilterHelper->replace($this->content, '***');
+            $this->content = $sensitiveFilter->replace($this->content, '***');
         }
 
         return $this->content;
