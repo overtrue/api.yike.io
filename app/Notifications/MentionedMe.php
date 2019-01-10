@@ -14,7 +14,9 @@ class MentionedMe extends Notification implements ShouldQueue
     use Queueable;
 
     public $causer;
+
     public $me;
+
     public $content;
 
     /**

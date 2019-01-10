@@ -59,7 +59,7 @@ class Profile extends Model
     {
         \Log::debug('socialite user.', $socialiteUser->toArray());
 
-        $profile = Profile::updateOrCreate(['from' => $platform, 'uid' => $socialiteUser->getId()], [
+        $profile = self::updateOrCreate(['from' => $platform, 'uid' => $socialiteUser->getId()], [
             'username' => $socialiteUser->getUsername(),
             'name' => $socialiteUser->getName(),
             'email' => $socialiteUser->getEmail(),
@@ -79,7 +79,7 @@ class Profile extends Model
      *
      * @return mixed
      */
-    protected static function getUserFromProfile(Profile $profile)
+    protected static function getUserFromProfile(self $profile)
     {
         $user = User::whereEmail($profile->email)->first();
         $attributes = [

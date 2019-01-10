@@ -23,7 +23,7 @@ class RelationToggledListener
             $logName = $relation.'.'.$targetType;
             if (\in_array($target->id, $event->attached)) {
                 $properties = [];
-                if ($targetType == 'thread') {
+                if ('thread' == $targetType) {
                     $properties['content'] = $target->content->activity_log_content;
                 }
 
@@ -48,14 +48,15 @@ class RelationToggledListener
 
             switch ($targetType) {
                 case 'thread':
-                    if ($relation == 'like') {
+                    if ('like' == $relation) {
                         $target->user->notify(new LikedMyThread($target, $event->causer));
                     }
+
                     break;
                 case 'node':
                     break;
                 case 'user':
-                    if ($relation == 'follow') {
+                    if ('follow' == $relation) {
                         $target->notify(new NewFollower($event->causer));
                     }
             }

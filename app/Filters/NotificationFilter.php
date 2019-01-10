@@ -23,15 +23,19 @@ class NotificationFilter extends ModelFilter
         switch ($tab) {
             case 'follow':
                 $this->whereType(NewFollower::class);
+
                 break;
             case 'subscribe':
                 $this->whereType(SubscribedMyThread::class);
+
                 break;
             case 'comment':
                 $this->whereType(CommentMyThread::class);
+
                 break;
             case 'like':
                 $this->whereType(LikedMyThread::class);
+
                 break;
             default:
                 break;

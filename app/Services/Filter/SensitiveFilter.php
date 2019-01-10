@@ -87,12 +87,12 @@ class SensitiveFilter
 
         $badWords = [];
 
-        for ($length = 0; $length < $this->contentLength; $length++) {
+        for ($length = 0; $length < $this->contentLength; ++$length) {
             $matchFlag = 0;
             $flag = false;
             $tempMap = $this->wordTree;
 
-            for ($i = $length; $i < $this->contentLength; $i++) {
+            for ($i = $length; $i < $this->contentLength; ++$i) {
                 $keyChar = mb_substr($content, $i, 1, 'utf-8');
 
                 // 获取指定节点树
@@ -107,7 +107,7 @@ class SensitiveFilter
                 $tempMap = $nowMap;
 
                 // 找到相应key，偏移量+1
-                $matchFlag++;
+                ++$matchFlag;
 
                 // 如果为最后一个匹配规则,结束循环，返回匹配标识数
                 if (false === $nowMap->get('ending')) {
@@ -185,11 +185,11 @@ class SensitiveFilter
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
 
-        for ($length = 0; $length < $this->contentLength; $length++) {
+        for ($length = 0; $length < $this->contentLength; ++$length) {
             $matchFlag = 0;
             $tempMap = $this->wordTree;
 
-            for ($i = $length; $i < $this->contentLength; $i++) {
+            for ($i = $length; $i < $this->contentLength; ++$i) {
                 $keyChar = mb_substr($content, $i, 1, 'utf-8');
 
                 // 获取指定节点树
@@ -203,7 +203,7 @@ class SensitiveFilter
                 // 找到相应key，偏移量+1
                 $tempMap = $nowMap;
 
-                $matchFlag++;
+                ++$matchFlag;
 
                 // 如果为最后一个匹配规则,结束循环，返回匹配标识数
                 if (false === $nowMap->get('ending')) {
@@ -256,7 +256,7 @@ class SensitiveFilter
 
         $wordLength = mb_strlen($word, 'utf-8');
 
-        for ($i = 0; $i < $wordLength; $i++) {
+        for ($i = 0; $i < $wordLength; ++$i) {
             $keyChar = mb_substr($word, $i, 1, 'utf-8');
 
             // 获取子节点树结构
