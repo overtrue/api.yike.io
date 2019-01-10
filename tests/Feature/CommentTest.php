@@ -14,7 +14,7 @@ class CommentTest extends TestCase
 
         $this->actingAs($user, 'api')->postJson('api/threads', [
                 'title' => 'Hello world!',
-                'body' => 'hello every one.',
+                'body'  => 'hello every one.',
             ])
             ->assertStatus(201);
 
@@ -22,8 +22,8 @@ class CommentTest extends TestCase
         $this->actingAs($user, 'api')
             ->postJson('api/comments', [
                 'commentable_type' => Thread::class,
-                'commentable_id' => 1,
-                'body' => 'Very Good!',
+                'commentable_id'   => 1,
+                'body'             => 'Very Good!',
             ])
             ->assertStatus(201);
 
@@ -32,8 +32,8 @@ class CommentTest extends TestCase
 
         $this->actingAs($user, 'api')->postJson('api/comments', [
             'commentable_type' => Thread::class,
-            'commentable_id' => 1,
-            'body' => 'Very Good!',
+            'commentable_id'   => 1,
+            'body'             => 'Very Good!',
         ])->assertStatus(403);
     }
 
@@ -43,21 +43,21 @@ class CommentTest extends TestCase
 
         $this->actingAs($user, 'api')->postJson('api/threads', [
                 'title' => 'Hello world!',
-                'body' => 'hello every one.',
+                'body'  => 'hello every one.',
             ])
             ->assertStatus(201);
 
         $this->postJson('api/comments', [
                 'commentable_type' => Thread::class,
-                'commentable_id' => 1,
-                'body' => 'Very Good!',
+                'commentable_id'   => 1,
+                'body'             => 'Very Good!',
             ])
             ->assertStatus(201)
             ->assertJsonFragment([
-                'user_id' => 1,
+                'user_id'          => 1,
                 'commentable_type' => Thread::class,
-                'commentable_id' => 1,
-                'body' => 'Very Good!',
+                'commentable_id'   => 1,
+                'body'             => 'Very Good!',
             ]);
     }
 
@@ -68,8 +68,8 @@ class CommentTest extends TestCase
         $this->actingAs($user, 'api')
                 ->postJson('api/comments', [
                 'commentable_type' => 'App\\ClassNotExists',
-                'commentable_id' => 1,
-                'body' => 'Very Good!',
+                'commentable_id'   => 1,
+                'body'             => 'Very Good!',
             ])
             ->assertStatus(422)
             ->assertJsonValidationErrors(['commentable_id']);

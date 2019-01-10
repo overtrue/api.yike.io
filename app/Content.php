@@ -32,7 +32,7 @@ class Content extends Model
     ];
 
     protected $casts = [
-        'id' => 'int',
+        'id'             => 'int',
         'contentable_id' => 'int',
     ];
 

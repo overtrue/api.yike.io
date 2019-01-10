@@ -66,11 +66,11 @@ class LikedMyThread extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user_id' => $this->user->id,
-            'name' => $this->user->name,
-            'username' => $this->user->username,
-            'avatar' => $this->user->avatar,
-            'thread_id' => $this->thread->id,
+            'user_id'      => $this->user->id,
+            'name'         => $this->user->name,
+            'username'     => $this->user->username,
+            'avatar'       => $this->user->avatar,
+            'thread_id'    => $this->thread->id,
             'thread_title' => $this->thread->title,
         ];
     }

@@ -40,7 +40,7 @@ class Profile extends Model
     ];
 
     protected $casts = [
-        'id' => 'int',
+        'id'      => 'int',
         'user_id' => 'int',
     ];
 
@@ -59,16 +59,16 @@ class Profile extends Model
     {
         \Log::debug('socialite user.', $socialiteUser->toArray());
 
-        $profile = Profile::updateOrCreate(['from' => $platform, 'uid' => $socialiteUser->getId()], [
-            'username' => $socialiteUser->getUsername(),
-            'name' => $socialiteUser->getName(),
-            'email' => $socialiteUser->getEmail(),
-            'location' => $socialiteUser->getOriginal()['location'] ?? null,
-            'description' => $socialiteUser->getOriginal()['bio'] ?? '',
-            'avatar' => $socialiteUser->getAvatar(),
-            'access_token' => $socialiteUser->getAccessToken()->getToken(),
+        $profile = self::updateOrCreate(['from' => $platform, 'uid' => $socialiteUser->getId()], [
+            'username'                => $socialiteUser->getUsername(),
+            'name'                    => $socialiteUser->getName(),
+            'email'                   => $socialiteUser->getEmail(),
+            'location'                => $socialiteUser->getOriginal()['location'] ?? null,
+            'description'             => $socialiteUser->getOriginal()['bio'] ?? '',
+            'avatar'                  => $socialiteUser->getAvatar(),
+            'access_token'            => $socialiteUser->getAccessToken()->getToken(),
             'access_token_expired_at' => $socialiteUser->getAccessToken()->expired_at,
-            'raw' => $socialiteUser->getOriginal(),
+            'raw'                     => $socialiteUser->getOriginal(),
         ]);
 
         return $profile;
@@ -79,22 +79,22 @@ class Profile extends Model
      *
      * @return mixed
      */
-    protected static function getUserFromProfile(Profile $profile)
+    protected static function getUserFromProfile(self $profile)
     {
         $user = User::whereEmail($profile->email)->first();
         $attributes = [
-            'name' => $profile->name ?? $profile->email,
+            'name'     => $profile->name ?? $profile->email,
             'username' => $profile->username,
-            'email' => $profile->email,
-            'avatar' => $profile->avatar,
+            'email'    => $profile->email,
+            'avatar'   => $profile->avatar,
             'realname' => $profile->realname,
             'password' => null,
-            'bio' => $profile->description,
-            'extends' => [
+            'bio'      => $profile->description,
+            'extends'  => [
                 "{$profile->from}_id" => $profile->username,
-                'location' => $profile->location,
-                'company' => $profile->raw['company'] ?? '',
-                'blog' => $profile->raw['blog'] ?? '',
+                'location'            => $profile->location,
+                'company'             => $profile->raw['company'] ?? '',
+                'blog'                => $profile->raw['blog'] ?? '',
             ],
         ];
         if ($user) {

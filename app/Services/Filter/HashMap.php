@@ -29,7 +29,7 @@ class HashMap
         if (!array_key_exists($key, $this->hashTable)) {
             $this->hashTable[$key] = $value;
 
-            return null;
+            return;
         }
 
         $_temp = $this->hashTable[$key];
@@ -51,8 +51,6 @@ class HashMap
         if (array_key_exists($key, $this->hashTable)) {
             return $this->hashTable[$key];
         }
-
-        return null;
     }
 
     /**
@@ -67,7 +65,6 @@ class HashMap
         $temp_table = [];
 
         if (array_key_exists($key, $this->hashTable)) {
-
             $tempValue = $this->hashTable[$key];
 
             while ($curValue = current($this->hashTable)) {

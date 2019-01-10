@@ -17,7 +17,7 @@ class EsEngine extends ElasticsearchEngine
     {
         $result = $this->performSearch($builder, array_filter([
             'numericFilters' => $this->filters($builder),
-            'size' => $builder->limit,
+            'size'           => $builder->limit,
         ]));
 
         return $result;
@@ -35,13 +35,13 @@ class EsEngine extends ElasticsearchEngine
     {
         $params = [
             'index' => $this->index,
-            'type' => $builder->model->searchableAs(),
-            'body' => [
+            'type'  => $builder->model->searchableAs(),
+            'body'  => [
                 'query' => [
                     'multi_match' => [
-                        'query' => $builder->query,
+                        'query'     => $builder->query,
                         'fuzziness' => 'AUTO',
-                        'fields' => ['title^3', 'content'],
+                        'fields'    => ['title^3', 'content'],
                     ],
                 ],
             ],

@@ -30,14 +30,14 @@ use Overtrue\EasySms\EasySms;
 class AppServiceProvider extends ServiceProvider
 {
     protected $validators = [
-        'poly_exists' => PolyExistsValidator::class,
-        'phone' => PhoneValidator::class,
-        'id_no' => IdNumberValidator::class,
-        'verify_code' => PhoneVerifyCodeValidator::class,
-        'keep_word' => KeepWordValidator::class,
-        'hash' => HashValidator::class,
-        'ticket' => TicketValidator::class,
-        'username' => UsernameValidator::class,
+        'poly_exists'         => PolyExistsValidator::class,
+        'phone'               => PhoneValidator::class,
+        'id_no'               => IdNumberValidator::class,
+        'verify_code'         => PhoneVerifyCodeValidator::class,
+        'keep_word'           => KeepWordValidator::class,
+        'hash'                => HashValidator::class,
+        'ticket'              => TicketValidator::class,
+        'username'            => UsernameValidator::class,
         'user_unique_content' => UserUniqueContentValidator::class,
     ];
 

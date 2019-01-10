@@ -39,10 +39,10 @@ class ThreadTest extends TestCase
 
         $this->actingAs($user, 'api')->patchJson('api/threads/1', [
             'title' => 'The New Title',
-            'body' => 'updated content.',
+            'body'  => 'updated content.',
         ])->assertJsonFragment([
             'title' => 'The New Title',
-            'body' => 'updated content.',
+            'body'  => 'updated content.',
         ]);
     }
 
@@ -68,9 +68,9 @@ class ThreadTest extends TestCase
             ->assertJsonFragment(['title' => 'Hello world!', 'body' => 'hello every one.']);
 
         $this->get('api/threads/1')->assertJsonFragment([
-            'title' => 'Hello world!',
+            'title'   => 'Hello world!',
             'user_id' => 1,
-            'body' => 'hello every one.',
+            'body'    => 'hello every one.',
         ]);
     }
 

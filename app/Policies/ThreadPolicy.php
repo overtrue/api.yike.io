@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Thread;
 use App\User;
-use Illuminate\Support\Facades\Cache;
 
 class ThreadPolicy extends Policy
 {

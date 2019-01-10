@@ -48,10 +48,10 @@ class ESInit extends Command
                             [
                                 'strings' => [
                                     'match_mapping_type' => 'string',
-                                    'mapping' => [
-                                        'type' => 'text',
+                                    'mapping'            => [
+                                        'type'     => 'text',
                                         'analyzer' => 'ik_max_word',
-                                        'fields' => [
+                                        'fields'   => [
                                             'keyword' => [
                                                 'type' => 'keyword',
                                             ],
@@ -73,8 +73,8 @@ class ESInit extends Command
         $param = [
             'json' => [
                 'settings' => [
-                    'refresh_interval' => '5s',
-                    'number_of_shards' => 1,
+                    'refresh_interval'   => '5s',
+                    'number_of_shards'   => 1,
                     'number_of_replicas' => 0,
                 ],
                 'mappings' => [

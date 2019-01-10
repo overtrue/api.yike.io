@@ -61,10 +61,10 @@ class NewFollower extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user_id' => $this->user->id,
-            'name' => $this->user->name,
+            'user_id'  => $this->user->id,
+            'name'     => $this->user->name,
             'username' => $this->user->username,
-            'avatar' => $this->user->avatar,
+            'avatar'   => $this->user->avatar,
         ];
     }
 }

@@ -50,9 +50,9 @@ class NodeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Http\Resources\NodeResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\NodeResource
      */
     public function store(Request $request)
     {
@@ -82,9 +82,9 @@ class NodeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Node                $node
      *
-     * @return \App\Http\Resources\NodeResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\NodeResource
      */
     public function update(Request $request, Node $node)
     {
@@ -104,10 +104,10 @@ class NodeController extends Controller
      *
      * @param \App\Node $node
      *
-     * @return \Illuminate\Http\JsonResponse
-     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Node $node)
     {

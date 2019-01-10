@@ -5,8 +5,8 @@ return [
      * A list of environment aliases mapped to the actual environment configuration.
      */
     'environment_aliases' => [
-        'prod' => 'production',
-        'live' => 'production',
+        'prod'  => 'production',
+        'live'  => 'production',
         'local' => 'development',
     ],
 
@@ -18,7 +18,7 @@ return [
         \BeyondCode\SelfDiagnosis\Checks\CorrectPhpVersionIsInstalled::class,
         \BeyondCode\SelfDiagnosis\Checks\DatabaseCanBeAccessed::class => [
             'default_connection' => true,
-            'connections' => [],
+            'connections'        => [],
         ],
         \BeyondCode\SelfDiagnosis\Checks\DirectoriesHaveCorrectPermissions::class => [
             'directories' => [

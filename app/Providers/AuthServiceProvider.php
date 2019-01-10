@@ -27,13 +27,13 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Banner::class => BannerPolicy::class,
+        Banner::class  => BannerPolicy::class,
         Comment::class => CommentPolicy::class,
-        Node::class => NodePolicy::class,
+        Node::class    => NodePolicy::class,
         Profile::class => ProfilePolicy::class,
-        Tag::class => TagPolicy::class,
-        Thread::class => ThreadPolicy::class,
-        User::class => UserPolicy::class,
+        Tag::class     => TagPolicy::class,
+        Thread::class  => ThreadPolicy::class,
+        User::class    => UserPolicy::class,
     ];
 
     /**

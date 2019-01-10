@@ -54,7 +54,7 @@ return [
     */
 
     'chunk' => [
-        'searchable' => 500,
+        'searchable'   => 500,
         'unsearchable' => 500,
     ],
 
@@ -83,7 +83,7 @@ return [
     */
 
     'algolia' => [
-        'id' => env('ALGOLIA_APP_ID', ''),
+        'id'     => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 

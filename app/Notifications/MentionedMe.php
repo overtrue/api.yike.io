@@ -65,15 +65,15 @@ class MentionedMe extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'user_id' => $this->causer->id,
-            'name' => $this->causer->name,
-            'username' => $this->causer->username,
-            'avatar' => $this->causer->avatar,
-            'comment_id' => $this->content->contentable_id,
-            'commentable_id' => $this->content->contentable->commentable_id,
-            'commentable_type' => $this->content->contentable->commentable_type,
+            'user_id'           => $this->causer->id,
+            'name'              => $this->causer->name,
+            'username'          => $this->causer->username,
+            'avatar'            => $this->causer->avatar,
+            'comment_id'        => $this->content->contentable_id,
+            'commentable_id'    => $this->content->contentable->commentable_id,
+            'commentable_type'  => $this->content->contentable->commentable_type,
             'commentable_title' => $this->content->contentable->commentable->title,
-            'content' => $this->content->activity_log_content,
+            'content'           => $this->content->activity_log_content,
         ];
     }
 }

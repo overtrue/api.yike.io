@@ -19,7 +19,7 @@ return [
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
+        'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => env('SES_REGION', 'us-east-1'),
     ],
@@ -29,36 +29,36 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
+        'model'  => App\User::class,
+        'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 
     'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'https://yike.io/auth/oauth-callback/github',
+        'redirect'      => 'https://yike.io/auth/oauth-callback/github',
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'https://yike.io/auth/oauth-callback/google',
+        'redirect'      => 'https://yike.io/auth/oauth-callback/google',
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_id'     => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'https://yike.io/auth/oauth-callback/facebook',
+        'redirect'      => 'https://yike.io/auth/oauth-callback/facebook',
     ],
 
     'captcha' => [
         'publish' => [
-            'aid' => env('CAPTCHA_ID_PUBLISH'),
+            'aid'    => env('CAPTCHA_ID_PUBLISH'),
             'secret' => env('CAPTCHA_SECRET_PUBLISH'),
         ],
         'register' => [
-            'aid' => env('CAPTCHA_ID_REGISTER'),
+            'aid'    => env('CAPTCHA_ID_REGISTER'),
             'secret' => env('CAPTCHA_SECRET_REGISTER'),
         ],
     ],

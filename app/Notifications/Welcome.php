@@ -51,10 +51,10 @@ class Welcome extends Notification implements ShouldQueue
         $admin = User::first();
 
         return [
-            'user_id' => $admin->id,
-            'name' => $admin->name,
+            'user_id'  => $admin->id,
+            'name'     => $admin->name,
             'username' => $admin->username,
-            'avatar' => $admin->avatar,
+            'avatar'   => $admin->avatar,
         ];
     }
 }

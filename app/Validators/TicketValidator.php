@@ -21,11 +21,11 @@ class TicketValidator
 
         $config = config('services.captcha.'.$parameters[0]);
         $query = [
-            'aid' => $config['aid'],
+            'aid'          => $config['aid'],
             'AppSecretKey' => $config['secret'],
-            'Ticket' => $value,
-            'Randstr' => \request('randstr'),
-            'UserIP' => \request()->ip(),
+            'Ticket'       => $value,
+            'Randstr'      => \request('randstr'),
+            'UserIP'       => \request()->ip(),
         ];
 
         $result = \file_get_contents('https://ssl.captcha.qq.com/ticket/verify?'.\http_build_query($query));

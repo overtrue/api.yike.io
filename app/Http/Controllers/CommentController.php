@@ -24,7 +24,7 @@ class CommentController extends Controller
     public function index(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'require_without:commentable_id',
+            'user_id'        => 'require_without:commentable_id',
             'commentable_id' => 'required_without:user_id|poly_exists:commentable_type',
         ]);
 
@@ -66,18 +66,18 @@ class CommentController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Http\Resources\CommentResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\CommentResource
      */
     public function store(Request $request)
     {
         $this->authorize('create', Comment::class);
 
         $this->validate($request, [
-            'commentable_id' => 'required|poly_exists:commentable_type',
-            'type' => 'in:markdown,html',
-            'content.body' => 'required_if:type,html',
+            'commentable_id'   => 'required|poly_exists:commentable_type',
+            'type'             => 'in:markdown,html',
+            'content.body'     => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
         ]);
 
@@ -98,9 +98,9 @@ class CommentController extends Controller
      *
      * @param \App\Comment $comment
      *
-     * @return \App\Http\Resources\CommentResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\CommentResource
      */
     public function show(Comment $comment)
     {
@@ -115,17 +115,17 @@ class CommentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Comment             $comment
      *
-     * @return \App\Http\Resources\CommentResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\CommentResource
      */
     public function update(Request $request, Comment $comment)
     {
         $this->authorize('update', Comment::class);
 
         $this->validate($request, [
-            'type' => 'in:markdown,html',
-            'content.body' => 'required_if:type,html',
+            'type'             => 'in:markdown,html',
+            'content.body'     => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
         ]);
 
@@ -139,10 +139,10 @@ class CommentController extends Controller
      *
      * @param \App\Comment $comment
      *
-     * @return \Illuminate\Http\JsonResponse
-     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Comment $comment)
     {

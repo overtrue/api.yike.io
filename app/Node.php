@@ -32,10 +32,10 @@ class Node extends Model
     ];
 
     protected $casts = [
-        'id' => 'int',
-        'node_id' => 'int',
+        'id'       => 'int',
+        'node_id'  => 'int',
         'settings' => 'json',
-        'cache' => 'json',
+        'cache'    => 'json',
     ];
 
     protected $appends = [
@@ -70,7 +70,7 @@ class Node extends Model
     public function refreshCache()
     {
         $this->update([
-            'cache->threads_count' => $this->threads()->count(),
+            'cache->threads_count'     => $this->threads()->count(),
             'cache->subscribers_count' => $this->subscribers()->count(),
         ]);
     }

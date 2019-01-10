@@ -30,9 +30,9 @@ class TagController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Http\Resources\TagResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\TagResource
      */
     public function store(Request $request)
     {
@@ -49,9 +49,9 @@ class TagController extends Controller
      *
      * @param \App\Tag $tag
      *
-     * @return \App\Http\Resources\TagResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\TagResource
      */
     public function show(Tag $tag)
     {
@@ -66,9 +66,9 @@ class TagController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Tag                 $tag
      *
-     * @return \App\Http\Resources\TagResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\TagResource
      */
     public function update(Request $request, Tag $tag)
     {
@@ -88,10 +88,10 @@ class TagController extends Controller
      *
      * @param \App\Tag $tag
      *
-     * @return \Illuminate\Http\JsonResponse
-     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Tag $tag)
     {

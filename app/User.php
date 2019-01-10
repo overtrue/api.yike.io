@@ -74,26 +74,26 @@ class User extends Authenticatable
     ];
 
     const CACHE_FIELDS = [
-        'threads_count' => 0,
-        'comments_count' => 0,
-        'likes_count' => 0,
-        'followings_count' => 0,
-        'followers_count' => 0,
+        'threads_count'       => 0,
+        'comments_count'      => 0,
+        'likes_count'         => 0,
+        'followings_count'    => 0,
+        'followers_count'     => 0,
         'subscriptions_count' => 0,
     ];
 
     const EXTENDS_FIELDS = [
-        'company' => '',
-        'location' => '',
-        'home_url' => '',
-        'github' => '',
-        'twitter' => '',
-        'facebook' => '',
+        'company'   => '',
+        'location'  => '',
+        'home_url'  => '',
+        'github'    => '',
+        'twitter'   => '',
+        'facebook'  => '',
         'instagram' => '',
-        'telegram' => '',
-        'coding' => '',
-        'steam' => '',
-        'weibo' => '',
+        'telegram'  => '',
+        'coding'    => '',
+        'steam'     => '',
+        'weibo'     => '',
     ];
 
     const SENSITIVE_FIELDS = [
@@ -118,10 +118,10 @@ class User extends Authenticatable
     ];
 
     protected $casts = [
-        'id' => 'int',
+        'id'       => 'int',
         'is_admin' => 'bool',
-        'extends' => 'json',
-        'cache' => 'json',
+        'extends'  => 'json',
+        'cache'    => 'json',
         'settings' => 'json',
     ];
 
@@ -293,7 +293,7 @@ class User extends Authenticatable
     public function getUpdateMailLink(string $email)
     {
         $params = http_build_query([
-            'email' => $email,
+            'email'   => $email,
             'user_id' => $this->id,
         ]);
 
@@ -308,11 +308,11 @@ class User extends Authenticatable
     public function refreshCache()
     {
         $this->update(['cache' => \array_merge(self::CACHE_FIELDS, [
-            'threads_count' => $this->threads()->count(),
-            'comments_count' => $this->comments()->count(),
-            'likes_count' => $this->likes()->count(),
-            'followings_count' => $this->followings()->count(),
-            'followers_count' => $this->followers()->count(),
+            'threads_count'       => $this->threads()->count(),
+            'comments_count'      => $this->comments()->count(),
+            'likes_count'         => $this->likes()->count(),
+            'followings_count'    => $this->followings()->count(),
+            'followers_count'     => $this->followers()->count(),
             'subscriptions_count' => $this->subscriptions()->count(),
         ])]);
     }
@@ -326,7 +326,7 @@ class User extends Authenticatable
      */
     public function findForPassport($identifier)
     {
-        return User::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
+        return self::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
     }
 
     /**

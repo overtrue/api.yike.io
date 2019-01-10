@@ -44,9 +44,9 @@ class Comment extends Model
     ];
 
     protected $casts = [
-        'id' => 'int',
+        'id'      => 'int',
         'user_id' => 'int',
-        'cache' => 'object',
+        'cache'   => 'object',
     ];
 
     protected $appends = [

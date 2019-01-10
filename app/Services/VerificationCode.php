@@ -29,7 +29,7 @@ class VerificationCode
         if (app()->environment('production')) {
             app('sms')->send($phone, [
                     'content' => "您的验证码是：{$code}，10 分钟内有效，如非本人操作，请忽略本短信",
-                    'code' => $code,
+                    'code'    => $code,
                 ]);
         }
 

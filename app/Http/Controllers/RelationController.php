@@ -27,7 +27,7 @@ class RelationController extends Controller
     public function toggleRelation(Request $request, $relation)
     {
         $this->validate($request, [
-            'relation' => 'in:like,follow,subscribe,favorite,upvote,downvote',
+            'relation'      => 'in:like,follow,subscribe,favorite,upvote,downvote',
             'followable_id' => 'required|poly_exists:followable_type',
         ]);
 

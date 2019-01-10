@@ -146,9 +146,9 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\User                $user
      *
-     * @return \App\Http\Resources\UserResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\UserResource
      */
     public function update(Request $request, User $user)
     {

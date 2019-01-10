@@ -32,9 +32,9 @@ class BannerController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Http\Resources\BannerResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\BannerResource
      */
     public function store(Request $request)
     {
@@ -64,9 +64,9 @@ class BannerController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Banner              $banner
      *
-     * @return \App\Http\Resources\BannerResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\BannerResource
      */
     public function update(Request $request, Banner $banner)
     {
@@ -86,10 +86,10 @@ class BannerController extends Controller
      *
      * @param \App\Banner $banner
      *
-     * @return \Illuminate\Http\JsonResponse
-     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Banner $banner)
     {

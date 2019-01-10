@@ -45,11 +45,11 @@ Route::post('notifications/mark-all-as-read', 'NotificationController@markAllAsR
 
 // Resources
 Route::resources([
-    'threads' => 'ThreadController',
-    'nodes' => 'NodeController',
-    'banners' => 'BannerController',
-    'tags' => 'TagController',
-    'comments' => 'CommentController',
-    'users' => 'UserController',
+    'threads'       => 'ThreadController',
+    'nodes'         => 'NodeController',
+    'banners'       => 'BannerController',
+    'tags'          => 'TagController',
+    'comments'      => 'CommentController',
+    'users'         => 'UserController',
     'notifications' => 'NotificationController',
 ]);

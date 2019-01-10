@@ -21,7 +21,7 @@ class AuthController extends Controller
     {
         $user = User::create([
             'username' => $request->get('username'),
-            'email' => $request->get('email'),
+            'email'    => $request->get('email'),
             'password' => bcrypt($request->get('password')),
         ]);
 
@@ -45,7 +45,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'old_password' => 'required|hash:'.auth()->user()->password,
-            'password' => 'required|different:old_password|confirmed',
+            'password'     => 'required|different:old_password|confirmed',
         ], [
             'old_password.hash' => '旧密码输入错误！',
         ], [
@@ -62,8 +62,8 @@ class AuthController extends Controller
     public function resetPasswordByToken(Request $request)
     {
         $this->validate($request, [
-            'token' => 'required',
-            'email' => 'required|email',
+            'token'    => 'required',
+            'email'    => 'required|email',
             'password' => 'required|confirmed|min:6',
         ]);
 

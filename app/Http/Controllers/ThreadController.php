@@ -46,7 +46,7 @@ class ThreadController extends Controller
 
         $thread->report()->create([
             'user_id' => auth()->id(),
-            'remark' => $request->get('remark'),
+            'remark'  => $request->get('remark'),
         ]);
 
         return response()->json([]);
@@ -57,20 +57,20 @@ class ThreadController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \App\Http\Resources\ThreadResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\ThreadResource
      */
     public function store(Request $request)
     {
         $this->authorize('create', Thread::class);
         $this->validate($request, [
-            'title' => 'required|min:6|user_unique_content:threads,title',
-            'type' => 'in:markdown,html',
-            'content.body' => 'required_if:type,html',
+            'title'            => 'required|min:6|user_unique_content:threads,title',
+            'type'             => 'in:markdown,html',
+            'content.body'     => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
-            'ticket' => 'required|ticket:publish',
-            'is_draft' => 'boolean',
+            'ticket'           => 'required|ticket:publish',
+            'is_draft'         => 'boolean',
         ]);
 
         return new ThreadResource(Thread::create($request->all()));
@@ -100,20 +100,20 @@ class ThreadController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Thread              $thread
      *
-     * @return \App\Http\Resources\ThreadResource
-     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \App\Http\Resources\ThreadResource
      */
     public function update(Request $request, Thread $thread)
     {
         $this->authorize('update', $thread);
 
         $rules = [
-            'title' => 'required|min:6|user_unique_content:threads,title,'.$thread->id,
-            'type' => 'in:markdown,html',
-            'content.body' => 'required_if:type,html',
+            'title'            => 'required|min:6|user_unique_content:threads,title,'.$thread->id,
+            'type'             => 'in:markdown,html',
+            'content.body'     => 'required_if:type,html',
             'content.markdown' => 'required_if:type,markdown',
-            'is_draft' => 'boolean',
+            'is_draft'         => 'boolean',
         ];
 
         if (!$request->user()->is_admin) {
@@ -134,10 +134,10 @@ class ThreadController extends Controller
      *
      * @param \App\Thread $thread
      *
-     * @return \Illuminate\Http\JsonResponse
-     *
      * @throws \Exception
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Thread $thread)
     {
