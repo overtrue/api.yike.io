@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 /**
- * Class ThreadSensitiveFilter.
+ * Class FilterThreadSensitiveWords.
  *
  * @author v_haodouliu <haodouliu@gmail.com>
  */
-class ThreadSensitiveFilter
+class FilterThreadSensitiveWords
 {
     protected $content;
 
@@ -35,7 +35,7 @@ class ThreadSensitiveFilter
     {
         $sensitiveFilterHelper = \app(SensitiveFilterHelper::class);
 
-        $isLegal = $sensitiveFilterHelper->islegal($this->content);
+        $isLegal = $sensitiveFilterHelper->isLegal($this->content);
 
         if ($isLegal) {
             $cacheKey = 'thread_sensitive_trigger_'.Auth::id();

@@ -2,6 +2,11 @@
 
 namespace App\Services\Filter;
 
+/**
+ * Class HashMap.
+ *
+ * @author v_haodouliu <haodouliu@gmail.com>
+ */
 class HashMap
 {
     /**

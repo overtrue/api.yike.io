@@ -2,6 +2,11 @@
 
 namespace App\Services\Filter;
 
+/**
+ * Class SensitiveFilterHelper.
+ *
+ * @author v_haodouliu <haodouliu@gmail.com>
+ */
 class SensitiveFilterHelper
 {
     /**
@@ -23,30 +28,30 @@ class SensitiveFilterHelper
      *
      * @var array|null
      */
-    protected static $badWordList = null;
+    protected static $badWords = null;
 
 
     public function __construct()
     {
-        $this->setTreeByFile(\storage_path('SensitiveWords.txt'));
+        $this->buildTreeFromFile(\storage_path('SensitiveWords.txt'));
     }
 
     /**
      * 构建铭感词树【文件模式】.
      *
-     * @param string $filepath
+     * @param string $filePath
      *
      * @return $this
      */
-    public function setTreeByFile($filepath = '')
+    public function buildTreeFromFile($filePath = '')
     {
-        if (!file_exists($filepath)) {
+        if (!file_exists($filePath)) {
             \abort(404, '词库文件不存在');
         }
         // 词库树初始化
         $this->wordTree = new HashMap();
 
-        foreach ($this->yieldToReadFile($filepath) as $word) {
+        foreach ($this->yieldToReadFile($filePath) as $word) {
             $this->buildWordToTree(trim($word));
         }
 
@@ -60,7 +65,7 @@ class SensitiveFilterHelper
      *
      * @return $this
      */
-    public function setTree($sensitiveWords = null)
+    public function build($sensitiveWords = null)
     {
         if (empty($sensitiveWords)) {
             \abort(404, '词库不能为空');
@@ -80,18 +85,17 @@ class SensitiveFilterHelper
      *
      * @param string $content   待检测内容
      * @param int    $matchType 匹配类型 [默认为最小匹配规则]
-     * @param int    $wordNum   需要获取的敏感词数量 [默认获取全部]
+     * @param int    $count     需要获取的敏感词数量 [默认获取全部]
      *
      * @return array
      */
-    public function getBadWord($content, $matchType = 1, $wordNum = 0)
+    public function getBadWord($content, $matchType = 1, $count = 0)
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
 
-        $badWordList = [];
+        $badWords = [];
 
         for ($length = 0; $length < $this->contentLength; $length++) {
-
             $matchFlag = 0;
             $flag = false;
             $tempMap = $this->wordTree;
@@ -135,18 +139,18 @@ class SensitiveFilterHelper
                 continue;
             }
 
-            $badWordList[] = mb_substr($content, $length, $matchFlag, 'utf-8');
+            $badWords[] = mb_substr($content, $length, $matchFlag, 'utf-8');
 
             // 有返回数量限制
-            if ($wordNum > 0 && count($badWordList) == $wordNum) {
-                return $badWordList;
+            if ($count > 0 && count($badWords) == $count) {
+                return $badWords;
             }
 
             // 需匹配内容标志位往后移
             $length = $length + $matchFlag - 1;
         }
 
-        return $badWordList;
+        return $badWords;
     }
 
     /**
@@ -154,30 +158,24 @@ class SensitiveFilterHelper
      *
      * @param        $content
      * @param string $replaceChar
-     * @param string $sTag
-     * @param string $eTag
      * @param int    $matchType
      *
      * @return mixed
      */
-    public function replace($content, $replaceChar = '', $sTag = '', $eTag = '', $matchType = 1)
+    public function replace($content, $replaceChar = '', $matchType = 1)
     {
         if (empty($content)) {
             \abort(404, '检测内容为空');
         }
 
-        $badWordList = self::$badWordList ? self::$badWordList : $this->getBadWord($content, $matchType);
+        $badWords = self::$badWords ? self::$badWords : $this->getBadWord($content, $matchType);
 
         // 未检测到敏感词，直接返回
-        if (empty($badWordList)) {
+        if (empty($badWords)) {
             return $content;
         }
 
-        foreach ($badWordList as $badWord) {
-            if ($sTag || $eTag) {
-                $replaceChar = $sTag.$badWord.$eTag;
-            }
-
+        foreach ($badWords as $badWord) {
             $content = str_replace($badWord, $replaceChar, $content);
         }
 
@@ -191,7 +189,7 @@ class SensitiveFilterHelper
      *
      * @return bool
      */
-    public function islegal($content)
+    public function isLegal($content)
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
 
@@ -236,13 +234,13 @@ class SensitiveFilterHelper
     }
 
     /**
-     * @param $filepath
+     * @param $filePath
      *
      * @return \Generator
      */
-    protected function yieldToReadFile($filepath)
+    protected function yieldToReadFile($filePath)
     {
-        $fp = fopen($filepath, 'r');
+        $fp = fopen($filePath, 'r');
 
         while (!feof($fp)) {
             yield fgets($fp);

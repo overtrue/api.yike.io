@@ -9,6 +9,7 @@ use App\Traits\WithDiffForHumanTimes;
 use EloquentFilter\Filterable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -326,5 +327,13 @@ class User extends Authenticatable
     public function findForPassport($identifier)
     {
         return User::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
+    }
+
+    /**
+     * @return bool
+     */
+    public function canCreateThread()
+    {
+        return Cache::get('thread_sensitive_trigger_'.$this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT;
     }
 }
