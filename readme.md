@@ -143,6 +143,16 @@ ELASTICSEARCH_INDEX=yike
 ELASTICSEARCH_HOST=http://127.0.0.1:9200
 ```
 
+##### 敏感词配置
+
+请自行寻找敏感词库，将敏感词放置于 `storage/SensitiveWords.txt` 中，每行一个：
+
+```bash
+敏感词1
+敏感词2
+...
+```
+
 ### 链接入口
 
 * 首页地址：http://api.yike.io.test
