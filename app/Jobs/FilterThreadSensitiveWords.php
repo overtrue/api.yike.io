@@ -46,7 +46,6 @@ class FilterThreadSensitiveWords
 
             if (Cache::get($cacheKey) >= Thread::THREAD_SENSITIVE_TRIGGER_LIMIT) {
                 //发送邮件
-                Auth::user()->notify(new ThreadSensitiveExcessive(User::first()));
                 Notification::send(User::admin()->get(), new ThreadSensitiveExcessive(User::first()));
             }
 
