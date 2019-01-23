@@ -13,6 +13,7 @@ class MailConfirmation extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $user;
+
     public $email;
 
     /**

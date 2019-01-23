@@ -8,10 +8,10 @@ use App\Thread;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Notification;
 
 /**
  * Class FilterThreadSensitiveWords.
- *
  * @author v_haodouliu <haodouliu@gmail.com>
  */
 class FilterThreadSensitiveWords
@@ -47,6 +47,7 @@ class FilterThreadSensitiveWords
             if (Cache::get($cacheKey) >= Thread::THREAD_SENSITIVE_TRIGGER_LIMIT) {
                 //发送邮件
                 Auth::user()->notify(new ThreadSensitiveExcessive(User::first()));
+                Notification::send(User::admin()->get(), new ThreadSensitiveExcessive(User::first()));
             }
 
             Cache::increment($cacheKey);

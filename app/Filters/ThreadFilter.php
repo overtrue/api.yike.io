@@ -21,15 +21,19 @@ class ThreadFilter extends ModelFilter
         switch ($tab) {
             case 'default':
                 $this->latest('pinned_at')->latest('excellent_at');
+
                 break;
             case 'featured':
                 $this->whereNotNull('excellent_at')->latest('excellent_at');
+
                 break;
             case 'recent':
                 $this->latest()->latest('updated_at');
+
                 break;
             case 'zeroComment':
                 $this->doesntHave('comments')->latest();
+
                 break;
         }
     }

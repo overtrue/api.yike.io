@@ -58,6 +58,7 @@ use UrlSigner;
  *
  * @method static \App\User popular()
  * @method static \App\User recent()
+ * @method static \App\User admin()
  */
 class User extends Authenticatable
 {
@@ -194,6 +195,11 @@ class User extends Authenticatable
     public function scopePopular($query)
     {
         return $query->latest('');
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', true);
     }
 
     public function scopeValid()
@@ -334,7 +340,7 @@ class User extends Authenticatable
      */
     public function findForPassport($identifier)
     {
-        return User::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
+        return self::orWhere('email', $identifier)->orWhere('username', $identifier)->first();
     }
 
     /**

@@ -18,7 +18,9 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 
 /**
  * Class Thread.
+ *
  * @author overtrue <i@overtrue.me>
+ *
  * @property int            $user_id
  * @property string         $title
  * @property \Carbon\Carbon $excellent_at
@@ -30,6 +32,7 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  * @property bool           $has_excellent
  * @property bool           $has_frozen
  * @property object         $cache
+ *
  * @method static \App\Thread published()
  */
 class Thread extends Model implements Commentable
@@ -77,7 +80,9 @@ class Thread extends Model implements Commentable
     ];
 
     const POPULAR_CONDITION_LIKES_COUNT = 15;
+
     const POPULAR_CONDITION_VIEWS_COUNT = 200;
+
     const POPULAR_CONDITION_COMMENTS_COUNT = 10;
 
     const THREAD_SENSITIVE_TRIGGER_LIMIT = 5;
@@ -236,6 +241,7 @@ class Thread extends Model implements Commentable
      * @param \App\Comment $lastComment
      *
      * @throws \Exception
+     *
      * @return mixed
      */
     public function afterCommentCreated(Comment $lastComment)

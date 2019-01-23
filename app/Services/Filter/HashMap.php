@@ -67,7 +67,6 @@ class HashMap
         $temp_table = [];
 
         if (array_key_exists($key, $this->hashTable)) {
-
             $tempValue = $this->hashTable[$key];
 
             while ($curValue = current($this->hashTable)) {
@@ -186,6 +185,6 @@ class HashMap
      */
     public function isEmpty()
     {
-        return count($this->hashTable) == 0;
+        return 0 == count($this->hashTable);
     }
 }

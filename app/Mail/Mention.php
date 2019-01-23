@@ -13,7 +13,9 @@ class Mention extends Mailable
     use Queueable, SerializesModels;
 
     public $causer;
+
     public $user;
+
     public $content;
 
     /**
