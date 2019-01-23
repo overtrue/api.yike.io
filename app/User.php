@@ -29,6 +29,7 @@ use UrlSigner;
  *
  * @property string                                                   $name
  * @property string                                                   $username
+ * @property int                                                      $energy
  * @property string                                                   $email
  * @property string                                                   $password
  * @property string                                                   $avatar
@@ -64,11 +65,10 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'avatar', 'realname', 'phone',
+        'name', 'username', 'energy', 'email', 'password', 'avatar', 'realname', 'phone',
         'bio', 'extends', 'settings', 'level', 'is_admin', 'cache', 'gender',
         'last_active_at', 'banned_at', 'activated_at',
     ];
@@ -119,6 +119,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'id' => 'int',
+        'energy' => 'int',
         'is_admin' => 'bool',
         'extends' => 'json',
         'cache' => 'json',
@@ -128,6 +129,13 @@ class User extends Authenticatable
     protected $appends = [
         'has_banned', 'has_activated', 'has_followed', 'created_at_timeago', 'updated_at_timeago',
     ];
+
+    const ENERGY_THREAD_CREATE = -20;
+    const ENERGY_COMMENT_CREATE = -2;
+    const ENERGY_THREAD_LIKED = 2;
+    const ENERGY_COMMENT_UP_VOTE = 2;
+    const ENERGY_COMMENT_DOWN_VOTE = -5;
+    const ENERGY_COMMENT_DELETE = -10;
 
     public static function boot()
     {
@@ -334,6 +342,39 @@ class User extends Authenticatable
      */
     public function canCreateThread()
     {
-        return Cache::get('thread_sensitive_trigger_'.$this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT;
+        return Cache::get('thread_sensitive_trigger_' . $this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT && $this->energy >= 0;
+    }
+
+    /**
+     * @param null $action
+     */
+    public function userEnergyUpdate($action = null)
+    {
+        switch ($action) {
+            case 'upvote':
+                //评论点赞
+                $this->increment('energy', self::ENERGY_COMMENT_UP_VOTE);
+                break;
+            case 'upvote-cancel':
+                //评论点赞取消
+                $this->decrement('energy', self::ENERGY_COMMENT_UP_VOTE);
+                break;
+            case 'downvote':
+                //踩评论
+                $this->increment('energy', self::ENERGY_COMMENT_DOWN_VOTE);
+                break;
+            case 'downvote-cancel':
+                //踩评论取消
+                $this->decrement('energy', self::ENERGY_COMMENT_DOWN_VOTE);
+                break;
+            case 'like':
+                //点赞帖子
+                $this->increment('energy', self::ENERGY_THREAD_LIKED);
+                break;
+            case 'like-cancel':
+                //取消点赞帖子
+                $this->decrement('energy', self::ENERGY_THREAD_LIKED);
+                break;
+        }
     }
 }
