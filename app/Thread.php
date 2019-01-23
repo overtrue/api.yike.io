@@ -3,8 +3,8 @@
 namespace App;
 
 use App\Contracts\Commentable;
-use App\Jobs\ThreadAddPopular;
 use App\Jobs\FilterThreadSensitiveWords;
+use App\Jobs\ThreadAddPopular;
 use App\Traits\EsHighlightAttributes;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;

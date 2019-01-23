@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Notification;
 
 /**
  * Class FilterThreadSensitiveWords.
+ *
  * @author v_haodouliu <haodouliu@gmail.com>
  */
 class FilterThreadSensitiveWords
