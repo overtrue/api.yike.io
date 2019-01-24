@@ -71,6 +71,14 @@ class Comment extends Model
 
         static::updated($saveContent);
         static::created($saveContent);
+
+        static::saved(function ($comment) {
+            $this->user->increment('energy', User::ENERGY_COMMENT_CREATE);
+        });
+
+        static::deleted(function ($comment) {
+            $this->user->increment('energy', User::ENERGY_COMMENT_DELETE);
+        });
     }
 
     public function user()

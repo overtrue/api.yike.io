@@ -138,6 +138,10 @@ class Thread extends Model implements Commentable
                 $thread->published_at = now();
             }
         });
+
+        static::saved(function ($thread) {
+            $this->user->increment('energy', User::ENERGY_THREAD_CREATE);
+        });
     }
 
     public function toSearchableArray()
