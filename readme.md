@@ -182,7 +182,7 @@ ELASTICSEARCH_HOST=http://127.0.0.1:9200
 | [mewebstudio/Purifier](https://github.com/mewebstudio/Purifier) | 用户提交的 Html 白名单过滤 | 帖子内容的 Html 安全过滤，防止 XSS 攻击 |
 | [laravel/passport](https://github.com/laravel/passport) | 用户授权 | 基于 Personal Access Token 的前后端用户认证 |
 | [laravel/horizon](https://github.com/laravel/horizon) | 队列监控面板 | 监听队列使用情况 |
-| [aravolt/avatar](https://github.com/aravolt/avatar) | 生成用户头像 | 用户头像 |
+| [laravolt/avatar](https://github.com/laravolt/avatar) | 生成用户头像 | 用户头像 |
 | [sentry/sentry-laravel](https://github.com/getsentry/sentry-laravel) | Sentry 报错监控 | 监控系统错误 |
 | [spatie/laravel-activitylog](https://github.com/spatie/laravel-activitylog) | 用户行为记录 | 个人中心的用户动态 |
 | [spatie/laravel-url-signer](https://github.com/spatie/laravel-url-signer) | URL 加密 | 用户激活链接 |
