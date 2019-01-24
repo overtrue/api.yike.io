@@ -133,10 +133,15 @@ class User extends Authenticatable
     ];
 
     const ENERGY_THREAD_CREATE = -20;
+
     const ENERGY_COMMENT_CREATE = -2;
+
     const ENERGY_THREAD_LIKED = 2;
+
     const ENERGY_COMMENT_UP_VOTE = 2;
+
     const ENERGY_COMMENT_DOWN_VOTE = -5;
+
     const ENERGY_COMMENT_DELETE = -10;
 
     public static function boot()
@@ -349,7 +354,7 @@ class User extends Authenticatable
      */
     public function canCreateThread()
     {
-        return Cache::get('thread_sensitive_trigger_' . $this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT && $this->energy >= 0;
+        return Cache::get('thread_sensitive_trigger_'.$this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT && $this->energy >= 0;
     }
 
     /**
@@ -361,26 +366,32 @@ class User extends Authenticatable
             case 'upvote':
                 //评论点赞
                 $this->increment('energy', self::ENERGY_COMMENT_UP_VOTE);
+
                 break;
             case 'upvote-cancel':
                 //评论点赞取消
                 $this->decrement('energy', self::ENERGY_COMMENT_UP_VOTE);
+
                 break;
             case 'downvote':
                 //踩评论
                 $this->increment('energy', self::ENERGY_COMMENT_DOWN_VOTE);
+
                 break;
             case 'downvote-cancel':
                 //踩评论取消
                 $this->decrement('energy', self::ENERGY_COMMENT_DOWN_VOTE);
+
                 break;
             case 'like':
                 //点赞帖子
                 $this->increment('energy', self::ENERGY_THREAD_LIKED);
+
                 break;
             case 'like-cancel':
                 //取消点赞帖子
                 $this->decrement('energy', self::ENERGY_THREAD_LIKED);
+
                 break;
         }
     }
