@@ -30,28 +30,28 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Event::listen(RelationToggled::class, function($event) {
-            if(!empty($event->attached)){
-                foreach ($event->attached as $threadId){
+        Event::listen(RelationToggled::class, function ($event) {
+            if (!empty($event->attached)) {
+                foreach ($event->attached as $threadId) {
                     Thread::find($threadId)->user->userEnergyUpdate($event->getRelationType());
                 }
             }
 
-            if(!empty($event->detached)){
-                foreach ($event->detached as $threadId){
+            if (!empty($event->detached)) {
+                foreach ($event->detached as $threadId) {
                     Thread::find($threadId)->user->userEnergyUpdate($event->getRelationType().'-cancel');
                 }
             }
         });
 
-        Event::listen(RelationAttached::class, function($event) {
-            $event->getTargetsCollection()->map(function ($target) use ($event){
+        Event::listen(RelationAttached::class, function ($event) {
+            $event->getTargetsCollection()->map(function ($target) use ($event) {
                 $target->user->userEnergyUpdate($event->getRelationType());
             });
         });
 
-        Event::listen(RelationDetached::class, function($event) {
-            $event->getTargetsCollection()->map(function ($target) use ($event){
+        Event::listen(RelationDetached::class, function ($event) {
+            $event->getTargetsCollection()->map(function ($target) use ($event) {
                 $target->user->userEnergyUpdate($event->getRelationType().'-cancel');
             });
         });

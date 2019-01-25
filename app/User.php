@@ -133,10 +133,15 @@ class User extends Authenticatable
     ];
 
     const ENERGY_THREAD_CREATE = -20;
+
     const ENERGY_COMMENT_CREATE = -2;
+
     const ENERGY_THREAD_LIKED = 2;
+
     const ENERGY_COMMENT_UP_VOTE = 2;
+
     const ENERGY_COMMENT_DOWN_VOTE = -5;
+
     const ENERGY_COMMENT_DELETE = -10;
 
     public static function boot()
@@ -349,7 +354,7 @@ class User extends Authenticatable
      */
     public function canCreateThread()
     {
-        return Cache::get('thread_sensitive_trigger_' . $this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT && $this->energy >= 0;
+        return Cache::get('thread_sensitive_trigger_'.$this->id, 0) < Thread::THREAD_SENSITIVE_TRIGGER_LIMIT && $this->energy >= 0;
     }
 
     /**
