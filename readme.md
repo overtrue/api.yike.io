@@ -14,7 +14,7 @@
 > 🚨此次开源只是应大家的要求，所以请不要联系我咨询任何使用问题，遇到问题请自行解决，熟读 Laravel 文档。
 > 如果你有兴趣参与改进，请直接 PR 即可。
 
-> 🎬快速上手视频：[053. 优秀的开源社区——yike.io](https://laravel-china.org/courses/laravel-package/yikeio/2505)
+> 🎬快速上手视频：[053. 优秀的开源社区——yike.io](https://learnku.com/courses/laravel-package/yikeio/2505)
 
 ## 运行环境要求
 
@@ -25,9 +25,9 @@
 
 ## 开发环境部署/安装
 
-本项目代码使用 PHP 框架 [Laravel 5](https://d.laravel-china.org/docs/5.5/) 开发，本地开发环境使用 [Laravel Homestead](https://d.laravel-china.org/docs/5.5/homestead)。
+本项目代码使用 PHP 框架 [Laravel 5](https://learnku.com/docs/laravel/5.5) 开发，本地开发环境使用 [Laravel Homestead](https://learnku.com/docs/laravel/5.5/homestead/1285)。
 
-下文将在假定读者已经安装好了 Homestead 的情况下进行说明。如果您还未安装 Homestead，可以参照 [Homestead 安装与设置](https://laravel-china.org/docs/5.5/homestead#installation-and-setup) 进行安装配置。
+下文将在假定读者已经安装好了 Homestead 的情况下进行说明。如果您还未安装 Homestead，可以参照 [Homestead 安装与设置](https://learnku.com/docs/laravel/5.5/homestead/1285#installation-and-setup) 进行安装配置。
 
 ### 基础安装
 
