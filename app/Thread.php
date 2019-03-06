@@ -4,7 +4,6 @@ namespace App;
 
 use App\Contracts\Commentable;
 use App\Jobs\FilterThreadSensitiveWords;
-use App\Jobs\ThreadAddPopular;
 use App\Traits\EsHighlightAttributes;
 use App\Traits\OnlyActivatedUserCanCreate;
 use App\Traits\WithDiffForHumanTimes;
@@ -91,10 +90,6 @@ class Thread extends Model implements Commentable
     {
         parent::boot();
 
-        static::retrieved(function ($thread) {
-            \dispatch(new ThreadAddPopular($thread));
-        });
-
         static::creating(function (Thread $thread) {
             $thread->user_id = \auth()->id();
 
@@ -113,6 +108,12 @@ class Thread extends Model implements Commentable
             }
 
             $thread->title = \dispatch_now(new FilterThreadSensitiveWords($thread->title));
+
+            if (\request('is_draft', false)) {
+                $thread->published_at = null;
+            } elseif (!$thread->published_at) {
+                $thread->published_at = now();
+            }
         });
 
         $saveContent = function (Thread $thread) {
@@ -131,17 +132,21 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
-        static::saving(function ($thread) {
-            if (\request('is_draft', false)) {
-                $thread->published_at = null;
-            } elseif (!$thread->published_at) {
-                $thread->published_at = now();
+        static::saved(function ($thread) {
+            $thread->user->increment('energy', User::ENERGY_THREAD_CREATE);
+
+            if ($thread->wasRecentlyCreated) {
+                \activity('published.thread')
+                    ->performedOn($thread)
+                    ->withProperty('content', \str_limit(\strip_tags($thread->content->body), 200))
+                    ->log('发布帖子');
             }
         });
+    }
 
-        static::saved(function ($thread) {
-            $this->user->increment('energy', User::ENERGY_THREAD_CREATE);
-        });
+    public function scopeOfTest($query,$id)
+    {
+        $query->where('id', 1);
     }
 
     public function toSearchableArray()
