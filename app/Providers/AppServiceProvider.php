@@ -6,7 +6,6 @@ use App\Comment;
 use App\Observers\CommentObserver;
 use App\Observers\UserObserver;
 use App\Services\EsEngine;
-use App\Thread;
 use App\User;
 use App\Validators\HashValidator;
 use App\Validators\IdNumberValidator;
