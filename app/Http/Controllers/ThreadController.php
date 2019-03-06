@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ThreadResource;
+use App\Jobs\ThreadAddPopular;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -90,6 +91,8 @@ class ThreadController extends Controller
         if (!$thread->user->is_valid) {
             \abort(404);
         }
+
+        \dispatch(new ThreadAddPopular($thread));
 
         return new ThreadResource($thread);
     }

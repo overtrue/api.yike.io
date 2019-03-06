@@ -366,32 +366,26 @@ class User extends Authenticatable
             case 'upvote':
                 //评论点赞
                 $this->increment('energy', self::ENERGY_COMMENT_UP_VOTE);
-
                 break;
             case 'upvote-cancel':
                 //评论点赞取消
                 $this->decrement('energy', self::ENERGY_COMMENT_UP_VOTE);
-
                 break;
             case 'downvote':
                 //踩评论
                 $this->increment('energy', self::ENERGY_COMMENT_DOWN_VOTE);
-
                 break;
             case 'downvote-cancel':
                 //踩评论取消
                 $this->decrement('energy', self::ENERGY_COMMENT_DOWN_VOTE);
-
                 break;
             case 'like':
                 //点赞帖子
                 $this->increment('energy', self::ENERGY_THREAD_LIKED);
-
                 break;
             case 'like-cancel':
                 //取消点赞帖子
                 $this->decrement('energy', self::ENERGY_THREAD_LIKED);
-
                 break;
         }
     }

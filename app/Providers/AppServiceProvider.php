@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Comment;
 use App\Observers\CommentObserver;
-use App\Observers\ThreadObserver;
 use App\Observers\UserObserver;
 use App\Services\EsEngine;
 use App\Thread;
@@ -51,7 +50,6 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('zh');
 
         User::observe(UserObserver::class);
-        Thread::observe(ThreadObserver::class);
         Comment::observe(CommentObserver::class);
 
         $this->registerValidators();
