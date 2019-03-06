@@ -144,11 +144,6 @@ class Thread extends Model implements Commentable
         });
     }
 
-    public function scopeOfTest($query,$id)
-    {
-        $query->where('id', 1);
-    }
-
     public function toSearchableArray()
     {
         $content = $this->content ? $this->content->markdown : '';
