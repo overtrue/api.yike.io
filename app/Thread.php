@@ -132,7 +132,7 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
-        static::created(function(Thread $thread) {
+        static::created(function (Thread $thread) {
             $thread->user->refreshCache();
         });
 
