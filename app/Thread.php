@@ -132,6 +132,10 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
+        static::created(function(Thread $thread) {
+            $thread->user->refreshCache();
+        });
+
         static::saved(function ($thread) {
             $thread->user->increment('energy', User::ENERGY_THREAD_CREATE);
 
