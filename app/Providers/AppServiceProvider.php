@@ -54,10 +54,6 @@ class AppServiceProvider extends ServiceProvider
         $this->registerValidators();
 
         $this->registerEsEngine();
-
-        Horizon::auth(function ($request) {
-            return true;
-        });
     }
 
     /**
