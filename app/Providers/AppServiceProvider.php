@@ -21,7 +21,6 @@ use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Horizon\Horizon;
 use Laravel\Scout\EngineManager;
 use Overtrue\EasySms\EasySms;
 
