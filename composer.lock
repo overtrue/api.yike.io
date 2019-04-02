@@ -119,16 +119,16 @@
         },
         {
             "name": "caouecs/laravel-lang",
-            "version": "3.0.58",
+            "version": "3.0.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/caouecs/Laravel-lang.git",
-                "reference": "c2f449303b8e0b7367249233866309deae40423f"
+                "reference": "fcb8cec051b175278e0a9efa440f0b1033d12dd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/c2f449303b8e0b7367249233866309deae40423f",
-                "reference": "c2f449303b8e0b7367249233866309deae40423f",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/fcb8cec051b175278e0a9efa440f0b1033d12dd7",
+                "reference": "fcb8cec051b175278e0a9efa440f0b1033d12dd7",
                 "shasum": ""
             },
             "require-dev": {
@@ -158,7 +158,7 @@
                 "laravel",
                 "lpm"
             ],
-            "time": "2018-11-07T10:14:20+00:00"
+            "time": "2019-03-17T10:36:46+00:00"
         },
         {
             "name": "composer/semver",
@@ -2693,12 +2693,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "7bc9d3a31eb20464adf92166487a3371333edc9e"
+                "reference": "699240e3d7f59579e2b89ef5324640d5736f499a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/7bc9d3a31eb20464adf92166487a3371333edc9e",
-                "reference": "7bc9d3a31eb20464adf92166487a3371333edc9e",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/699240e3d7f59579e2b89ef5324640d5736f499a",
+                "reference": "699240e3d7f59579e2b89ef5324640d5736f499a",
                 "shasum": ""
             },
             "require": {
@@ -2707,7 +2707,7 @@
             "require-dev": {
                 "laravel/laravel": "~5.5",
                 "mockery/mockery": "1.2.2",
-                "phpunit/phpunit": "~5.0"
+                "phpunit/phpunit": "~7.5"
             },
             "type": "library",
             "extra": {
@@ -2733,33 +2733,27 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2019-03-28T03:03:16+00:00"
+            "time": "2019-03-30T03:51:33+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
-            "version": "3.0.13",
+            "version": "3.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-lang.git",
-                "reference": "11d8386a5dee3cfedf4ee7e2da6af0d3b3fe268a"
+                "reference": "44917b643ca49d1bbac54f205cd6a51f2e71908f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-lang/zipball/11d8386a5dee3cfedf4ee7e2da6af0d3b3fe268a",
-                "reference": "11d8386a5dee3cfedf4ee7e2da6af0d3b3fe268a",
+                "url": "https://api.github.com/repos/overtrue/laravel-lang/zipball/44917b643ca49d1bbac54f205cd6a51f2e71908f",
+                "reference": "44917b643ca49d1bbac54f205cd6a51f2e71908f",
                 "shasum": ""
             },
             "require": {
-                "caouecs/laravel-lang": "~3.0"
+                "caouecs/laravel-lang": "~3.0",
+                "symfony/process": "^3.0|^4.0"
             },
             "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Overtrue\\LaravelLang\\TranslationServiceProvider"
-                    ]
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Overtrue\\LaravelLang\\": "src/"
@@ -2784,7 +2778,7 @@
                 "laravel",
                 "overtrue"
             ],
-            "time": "2018-09-03T09:31:08+00:00"
+            "time": "2019-03-02T05:41:26+00:00"
         },
         {
             "name": "overtrue/laravel-mail-aliyun",
