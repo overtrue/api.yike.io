@@ -31,8 +31,6 @@ class SignStatistics implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -41,21 +39,21 @@ class SignStatistics implements ShouldQueue
         $monthKey = \now()->format('Ym');
         $dayKey = \now()->format('Ymd');
 
-        if ($redis->getbit('login:' . $dayKey, $this->user->id)) {
+        if ($redis->getbit('login:'.$dayKey, $this->user->id)) {
             return;
         }
 
-        $redis->setbit('login:' . $dayKey, $this->user->id, 1);
-        $redis->zincrby('rank:' . $dayKey, 1, $this->user->id);
+        $redis->setbit('login:'.$dayKey, $this->user->id, 1);
+        $redis->zincrby('rank:'.$dayKey, 1, $this->user->id);
 
-        $scans = $redis->scan(0, 'match', 'rank:' . $monthKey . '*');
+        $scans = $redis->scan(0, 'match', 'rank:'.$monthKey.'*');
 
         $ranKeys = \end($scans);
 
         \reset($scans);
 
-        while (\current($scans) != 0) {
-            $scans = $redis->scan(\current($scans), 'match', 'rank:' . $monthKey . '*');
+        while (0 != \current($scans)) {
+            $scans = $redis->scan(\current($scans), 'match', 'rank:'.$monthKey.'*');
 
             $ranKeys = \array_merge($ranKeys, \end($scans));
 
@@ -63,9 +61,9 @@ class SignStatistics implements ShouldQueue
         }
 
         // 避免重复累加
-        $redis->del('monthRank:' . $monthKey);
-        $redis->zunionstore('monthRank:' . $monthKey, $ranKeys);
+        $redis->del('monthRank:'.$monthKey);
+        $redis->zunionstore('monthRank:'.$monthKey, $ranKeys);
 
-        Cache::forever('monthRank:' . $monthKey, $redis->zrevrange('monthRank:' . $monthKey, 0, -1, 'withscores'));
+        Cache::forever('monthRank:'.$monthKey, $redis->zrevrange('monthRank:'.$monthKey, 0, -1, 'withscores'));
     }
 }
