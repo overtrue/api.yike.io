@@ -702,16 +702,16 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.7.1",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1"
+                "reference": "6d893938171a817f4e9bc9e86f2da1e370b7bcd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
-                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/6d893938171a817f4e9bc9e86f2da1e370b7bcd7",
+                "reference": "6d893938171a817f4e9bc9e86f2da1e370b7bcd7",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2018-03-08T01:11:30+00:00"
+            "time": "2019-03-17T18:48:37+00:00"
         },
         {
             "name": "erusev/parsedown-extra",
@@ -2800,12 +2800,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-mail-aliyun.git",
-                "reference": "edd5d47469e71403770215b1debcdd1d2347416d"
+                "reference": "96c7e0b848bd9b408741009a6eceb05c26470caa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-mail-aliyun/zipball/edd5d47469e71403770215b1debcdd1d2347416d",
-                "reference": "edd5d47469e71403770215b1debcdd1d2347416d",
+                "url": "https://api.github.com/repos/overtrue/laravel-mail-aliyun/zipball/96c7e0b848bd9b408741009a6eceb05c26470caa",
+                "reference": "96c7e0b848bd9b408741009a6eceb05c26470caa",
                 "shasum": ""
             },
             "require": {
@@ -2837,7 +2837,7 @@
                 }
             ],
             "description": "Aliyun DrirectMail Transport for Laravel Application.",
-            "time": "2019-03-14T11:01:59+00:00"
+            "time": "2019-04-06T08:04:06+00:00"
         },
         {
             "name": "overtrue/laravel-socialite",
