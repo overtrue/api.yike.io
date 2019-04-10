@@ -6082,16 +6082,16 @@
         },
         {
             "name": "tucker-eric/eloquentfilter",
-            "version": "1.3.3",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
-                "reference": "44e79edff96e955cd48b4749ba34511537dfeb06"
+                "reference": "85edfce2e0497f8570d9a8d36a3ad32eb261216f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/44e79edff96e955cd48b4749ba34511537dfeb06",
-                "reference": "44e79edff96e955cd48b4749ba34511537dfeb06",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/85edfce2e0497f8570d9a8d36a3ad32eb261216f",
+                "reference": "85edfce2e0497f8570d9a8d36a3ad32eb261216f",
                 "shasum": ""
             },
             "require": {
@@ -6139,7 +6139,7 @@
                 "query",
                 "search"
             ],
-            "time": "2018-07-10T03:49:30+00:00"
+            "time": "2019-03-29T15:29:12+00:00"
         },
         {
             "name": "vinkla/hashids",
