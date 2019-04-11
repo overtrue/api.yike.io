@@ -4647,27 +4647,27 @@
         },
         {
             "name": "spatie/laravel-url-signer",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-url-signer.git",
-                "reference": "20bf92798a7dbd90d4681ae4d9b31af40209d133"
+                "reference": "7227706cd63e5d94efb14d44e4339201f0144d47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-url-signer/zipball/20bf92798a7dbd90d4681ae4d9b31af40209d133",
-                "reference": "20bf92798a7dbd90d4681ae4d9b31af40209d133",
+                "url": "https://api.github.com/repos/spatie/laravel-url-signer/zipball/7227706cd63e5d94efb14d44e4339201f0144d47",
+                "reference": "7227706cd63e5d94efb14d44e4339201f0144d47",
                 "shasum": ""
             },
             "require": {
-                "illuminate/http": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/http": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "php": "^7.0",
                 "spatie/url-signer": "^1.0.1"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.4.4|~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^6.3|^7.0"
+                "orchestra/testbench": "~3.4.4|~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^6.3|^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -4703,7 +4703,7 @@
                 "laravel-url-signer",
                 "spatie"
             ],
-            "time": "2018-09-04T17:21:00+00:00"
+            "time": "2019-02-27T23:29:13+00:00"
         },
         {
             "name": "spatie/string",
