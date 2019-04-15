@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b83cafd066600032759cfdf116dc9cd",
+    "content-hash": "badf41ca1fa7a699a7873bcacd39f0fe",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -3040,19 +3040,20 @@
         },
         {
             "name": "overtrue/laravel-uploader",
-            "version": "0.0.8",
+            "version": "0.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-uploader.git",
-                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd"
+                "reference": "0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/a47f0573f523372db985f00827fe7e86cb64b6dd",
-                "reference": "a47f0573f523372db985f00827fe7e86cb64b6dd",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4",
+                "reference": "0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4",
                 "shasum": ""
             },
             "require": {
+                "laravel/framework": "~5.1",
                 "php": ">=5.5.9"
             },
             "type": "library",
@@ -3084,7 +3085,7 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "time": "2018-04-13T01:26:50+00:00"
+            "time": "2019-03-12T08:49:25+00:00"
         },
         {
             "name": "overtrue/socialite",
