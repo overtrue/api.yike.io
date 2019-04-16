@@ -2677,16 +2677,16 @@
         },
         {
             "name": "overtrue/easy-sms",
-            "version": "1.1.12",
+            "version": "1.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/easy-sms.git",
-                "reference": "b1d181551944710f63cd3049796225c71badca86"
+                "reference": "44423a3b2f5ea172820160c89f817a071c41ea42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/b1d181551944710f63cd3049796225c71badca86",
-                "reference": "b1d181551944710f63cd3049796225c71badca86",
+                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/44423a3b2f5ea172820160c89f817a071c41ea42",
+                "reference": "44423a3b2f5ea172820160c89f817a071c41ea42",
                 "shasum": ""
             },
             "require": {
@@ -2694,7 +2694,7 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "mockery/mockery": "1.0.x-dev",
+                "mockery/mockery": "1.2.2",
                 "phpunit/phpunit": "^5.7 || ^7.5"
             },
             "type": "library",
@@ -2714,7 +2714,7 @@
                 }
             ],
             "description": "The easiest way to send short message.",
-            "time": "2019-03-25T07:42:05+00:00"
+            "time": "2019-04-16T06:28:26+00:00"
         },
         {
             "name": "overtrue/flysystem-qiniu",
