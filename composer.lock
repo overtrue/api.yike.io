@@ -2154,16 +2154,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.48",
+            "version": "1.0.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa"
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
-                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
+                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
                 "shasum": ""
             },
             "require": {
@@ -2234,7 +2234,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-10-15T13:53:10+00:00"
+            "time": "2019-03-30T13:22:34+00:00"
         },
         {
             "name": "league/oauth2-server",
@@ -2811,16 +2811,16 @@
         },
         {
             "name": "overtrue/laravel-filesystem-qiniu",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-filesystem-qiniu.git",
-                "reference": "315dcb03c2afa448eaa4e60721072a183f302408"
+                "reference": "73e8346de9e892f9e42f17f781e1878e981b75d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-filesystem-qiniu/zipball/315dcb03c2afa448eaa4e60721072a183f302408",
-                "reference": "315dcb03c2afa448eaa4e60721072a183f302408",
+                "url": "https://api.github.com/repos/overtrue/laravel-filesystem-qiniu/zipball/73e8346de9e892f9e42f17f781e1878e981b75d6",
+                "reference": "73e8346de9e892f9e42f17f781e1878e981b75d6",
                 "shasum": ""
             },
             "require": {
@@ -2852,7 +2852,7 @@
                 }
             ],
             "description": "A Qiniu storage filesystem for Laravel.",
-            "time": "2017-11-29T06:55:32+00:00"
+            "time": "2018-12-06T04:06:18+00:00"
         },
         {
             "name": "overtrue/laravel-follow",
