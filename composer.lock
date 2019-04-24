@@ -2860,12 +2860,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "699240e3d7f59579e2b89ef5324640d5736f499a"
+                "reference": "3a5b50f919415972870b2d543840343e3f3a6ad3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/699240e3d7f59579e2b89ef5324640d5736f499a",
-                "reference": "699240e3d7f59579e2b89ef5324640d5736f499a",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/3a5b50f919415972870b2d543840343e3f3a6ad3",
+                "reference": "3a5b50f919415972870b2d543840343e3f3a6ad3",
                 "shasum": ""
             },
             "require": {
@@ -2900,7 +2900,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2019-03-30T03:51:33+00:00"
+            "time": "2019-04-22T02:00:04+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
@@ -5238,16 +5238,16 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.2.5",
+            "version": "v4.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "5b7ab6beaa5b053b8d3c9b13367ada9b292e12e1"
+                "reference": "6ebbe61f48069033225c9d3fa7eb5ed116d766d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/5b7ab6beaa5b053b8d3c9b13367ada9b292e12e1",
-                "reference": "5b7ab6beaa5b053b8d3c9b13367ada9b292e12e1",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6ebbe61f48069033225c9d3fa7eb5ed116d766d6",
+                "reference": "6ebbe61f48069033225c9d3fa7eb5ed116d766d6",
                 "shasum": ""
             },
             "require": {
@@ -5288,7 +5288,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-30T15:58:42+00:00"
+            "time": "2019-04-17T14:56:00+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -5476,7 +5476,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
