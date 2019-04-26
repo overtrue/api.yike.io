@@ -2677,16 +2677,16 @@
         },
         {
             "name": "overtrue/easy-sms",
-            "version": "1.1.13",
+            "version": "1.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/easy-sms.git",
-                "reference": "44423a3b2f5ea172820160c89f817a071c41ea42"
+                "reference": "ad4adc9170d0540e6281c7adb32475d747029fa7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/44423a3b2f5ea172820160c89f817a071c41ea42",
-                "reference": "44423a3b2f5ea172820160c89f817a071c41ea42",
+                "url": "https://api.github.com/repos/overtrue/easy-sms/zipball/ad4adc9170d0540e6281c7adb32475d747029fa7",
+                "reference": "ad4adc9170d0540e6281c7adb32475d747029fa7",
                 "shasum": ""
             },
             "require": {
@@ -2714,7 +2714,7 @@
                 }
             ],
             "description": "The easiest way to send short message.",
-            "time": "2019-04-16T06:28:26+00:00"
+            "time": "2019-04-26T08:24:28+00:00"
         },
         {
             "name": "overtrue/flysystem-qiniu",
