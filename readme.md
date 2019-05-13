@@ -20,8 +20,9 @@
 
 - Nginx 1.8+
 - PHP 7.1+
-- MySQL 5.7+
+- MySQL 5.7.7+
 - Redis 3.0+
+- ElasticSearch 5.*
 
 ## 开发环境部署/安装
 
