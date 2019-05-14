@@ -23,6 +23,7 @@
 - MySQL 5.7.7+
 - Redis 3.0+
 - ElasticSearch 5.*
+- [ElasticSearch ik 插件](https://github.com/medcl/elasticsearch-analysis-ik)
 
 ## 开发环境部署/安装
 
