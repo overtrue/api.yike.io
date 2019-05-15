@@ -1,14 +1,11 @@
 <?php
 
 return [
-    'dsn' => env('SENTRY_LARAVEL_DSN'),
-
+    'dsn' => env('SENTRY_LARAVEL_DSN', env('SENTRY_DSN')),
     // capture release as git sha
-    // 'release' => trim(exec('git log --pretty="%h" -n1 HEAD')),
-
-    // Capture bindings on SQL queries
-    'breadcrumbs.sql_bindings' => true,
-
-    // Capture default user context
-    'user_context' => false,
+    // 'release' => trim(exec('git --git-dir ' . base_path('.git') . ' log --pretty="%h" -n1 HEAD')),
+    'breadcrumbs' => [
+        // Capture bindings on SQL queries logged in breadcrumbs
+        'sql_bindings' => true,
+    ],
 ];
