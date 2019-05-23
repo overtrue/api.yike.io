@@ -37,7 +37,7 @@ class ResetPassword extends Mailable implements ShouldQueue
             'email' => $this->email,
         ];
 
-        return str_finish(config('app.site_url'), "/").'user/reset-password?'.http_build_query($params);
+        return str_finish(config('app.site_url'), '/').'user/reset-password?'.http_build_query($params);
     }
 
     /**
