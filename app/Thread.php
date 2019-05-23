@@ -272,7 +272,7 @@ class Thread extends Model implements Commentable
     {
         $lastThread = $user->threads()->latest()->first();
 
-        if ($lastThread && $lastThread->created_at->gt(now()->subHours(config('throttle.thread.create')))) {
+        if ($lastThread && $lastThread->created_at->gt(now()->subMinutes(config('throttle.thread.create')))) {
             \abort(403, '发贴太频繁');
         }
     }
