@@ -12,7 +12,6 @@
 declare(strict_types=1);
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Connection Name
@@ -38,7 +37,6 @@ return [
     */
 
     'connections' => [
-
         'main' => [
             'salt' => 'your-salt-string',
             'length' => 'your-length-integer',
@@ -48,7 +46,5 @@ return [
             'salt' => 'your-salt-string',
             'length' => 'your-length-integer',
         ],
-
     ],
-
 ];
