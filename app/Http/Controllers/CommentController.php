@@ -20,6 +20,7 @@ class CommentController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function index(Request $request)
