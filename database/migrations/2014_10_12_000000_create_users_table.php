@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('bio')->nullable();
             $table->json('extends')->nullable();
             $table->json('settings')->nullable();
+            $table->integer('energy')->default(0);
 
             // 状态
             $table->integer('level')->default(0);

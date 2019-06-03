@@ -20,6 +20,7 @@ class CommentController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function index(Request $request)
     {
@@ -69,6 +70,7 @@ class CommentController extends Controller
      * @return \App\Http\Resources\CommentResource
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
@@ -118,6 +120,7 @@ class CommentController extends Controller
      * @return \App\Http\Resources\CommentResource
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Comment $comment)
     {

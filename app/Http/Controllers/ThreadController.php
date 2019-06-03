@@ -61,6 +61,7 @@ class ThreadController extends Controller
      * @return \App\Http\Resources\ThreadResource
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {

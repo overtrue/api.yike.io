@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class ContentTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -21,6 +21,7 @@ class CreateThreadsTable extends Migration
             $table->timestamp('frozen_at')->nullable();
             $table->timestamp('banned_at')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('popular_at')->nullable()->comment('加精时间')->create();
             $table->json('cache')->nullable(); // followers_count/views_count/comments_count/last_reply_user_name/last_reply_user_id
             $table->timestamps();
             $table->softDeletes();

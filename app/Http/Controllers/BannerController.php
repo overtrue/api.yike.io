@@ -35,6 +35,7 @@ class BannerController extends Controller
      * @return \App\Http\Resources\BannerResource
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
