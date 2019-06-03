@@ -8,4 +8,4 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - ./vendor/bin/php-cs-fixer fix --dry-run --diff 1>&2
+  - ./vendor/bin/phpunit --coverage-text
