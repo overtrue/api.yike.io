@@ -36,8 +36,16 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  */
 class Thread extends Model implements Commentable
 {
-    use SoftDeletes, Filterable, OnlyActivatedUserCanCreate, WithDiffForHumanTimes,
-        CanBeSubscribed, CanBeFavorited, CanBeLiked, Searchable, EsHighlightAttributes;
+    use SoftDeletes;
+    use Filterable;
+    use OnlyActivatedUserCanCreate;
+    use WithDiffForHumanTimes;
+    use
+        CanBeSubscribed;
+    use CanBeFavorited;
+    use CanBeLiked;
+    use Searchable;
+    use EsHighlightAttributes;
 
     protected $fillable = [
         'user_id', 'title', 'excellent_at', 'node_id',
@@ -90,13 +98,13 @@ class Thread extends Model implements Commentable
     {
         parent::boot();
 
-        static::creating(function (Thread $thread) {
+        static::creating(function (self $thread) {
             $thread->user_id = \auth()->id();
 
             static::throttleCheck($thread->user);
         });
 
-        static::saving(function (Thread $thread) {
+        static::saving(function (self $thread) {
             if (\array_has($thread->getDirty(), self::SENSITIVE_FIELDS) && !\request()->user()->is_admin) {
                 abort('非法请求！');
             }
@@ -116,7 +124,7 @@ class Thread extends Model implements Commentable
             }
         });
 
-        $saveContent = function (Thread $thread) {
+        $saveContent = function (self $thread) {
             if (request()->routeIs('threads.*') && \request()->has('content')) {
                 $type = \request()->input('type', 'markdown');
 
@@ -132,7 +140,7 @@ class Thread extends Model implements Commentable
         static::updated($saveContent);
         static::created($saveContent);
 
-        static::created(function (Thread $thread) {
+        static::created(function (self $thread) {
             $thread->user->refreshCache();
         });
 

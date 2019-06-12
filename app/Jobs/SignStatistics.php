@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Cache;
 
 class SignStatistics implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * @var \App\User
