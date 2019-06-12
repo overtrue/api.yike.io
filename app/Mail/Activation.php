@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class Activation extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $user;
 

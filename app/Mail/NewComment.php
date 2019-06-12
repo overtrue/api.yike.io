@@ -9,7 +9,8 @@ use Illuminate\Queue\SerializesModels;
 
 class NewComment extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $comment;
 

@@ -16,7 +16,10 @@ use Illuminate\Queue\SerializesModels;
  */
 class ResetUsersEnergy implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * ThreadAddPopular constructor.

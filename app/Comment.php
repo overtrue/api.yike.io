@@ -25,7 +25,11 @@ use Overtrue\LaravelFollow\Traits\CanBeVoted;
  */
 class Comment extends Model
 {
-    use SoftDeletes, Filterable, CanBeVoted, OnlyActivatedUserCanCreate, WithDiffForHumanTimes;
+    use SoftDeletes;
+    use Filterable;
+    use CanBeVoted;
+    use OnlyActivatedUserCanCreate;
+    use WithDiffForHumanTimes;
 
     const COMMENTABLES = [
         Thread::class,
@@ -72,11 +76,11 @@ class Comment extends Model
         static::updated($saveContent);
         static::created($saveContent);
 
-        static::saved(function (Comment $comment) {
+        static::saved(function (self $comment) {
             $comment->user->increment('energy', User::ENERGY_COMMENT_CREATE);
         });
 
-        static::deleted(function (Comment $comment) {
+        static::deleted(function (self $comment) {
             $comment->user->increment('energy', User::ENERGY_COMMENT_DELETE);
         });
     }

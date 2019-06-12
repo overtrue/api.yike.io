@@ -62,7 +62,16 @@ use UrlSigner;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, Filterable, CanFavorite, CanLike, CanFollow, CanVote, CanSubscribe, CanBeFollowed, WithDiffForHumanTimes;
+    use HasApiTokens;
+    use Notifiable;
+    use Filterable;
+    use CanFavorite;
+    use CanLike;
+    use CanFollow;
+    use CanVote;
+    use CanSubscribe;
+    use CanBeFollowed;
+    use WithDiffForHumanTimes;
 
     /**
      * The attributes that are mass assignable.
@@ -151,7 +160,7 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->name = $user->name ?? $user->username;
 
-            if (User::isUsernameExists($user->username)) {
+            if (self::isUsernameExists($user->username)) {
                 \abort(400, '用户名已经存在');
             }
         });
