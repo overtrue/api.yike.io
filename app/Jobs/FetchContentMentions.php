@@ -13,7 +13,10 @@ use Illuminate\Queue\SerializesModels;
 
 class FetchContentMentions implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $content;
 

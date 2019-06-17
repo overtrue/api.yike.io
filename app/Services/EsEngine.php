@@ -85,7 +85,7 @@ class EsEngine extends ElasticsearchEngine
      */
     public function map(Builder $builder, $results, $model)
     {
-        if ($results['hits']['total'] === 0) {
+        if (0 === $results['hits']['total']) {
             return Collection::make();
         }
 

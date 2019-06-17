@@ -24,7 +24,9 @@ use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
  */
 class Node extends Model
 {
-    use SoftDeletes, Filterable, CanBeSubscribed;
+    use SoftDeletes;
+    use Filterable;
+    use CanBeSubscribed;
 
     protected $fillable = [
         'node_id', 'title', 'icon', 'banner', 'description', 'settings', 'cache',
