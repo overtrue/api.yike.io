@@ -27,7 +27,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Profile extends Model
 {
-    use SoftDeletes, Filterable;
+    use SoftDeletes;
+    use Filterable;
 
     protected $fillable = [
         'user_id', 'from', 'uid', 'username', 'name', 'email',
