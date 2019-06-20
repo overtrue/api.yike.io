@@ -17,7 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Banner extends Model
 {
-    use SoftDeletes, Filterable;
+    use SoftDeletes;
+    use Filterable;
 
     protected $fillable = [
         'name', 'description', 'banners',

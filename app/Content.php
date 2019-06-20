@@ -25,7 +25,9 @@ use Mews\Purifier\Facades\Purifier;
  */
 class Content extends Model
 {
-    use SoftDeletes, Filterable, OnlyActivatedUserCanCreate;
+    use SoftDeletes;
+    use Filterable;
+    use OnlyActivatedUserCanCreate;
 
     protected $fillable = [
         'contentable_type', 'contentable_id', 'body', 'markdown',
