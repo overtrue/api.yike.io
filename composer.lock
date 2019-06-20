@@ -8251,16 +8251,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.2.2",
+            "version": "8.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "24b6cfcec34c1167ee1d90b7cb22bee324af319f"
+                "reference": "f67ca36860ebca7224d4573f107f79bd8ed0ba03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/24b6cfcec34c1167ee1d90b7cb22bee324af319f",
-                "reference": "24b6cfcec34c1167ee1d90b7cb22bee324af319f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f67ca36860ebca7224d4573f107f79bd8ed0ba03",
+                "reference": "f67ca36860ebca7224d4573f107f79bd8ed0ba03",
                 "shasum": ""
             },
             "require": {
@@ -8330,7 +8330,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-06-15T07:25:54+00:00"
+            "time": "2019-06-19T12:03:56+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -8860,16 +8860,16 @@
         },
         {
             "name": "sebastian/type",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "b2a7f9aac51ce18cd7ac8b31e37c8ce5646fc741"
+                "reference": "251ca774d58181fe1d3eda68843264eaae7e07ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/b2a7f9aac51ce18cd7ac8b31e37c8ce5646fc741",
-                "reference": "b2a7f9aac51ce18cd7ac8b31e37c8ce5646fc741",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/251ca774d58181fe1d3eda68843264eaae7e07ef",
+                "reference": "251ca774d58181fe1d3eda68843264eaae7e07ef",
                 "shasum": ""
             },
             "require": {
@@ -8902,7 +8902,7 @@
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
             "homepage": "https://github.com/sebastianbergmann/type",
-            "time": "2019-06-08T04:53:27+00:00"
+            "time": "2019-06-19T06:39:12+00:00"
         },
         {
             "name": "sebastian/version",
