@@ -7164,16 +7164,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.3.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7"
+                "reference": "a28d5cef33627c069a2bd8fbb35ebe1a54881d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
-                "reference": "bc0fd11bc455cc20ee4b5edabc63ebbf859324c7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a28d5cef33627c069a2bd8fbb35ebe1a54881d35",
+                "reference": "a28d5cef33627c069a2bd8fbb35ebe1a54881d35",
                 "shasum": ""
             },
             "require": {
@@ -7221,7 +7221,7 @@
                 "throwable",
                 "whoops"
             ],
-            "time": "2018-10-23T09:00:00+00:00"
+            "time": "2019-06-21T09:00:00+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
