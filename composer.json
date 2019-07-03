@@ -28,7 +28,7 @@
     "spatie/laravel-url-signer": "^2.2",
     "tamayo/laravel-scout-elastic": "^5.0",
     "tucker-eric/eloquentfilter": "^1.3",
-    "vinkla/hashids": "^5.0"
+    "vinkla/hashids": "^6.0"
   },
   "require-dev": {
     "filp/whoops": "^2.0",
