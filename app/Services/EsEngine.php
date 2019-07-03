@@ -78,6 +78,7 @@ class EsEngine extends ElasticsearchEngine
     /**
      * Map the given results to instances of the given model.
      *
+     * @param \Laravel\Scout\Builder              $builder
      * @param mixed                               $results
      * @param \Illuminate\Database\Eloquent\Model $model
      *
