@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,26 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['register', 'forgetPassword', 'resetPassword', 'resetPasswordByToken']);
+        $this->middleware('auth:api')->except(['login', 'register', 'forgetPassword', 'resetPassword', 'resetPasswordByToken']);
+    }
+
+    public function login(Request $request)
+    {
+        try {
+            $token = app(Client::class)->post(url('/oauth/token'), [
+                'form_params' => [
+                    'grant_type' => 'password',
+                    'client_id' => config('passport.clients.password.client_id'),
+                    'client_secret' => config('passport.clients.password.client_secret'),
+                    'username' => $request->get('username'),
+                    'password' => $request->get('password'),
+                    'scope' => '',
+                ],
+            ]);
+            return $token;
+        } catch (\Exception $e) {
+            \abort($e->getCode(), $e->getMessage());
+        }
     }
 
     public function register(RegisterRequest $request)

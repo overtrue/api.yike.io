@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Auth
+Route::post('auth/login', 'AuthController@login');
 Route::post('auth/register', 'AuthController@register');
 Route::get('oauth/redirect-url/{platform}', 'OAuthController@getRedirectUrl');
 Route::get('oauth/callback/{platform}', 'OAuthController@handleCallback');
