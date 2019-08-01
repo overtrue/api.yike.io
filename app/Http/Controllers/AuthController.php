@@ -31,6 +31,7 @@ class AuthController extends Controller
                     'scope' => '',
                 ],
             ]);
+
             return $token;
         } catch (\Exception $e) {
             \abort($e->getCode(), $e->getMessage());
