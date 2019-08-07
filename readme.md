@@ -115,7 +115,14 @@ $ php artisan key:generate
 $ php artisan passport:install
 ```
 
-将生成的 password grant 对应的 id 与 secret 记录下来，用于配置前端应用的 env 变量。
+将生成的 password grant 对应的 id 与 secret 记录下来，用于配置 env 变量。
+
+```
+PASSPORT_PASSWORD_CLIENT_ID=
+PASSPORT_PASSWORD_CLIENT_SECRET=
+```
+
+如果你忘记了，就去找 `oauth_clients` 表中找吧。
 
 #### 配置 hosts 文件
 
