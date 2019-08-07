@@ -99,9 +99,9 @@ class Thread extends Model implements Commentable
         parent::boot();
 
         static::creating(function (self $thread) {
-            $thread->user_id = \auth()->id();
+            $thread->user_id = \auth()->id() ?? 1;
 
-            static::throttleCheck($thread->user);
+            \app()->runningInConsole() || static::throttleCheck($thread->user);
         });
 
         static::saving(function (self $thread) {
