@@ -2277,8 +2277,8 @@
             "authors": [
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
-                    "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "lcobucci@gmail.com"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -3121,12 +3121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "97b40d83478a4515f7cf40ce88ec5908cb0b1d69"
+                "reference": "2faaefefea3df27884af1462c4e4be8edb81eece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/97b40d83478a4515f7cf40ce88ec5908cb0b1d69",
-                "reference": "97b40d83478a4515f7cf40ce88ec5908cb0b1d69",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/2faaefefea3df27884af1462c4e4be8edb81eece",
+                "reference": "2faaefefea3df27884af1462c4e4be8edb81eece",
                 "shasum": ""
             },
             "require": {
@@ -3134,7 +3134,7 @@
             },
             "require-dev": {
                 "laravel/laravel": "~5.5",
-                "mockery/mockery": "1.2.2",
+                "mockery/mockery": "1.2.3",
                 "phpunit/phpunit": "~7.5"
             },
             "type": "library",
@@ -3161,7 +3161,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2019-05-26T11:14:24+00:00"
+            "time": "2019-08-08T14:15:07+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
@@ -6763,16 +6763,16 @@
         },
         {
             "name": "tucker-eric/eloquentfilter",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
-                "reference": "85edfce2e0497f8570d9a8d36a3ad32eb261216f"
+                "reference": "61eae97e2ce79bc2b7e590ecf7439d2cd0ecc7dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/85edfce2e0497f8570d9a8d36a3ad32eb261216f",
-                "reference": "85edfce2e0497f8570d9a8d36a3ad32eb261216f",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/61eae97e2ce79bc2b7e590ecf7439d2cd0ecc7dd",
+                "reference": "61eae97e2ce79bc2b7e590ecf7439d2cd0ecc7dd",
                 "shasum": ""
             },
             "require": {
@@ -6820,7 +6820,7 @@
                 "query",
                 "search"
             ],
-            "time": "2019-03-29T15:29:12+00:00"
+            "time": "2019-08-08T15:24:50+00:00"
         },
         {
             "name": "vinkla/hashids",
