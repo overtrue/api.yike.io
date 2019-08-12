@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f05fac640bd0cbe8f8b2327c4ceba86b",
+    "content-hash": "0bda93daae1310a6633e5a15f1a214c8",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -2277,8 +2277,8 @@
             "authors": [
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
-                    "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "lcobucci@gmail.com"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -3121,12 +3121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "97b40d83478a4515f7cf40ce88ec5908cb0b1d69"
+                "reference": "2faaefefea3df27884af1462c4e4be8edb81eece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/97b40d83478a4515f7cf40ce88ec5908cb0b1d69",
-                "reference": "97b40d83478a4515f7cf40ce88ec5908cb0b1d69",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/2faaefefea3df27884af1462c4e4be8edb81eece",
+                "reference": "2faaefefea3df27884af1462c4e4be8edb81eece",
                 "shasum": ""
             },
             "require": {
@@ -3134,7 +3134,7 @@
             },
             "require-dev": {
                 "laravel/laravel": "~5.5",
-                "mockery/mockery": "1.2.2",
+                "mockery/mockery": "1.2.3",
                 "phpunit/phpunit": "~7.5"
             },
             "type": "library",
@@ -3161,7 +3161,7 @@
                 }
             ],
             "description": "Laravel 5 User Based System",
-            "time": "2019-05-26T11:14:24+00:00"
+            "time": "2019-08-08T14:15:07+00:00"
         },
         {
             "name": "overtrue/laravel-lang",
@@ -3301,21 +3301,22 @@
         },
         {
             "name": "overtrue/laravel-uploader",
-            "version": "0.0.10",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-uploader.git",
-                "reference": "0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4"
+                "reference": "8186230baf57bd4ee47aeb7fd0c982b8313e0271"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4",
-                "reference": "0dfe9a46d5bb704cf47a7b157daddde5b5ff0cf4",
+                "url": "https://api.github.com/repos/overtrue/laravel-uploader/zipball/8186230baf57bd4ee47aeb7fd0c982b8313e0271",
+                "reference": "8186230baf57bd4ee47aeb7fd0c982b8313e0271",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.1",
-                "php": ">=5.5.9"
+                "ext-json": "*",
+                "laravel/framework": "5.8.*",
+                "php": ">=7.1.3"
             },
             "type": "library",
             "extra": {
@@ -3331,10 +3332,7 @@
             "autoload": {
                 "psr-4": {
                     "Overtrue\\LaravelUploader\\": "src/LaravelUploader"
-                },
-                "files": [
-                    "src/LaravelUploader/helpers.php"
-                ]
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3346,7 +3344,8 @@
                     "email": "i@overtrue.me"
                 }
             ],
-            "time": "2019-03-12T08:49:25+00:00"
+            "description": "An upload component for Laravel.",
+            "time": "2019-07-16T09:13:42+00:00"
         },
         {
             "name": "overtrue/socialite",
@@ -7687,18 +7686,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
