@@ -9,7 +9,10 @@ Route::get('oauth/redirect-url/{platform}', 'OAuthController@getRedirectUrl');
 Route::get('oauth/callback/{platform}', 'OAuthController@handleCallback');
 Route::post('contents/preview', 'ContentController@preview');
 
-\LaravelUploader::routes();
+\LaravelUploader::routes([
+    'as' => 'files.upload',
+    'middleware' => ['auth:api'],
+]);
 
 // Others
 Route::get('threads/search', 'ThreadController@search')->name('threads.search');
