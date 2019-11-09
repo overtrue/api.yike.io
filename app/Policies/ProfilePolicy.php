@@ -15,7 +15,7 @@ class ProfilePolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Profile  $profile)
+    public function view(User $authUser, Profile $profile)
     {
         return true;
     }
@@ -40,7 +40,7 @@ class ProfilePolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, Profile  $profile)
+    public function update(User $authUser, Profile $profile)
     {
         return $profile->user_id == $authUser->id || $authUser->can('update-profile');
     }
@@ -53,7 +53,7 @@ class ProfilePolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Profile  $profile)
+    public function delete(User $authUser, Profile $profile)
     {
         return $profile->user_id == $authUser->id || $authUser->can('delete-profile');
     }
