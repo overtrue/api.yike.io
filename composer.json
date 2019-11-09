@@ -27,7 +27,7 @@
     "spatie/laravel-activitylog": "^3.2",
     "spatie/laravel-url-signer": "^2.2",
     "tamayo/laravel-scout-elastic": "^5.0",
-    "tucker-eric/eloquentfilter": "^1.3",
+    "tucker-eric/eloquentfilter": "^2.1",
     "vinkla/hashids": "^6.0"
   },
   "require-dev": {
