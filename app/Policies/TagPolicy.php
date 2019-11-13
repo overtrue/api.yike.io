@@ -15,7 +15,7 @@ class TagPolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Tag  $tag)
+    public function view(User $authUser, Tag $tag)
     {
         return true;
     }
@@ -40,7 +40,7 @@ class TagPolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, Tag  $tag)
+    public function update(User $authUser, Tag $tag)
     {
         return $tag->user_id == $authUser->id || $authUser->can('update-tag');
     }
@@ -53,7 +53,7 @@ class TagPolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Tag  $tag)
+    public function delete(User $authUser, Tag $tag)
     {
         return $tag->user_id == $authUser->id || $authUser->can('delete-tag');
     }
