@@ -15,7 +15,7 @@ class NodePolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Node  $node)
+    public function view(User $authUser, Node $node)
     {
         return true;
     }
@@ -40,7 +40,7 @@ class NodePolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, Node  $node)
+    public function update(User $authUser, Node $node)
     {
         return $node->user_id == $authUser->id || $authUser->can('update-node');
     }
@@ -53,7 +53,7 @@ class NodePolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Node  $node)
+    public function delete(User $authUser, Node $node)
     {
         return $node->user_id == $authUser->id || $authUser->can('delete-node');
     }
