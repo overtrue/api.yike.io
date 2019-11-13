@@ -14,7 +14,7 @@ class UserPolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, User  $user)
+    public function view(User $authUser, User $user)
     {
         return true;
     }
@@ -27,7 +27,7 @@ class UserPolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, User  $user)
+    public function update(User $authUser, User $user)
     {
         return $user->id == $authUser->id || $authUser->can('update-user');
     }
