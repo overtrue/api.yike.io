@@ -15,7 +15,7 @@ class CommentPolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Comment  $comment)
+    public function view(User $authUser, Comment $comment)
     {
         return true;
     }
@@ -40,7 +40,7 @@ class CommentPolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, Comment  $comment)
+    public function update(User $authUser, Comment $comment)
     {
         return $comment->user_id == $authUser->id || $authUser->can('update-comment');
     }
@@ -53,7 +53,7 @@ class CommentPolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Comment  $comment)
+    public function delete(User $authUser, Comment $comment)
     {
         return $comment->user_id == $authUser->id || $authUser->can('delete-comment');
     }

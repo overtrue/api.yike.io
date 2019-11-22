@@ -15,7 +15,7 @@ class BannerPolicy extends Policy
      *
      * @return bool
      */
-    public function view(User $authUser, Banner  $banner)
+    public function view(User $authUser, Banner $banner)
     {
         return true;
     }
@@ -40,7 +40,7 @@ class BannerPolicy extends Policy
      *
      * @return bool
      */
-    public function update(User $authUser, Banner  $banner)
+    public function update(User $authUser, Banner $banner)
     {
         return $banner->user_id == $authUser->id || $authUser->can('update-banner');
     }
@@ -53,7 +53,7 @@ class BannerPolicy extends Policy
      *
      * @return bool
      */
-    public function delete(User $authUser, Banner  $banner)
+    public function delete(User $authUser, Banner $banner)
     {
         return $banner->user_id == $authUser->id || $authUser->can('delete-banner');
     }
