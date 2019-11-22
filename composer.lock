@@ -1973,30 +1973,31 @@
         },
         {
             "name": "laravel/passport",
-            "version": "v7.3.5",
+            "version": "v7.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "57937b08dc8e444b4756782a5ba172b5ba54d4f5"
+                "reference": "d63cdd672c3d65b3c35b73d0ef13a9dbfcb71c08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/57937b08dc8e444b4756782a5ba172b5ba54d4f5",
-                "reference": "57937b08dc8e444b4756782a5ba172b5ba54d4f5",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/d63cdd672c3d65b3c35b73d0ef13a9dbfcb71c08",
+                "reference": "d63cdd672c3d65b3c35b73d0ef13a9dbfcb71c08",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "firebase/php-jwt": "~3.0|~4.0|~5.0",
                 "guzzlehttp/guzzle": "~6.0",
-                "illuminate/auth": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/console": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/container": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/contracts": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/database": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/encryption": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/http": "~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "illuminate/support": "~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "illuminate/auth": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/console": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/container": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/contracts": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/cookie": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/database": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/encryption": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/http": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
+                "illuminate/support": "~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0",
                 "league/oauth2-server": "^7.0",
                 "php": ">=7.1",
                 "phpseclib/phpseclib": "^2.0",
@@ -2004,8 +2005,8 @@
                 "zendframework/zend-diactoros": "~1.0|~2.0"
             },
             "require-dev": {
-                "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~7.4"
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.4|^8.0"
             },
             "type": "library",
             "extra": {
@@ -2039,7 +2040,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2019-08-06T18:10:19+00:00"
+            "time": "2019-10-08T16:45:24+00:00"
         },
         {
             "name": "laravel/scout",
@@ -3979,16 +3980,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.21",
+            "version": "2.0.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
+                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/9f1287e68b3f283339a9f98f67515dd619e5bf9d",
-                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
+                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
                 "shasum": ""
             },
             "require": {
@@ -4067,7 +4068,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-07-12T12:53:49+00:00"
+            "time": "2019-09-17T03:41:22+00:00"
         },
         {
             "name": "predis/predis",
@@ -5553,31 +5554,31 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.3.8",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "cabe67275034e173350e158f3b1803d023880227"
+                "reference": "502040dd2b0cf0a292defeb6145f4d7a4753c99c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/cabe67275034e173350e158f3b1803d023880227",
-                "reference": "cabe67275034e173350e158f3b1803d023880227",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/502040dd2b0cf0a292defeb6145f4d7a4753c99c",
+                "reference": "502040dd2b0cf0a292defeb6145f4d7a4753c99c",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
-                "symfony/mime": "^4.3",
+                "symfony/mime": "^4.3|^5.0",
                 "symfony/polyfill-mbstring": "~1.1"
             },
             "require-dev": {
                 "predis/predis": "~1.0",
-                "symfony/expression-language": "~3.4|~4.0"
+                "symfony/expression-language": "^3.4|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -5604,7 +5605,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-12T13:07:20+00:00"
+            "time": "2019-11-17T10:10:42+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -5700,16 +5701,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v4.3.8",
+            "version": "v4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "22aecf6b11638ef378fab25d6c5a2da8a31a1448"
+                "reference": "89da7b68b7149aab065c09b97f938753ab52831f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/22aecf6b11638ef378fab25d6c5a2da8a31a1448",
-                "reference": "22aecf6b11638ef378fab25d6c5a2da8a31a1448",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/89da7b68b7149aab065c09b97f938753ab52831f",
+                "reference": "89da7b68b7149aab065c09b97f938753ab52831f",
                 "shasum": ""
             },
             "require": {
@@ -5717,14 +5718,17 @@
                 "symfony/polyfill-intl-idn": "^1.10",
                 "symfony/polyfill-mbstring": "^1.0"
             },
+            "conflict": {
+                "symfony/mailer": "<4.4"
+            },
             "require-dev": {
                 "egulias/email-validator": "^2.1.10",
-                "symfony/dependency-injection": "~3.4|^4.1"
+                "symfony/dependency-injection": "^3.4|^4.1|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -5755,7 +5759,7 @@
                 "mime",
                 "mime-type"
             ],
-            "time": "2019-11-12T13:10:02+00:00"
+            "time": "2019-11-13T07:39:40+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -6949,16 +6953,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "2.1.3",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "279723778c40164bcf984a2df12ff2c6ec5e61c1"
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/279723778c40164bcf984a2df12ff2c6ec5e61c1",
-                "reference": "279723778c40164bcf984a2df12ff2c6ec5e61c1",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/de5847b068362a88684a55b0dbb40d85986cfa52",
+                "reference": "de5847b068362a88684a55b0dbb40d85986cfa52",
                 "shasum": ""
             },
             "require": {
@@ -6971,6 +6975,7 @@
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-curl": "*",
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "http-interop/http-factory-tests": "^0.5.0",
@@ -7011,7 +7016,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-07-10T16:13:25+00:00"
+            "time": "2019-11-13T19:16:13+00:00"
         }
     ],
     "packages-dev": [
