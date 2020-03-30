@@ -89,7 +89,8 @@ class AuthController extends Controller
         ]);
 
         $this->broker()->reset(
-            $this->credentials($request), function ($user, $password) {
+            $this->credentials($request),
+            function ($user, $password) {
                 $user->password = Hash::make($password);
 
                 $user->setRememberToken(Str::random(60));
@@ -113,7 +114,10 @@ class AuthController extends Controller
     protected function credentials(Request $request)
     {
         return $request->only(
-            'email', 'password', 'password_confirmation', 'token'
+            'email',
+            'password',
+            'password_confirmation',
+            'token'
         );
     }
 
