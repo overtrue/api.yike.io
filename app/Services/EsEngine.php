@@ -68,8 +68,10 @@ class EsEngine extends ElasticsearchEngine
         }
 
         if (isset($options['numericFilters']) && count($options['numericFilters'])) {
-            $params['body']['query']['multi_match'] = array_merge($params['body']['query']['multi_match'],
-                $options['numericFilters']);
+            $params['body']['query']['multi_match'] = array_merge(
+                $params['body']['query']['multi_match'],
+                $options['numericFilters']
+            );
         }
 
         return $this->elastic->search($params);
@@ -94,7 +96,8 @@ class EsEngine extends ElasticsearchEngine
             ->pluck('_id')->values()->all();
 
         $models = $model->whereIn(
-            $model->getKeyName(), $keys
+            $model->getKeyName(),
+            $keys
         )->get()->keyBy($model->getKeyName());
 
         return collect($results['hits']['hits'])->map(function ($hit) use ($model, $models) {
